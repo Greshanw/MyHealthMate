@@ -4,14 +4,14 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:my_health_mate/screens/symptoms_recorder/treatments_home_page.dart';
 
-class SyptomSplash extends StatefulWidget {
+class SyptomSplash extends StatefulWidget  {
   const SyptomSplash({super.key});
 
   @override
   State<SyptomSplash> createState() => _SyptomSplashState();
 }
 
-class _SyptomSplashState extends State<SyptomSplash> {
+class _SyptomSplashState extends State<SyptomSplash>  {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
