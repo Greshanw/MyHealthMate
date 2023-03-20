@@ -1,5 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:d_chart/d_chart.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
 class BodyWeightChart extends StatefulWidget {
@@ -10,9 +11,9 @@ class BodyWeightChart extends StatefulWidget {
 }
 
 class _BodyWeightChartState extends State<BodyWeightChart> {
-  final streamChart = FirebaseFirestore.instance
-      .collection('weights')
-      .snapshots(includeMetadataChanges: true);
+  User? user = FirebaseAuth.instance.currentUser;
+  final collection = FirebaseFirestore.instance.collection('weights');
+  // .snapshots(includeMetadataChanges: true);
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -27,7 +28,10 @@ class _BodyWeightChartState extends State<BodyWeightChart> {
         padding: const EdgeInsets.all(16),
         children: [
           StreamBuilder(
-              stream: streamChart,
+              stream: collection
+                  .doc(user!.uid)
+                  .collection('userWeights')
+                  .snapshots(),
               builder: (context,
                   AsyncSnapshot<QuerySnapshot<Map<String, dynamic>>> snapshot) {
                 if (snapshot.hasError) {

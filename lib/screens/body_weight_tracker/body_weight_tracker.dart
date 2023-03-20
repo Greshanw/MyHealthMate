@@ -1,4 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
@@ -18,8 +19,10 @@ class _BodyWeightTrackerState extends State<BodyWeightTracker> {
   final TextEditingController _weightController = TextEditingController();
   final TextEditingController _dateController = TextEditingController();
 
-  final CollectionReference _weight =
+  final CollectionReference collection =
       FirebaseFirestore.instance.collection('weights');
+
+  User? user = FirebaseAuth.instance.currentUser;
 
   // ADD WEIGHT FUNCTION
   Future<void> _create([DocumentSnapshot? documentSnapshot]) async {
@@ -90,7 +93,9 @@ class _BodyWeightTrackerState extends State<BodyWeightTracker> {
                     final String dates = _dateController.text;
                     if (_weightController.value.text.isNotEmpty &&
                         _dateController.value.text.isNotEmpty) {
-                      await _weight
+                      await collection
+                          .doc(user!.uid)
+                          .collection('userWeights')
                           .add({"weight": weight, "date": dates}).then((value) {
                         Get.snackbar('Success', 'Successfully Saved');
                       });
@@ -187,8 +192,12 @@ class _BodyWeightTrackerState extends State<BodyWeightTracker> {
                         double.tryParse(_weightController.text);
                     final String dates = _dateController.text;
                     if (weight != null) {
-                      await _weight.doc(documentSnapshot!.id).update(
-                          {"weight": weight, "date": dates}).then((value) {
+                      await collection
+                          .doc(user!.uid)
+                          .collection('userWeights')
+                          .doc(documentSnapshot!.id)
+                          .update({"weight": weight, "date": dates}).then(
+                              (value) {
                         Get.snackbar('Success', 'Successfully Updated');
                       });
                       _weightController.text = '';
@@ -207,7 +216,12 @@ class _BodyWeightTrackerState extends State<BodyWeightTracker> {
 
   // DELETE WEIGHT FUNCTION
   Future<void> _delete(String recordId) async {
-    await _weight.doc(recordId).delete().then((value) {
+    await collection
+        .doc(user!.uid)
+        .collection('userWeights')
+        .doc(recordId)
+        .delete()
+        .then((value) {
       Get.snackbar('Success', 'Successfully Deleted');
     });
     if (mounted) {
@@ -231,7 +245,10 @@ class _BodyWeightTrackerState extends State<BodyWeightTracker> {
         children: [
           Expanded(
             child: StreamBuilder(
-              stream: _weight.snapshots(),
+              stream: collection
+                  .doc(user!.uid)
+                  .collection('userWeights')
+                  .snapshots(),
               builder: (context, AsyncSnapshot<QuerySnapshot> streamSnapshot) {
                 if (streamSnapshot.hasData) {
                   return ListView.builder(
