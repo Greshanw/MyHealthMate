@@ -2,6 +2,11 @@ import 'package:flutter/src/widgets/container.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:my_health_mate/screens/symptoms_recorder/abdomensymptoms.dart';
+import 'package:my_health_mate/screens/symptoms_recorder/bodysymptoms.dart';
+import 'package:my_health_mate/screens/symptoms_recorder/head_symptoms.dart';
+import 'package:my_health_mate/screens/symptoms_recorder/mentalsymptoms.dart';
+import 'package:my_health_mate/screens/symptoms_recorder/skinsymptoms.dart';
 import 'package:my_health_mate/screens/symptoms_recorder/treatments_home_page.dart';
 
 class SyptomSplash extends StatefulWidget  {
@@ -37,6 +42,7 @@ class _SyptomSplashState extends State<SyptomSplash>  {
               fontSize:17,
               color:Color(0xffffffff),
             ),
+            textAlign: TextAlign.center,
           ),
       ),
       body:  Center(
@@ -66,7 +72,6 @@ class _SyptomSplashState extends State<SyptomSplash>  {
                   AbdomenSymptoms(),
                   mentalsymptoms(),
                   skinsymptoms(),
-                  OtherSymptoms(),
             ],
           ),
         ),
@@ -80,7 +85,7 @@ class HeadSymptoms extends StatelessWidget {
   const HeadSymptoms({super.key});
 
   void _navigateToHeadSymptoms(BuildContext context) {
-    // Navigator.of(context).push(MaterialPageRoute(builder: (context) => HeadSymptomsPage()));
+     Navigator.of(context).push(MaterialPageRoute(builder: (context) => HeadSymptomsPage()));
   }
 
   @override
@@ -130,7 +135,7 @@ class HeadSymptoms extends StatelessWidget {
 class BodySymptoms extends StatelessWidget {
   const BodySymptoms({super.key});
   void _navigateToBodySymptoms(BuildContext context) {
-    // Navigator.of(context).push(MaterialPageRoute(builder: (context) => BodySymptomsPage()));
+     Navigator.of(context).push(MaterialPageRoute(builder: (context) => BodySymptomsPage()));
   }
 
   @override
@@ -180,7 +185,7 @@ class BodySymptoms extends StatelessWidget {
 class AbdomenSymptoms extends StatelessWidget {
   const AbdomenSymptoms({super.key});
   void _navigateToAbdomenSymptoms(BuildContext context) {
-    // Navigator.of(context).push(MaterialPageRoute(builder: (context) => AbdomenSymptomsPage()));
+     Navigator.of(context).push(MaterialPageRoute(builder: (context) => AbdomenSymptomsPage()));
   }
 
   @override
@@ -231,7 +236,7 @@ class AbdomenSymptoms extends StatelessWidget {
 class mentalsymptoms extends StatelessWidget {
   const mentalsymptoms({super.key});
   void _navigateToMentalSymptoms(BuildContext context) {
-    // Navigator.of(context).push(MaterialPageRoute(builder: (context) => MentalSymptomsPage()));
+     Navigator.of(context).push(MaterialPageRoute(builder: (context) => MentalSymptomsPage()));
   }
   @override
   Widget build(BuildContext context) {
@@ -286,7 +291,7 @@ class skinsymptoms extends StatelessWidget {
   const skinsymptoms({super.key});
 
   void _navigateToSkinSymptoms(BuildContext context) {
-    // Navigator.of(context).push(MaterialPageRoute(builder: (context) => SkinSymptomsPage()));
+     Navigator.of(context).push(MaterialPageRoute(builder: (context) => SkinSymptomsPage()));
   }
 
   @override
