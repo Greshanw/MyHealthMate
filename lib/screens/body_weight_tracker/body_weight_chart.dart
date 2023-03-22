@@ -13,7 +13,7 @@ class BodyWeightChart extends StatefulWidget {
 class _BodyWeightChartState extends State<BodyWeightChart> {
   User? user = FirebaseAuth.instance.currentUser;
   final collection = FirebaseFirestore.instance.collection('weights');
-  // .snapshots(includeMetadataChanges: true);
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(

@@ -13,9 +13,6 @@ class BodyWeightTracker extends StatefulWidget {
 }
 
 class _BodyWeightTrackerState extends State<BodyWeightTracker> {
-  Icon customIcon = const Icon(Icons.search);
-  Widget customSearchBar = const Text('Health Manager');
-  // Text fields' controllers
   final TextEditingController _weightController = TextEditingController();
   final TextEditingController _dateController = TextEditingController();
 
@@ -25,7 +22,7 @@ class _BodyWeightTrackerState extends State<BodyWeightTracker> {
   User? user = FirebaseAuth.instance.currentUser;
 
   // ADD WEIGHT FUNCTION
-  Future<void> _create([DocumentSnapshot? documentSnapshot]) async {
+  Future<void> _create() async {
     await showModalBottomSheet(
         isScrollControlled: true,
         context: context,
@@ -97,7 +94,11 @@ class _BodyWeightTrackerState extends State<BodyWeightTracker> {
                           .doc(user!.uid)
                           .collection('userWeights')
                           .add({"weight": weight, "date": dates}).then((value) {
-                        Get.snackbar('Success', 'Successfully Saved');
+                        const snackBar = SnackBar(
+                          content: Text('Weight added successfully!'),
+                        );
+
+                        ScaffoldMessenger.of(context).showSnackBar(snackBar);
                       });
                       _weightController.text = '';
                       _dateController.text = '';
@@ -198,7 +199,11 @@ class _BodyWeightTrackerState extends State<BodyWeightTracker> {
                           .doc(documentSnapshot!.id)
                           .update({"weight": weight, "date": dates}).then(
                               (value) {
-                        Get.snackbar('Success', 'Successfully Updated');
+                        const snackBar = SnackBar(
+                          content: Text('Weight updated successfully!'),
+                        );
+
+                        ScaffoldMessenger.of(context).showSnackBar(snackBar);
                       });
                       _weightController.text = '';
                       _dateController.text = '';
@@ -222,7 +227,11 @@ class _BodyWeightTrackerState extends State<BodyWeightTracker> {
         .doc(recordId)
         .delete()
         .then((value) {
-      Get.snackbar('Success', 'Successfully Deleted');
+      const snackBar = SnackBar(
+        content: Text('Weight deleted successfully!'),
+      );
+
+      ScaffoldMessenger.of(context).showSnackBar(snackBar);
     });
     if (mounted) {
       Navigator.pop(context);
@@ -239,7 +248,7 @@ class _BodyWeightTrackerState extends State<BodyWeightTracker> {
         shape: const RoundedRectangleBorder(
           borderRadius: BorderRadius.zero,
         ),
-        title: customSearchBar,
+        title: const Text('Health Manager'),
       ),
       body: Column(
         children: [
@@ -295,33 +304,28 @@ class _BodyWeightTrackerState extends State<BodyWeightTracker> {
                                     color: Colors.red,
                                   ),
                                   onPressed: () {
-                                    Widget cancelButton = TextButton(
-                                      child: const Text("Cancel"),
-                                      onPressed: () {
-                                        Navigator.pop(context);
-                                      },
-                                    );
-                                    Widget continueButton = TextButton(
-                                      child: const Text("Ok"),
-                                      onPressed: () =>
-                                          _delete(documentSnapshot.id),
-                                    );
-
-                                    // set up the AlertDialog
-                                    AlertDialog alert = AlertDialog(
-                                      title: const Text("Health Manager"),
-                                      content: const Text(
-                                          "Are you sure want to delete?"),
-                                      actions: [
-                                        cancelButton,
-                                        continueButton,
-                                      ],
-                                    );
                                     // show the dialog
                                     showDialog(
                                       context: context,
                                       builder: (BuildContext context) {
-                                        return alert;
+                                        return AlertDialog(
+                                          title: const Text("Health Manager"),
+                                          content: const Text(
+                                              "Are you sure want to delete?"),
+                                          actions: [
+                                            TextButton(
+                                              child: const Text("Cancel"),
+                                              onPressed: () {
+                                                Navigator.pop(context);
+                                              },
+                                            ),
+                                            TextButton(
+                                              child: const Text("Ok"),
+                                              onPressed: () =>
+                                                  _delete(documentSnapshot.id),
+                                            ),
+                                          ],
+                                        );
                                       },
                                     );
                                   },
