@@ -32,48 +32,40 @@ class _MySplashScreenState extends State<MySplashScreen> {
   Widget build(BuildContext context) {
     return Material(
       child: Container(
-        decoration:const  BoxDecoration(
+        decoration: const BoxDecoration(
             image: DecorationImage(
                 image: AssetImage('images/splashScreen.jpg'), fit: BoxFit.cover)),
         child: Center(
             child: Column(
-          
           children: [
             const SizedBox(
               height: 250,
             ),
             const Text("Health Mate",
-            style: TextStyle(
-              fontSize: 30,
-              color: Colors.black
-            )),
+                style: TextStyle(fontSize: 30, color: Colors.black)),
             const SizedBox(
               height: 50,
             ),
             GestureDetector(
               onTap: () {
-                
                 Navigator.push(
                     context, MaterialPageRoute(builder: (c) => LoginScreen()));
-              
               },
               child: Container(
-                            height: 70,
-                            width: 70,
-                            decoration: BoxDecoration(
-                              color: Colors.white,
-                              borderRadius: BorderRadius.circular(45.0),
-                              
-                            ),
-                            child:const  Icon(
-                              Icons.arrow_forward_rounded,
-                              color: Colors.black,
-                              size: 65,
-                              
-                            ),
-                          ),
+                height: 70,
+                width: 70,
+                decoration: BoxDecoration(
+                  color: Colors.white,
+                  borderRadius: BorderRadius.circular(45.0),
+                ),
+                child: const Icon(
+                  Icons.arrow_forward_rounded,
+                  color: Colors.black,
+                  size: 65,
+                ),
+              ),
             ),
-            ],
+          ],
         )),
       ),
     );

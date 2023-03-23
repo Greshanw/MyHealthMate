@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-
+import '../screens/diet_plan/diet_plan_home.dart';
 import '../screens/symptoms_recorder/symptom_recorder_home.dart';
 
 class HomePage extends StatefulWidget {
@@ -37,7 +37,10 @@ class _HomePageState extends State<HomePage> {
           mainAxisAlignment: MainAxisAlignment.spaceAround,
           children: [
             IconButton(
-              onPressed: () {},
+              onPressed: () {
+                Navigator.of(context).push(
+                    MaterialPageRoute(builder: (context) => DietPlanHOME()));
+              },
               icon: Icon(Icons.food_bank),
               tooltip: 'Diet Plan',
             ),
@@ -59,8 +62,8 @@ class _HomePageState extends State<HomePage> {
             ),
             IconButton(
               onPressed: () {
-                Navigator.of(context).push(
-                    MaterialPageRoute(builder: (context) =>const SyptomSplash()));
+                Navigator.of(context).push(MaterialPageRoute(
+                    builder: (context) => const SyptomSplash()));
               },
               icon: Icon(Icons.edit),
               tooltip: 'Symptoms Recorder',

@@ -16,9 +16,9 @@ void main() async {
   runApp(
     MyApp(
         child: MaterialApp(
-      title: 'Health Mate',
+      title: 'My Health Mate',
       theme: ThemeData(
-        primarySwatch: Colors.lightGreen,
+        primarySwatch: Colors.blue,
       ),
       home: FirebaseAuth.instance.currentUser != null ? const MainScreen() :const MySplashScreen()
     )),
