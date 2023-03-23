@@ -18,12 +18,38 @@ class _BodyWeightChartState extends State<BodyWeightChart> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        elevation: 4,
-        centerTitle: false,
-        title: const Text(
-          "Health Manager",
-        ),
-      ),
+          leading: IconButton(
+            icon: const SizedBox(
+              height: 32,
+              width: 32,
+              child: CircleAvatar(
+                  child: Icon(
+                Icons.arrow_back_ios_sharp,
+                color: Colors.black,
+                size: 18,
+              )),
+            ),
+            onPressed: () {
+              Navigator.pop(context);
+            },
+          ),
+          title: const Text(
+            "Body Weight Tracker",
+            style: TextStyle(
+              fontWeight: FontWeight.w800,
+              fontStyle: FontStyle.normal,
+              fontSize: 18,
+              color: Color(0xffffffff),
+            ),
+            textAlign: TextAlign.center,
+          ),
+          elevation: 4,
+          centerTitle: true,
+          automaticallyImplyLeading: false,
+          backgroundColor: Color(0xFF5CB85C),
+          shape: const RoundedRectangleBorder(
+            borderRadius: BorderRadius.zero,
+          )),
       body: ListView(
         padding: const EdgeInsets.all(16),
         children: [

@@ -75,6 +75,7 @@ class _BodyWeightTrackerState extends State<BodyWeightTracker> {
                   style: ElevatedButton.styleFrom(
                     padding: const EdgeInsets.symmetric(
                         vertical: 15.0, horizontal: 160),
+                    backgroundColor: const Color(0xFF5CB85C),
                   ),
                   child: const Text(
                     'Submit',
@@ -243,13 +244,38 @@ class _BodyWeightTrackerState extends State<BodyWeightTracker> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        elevation: 4,
-        centerTitle: false,
-        shape: const RoundedRectangleBorder(
-          borderRadius: BorderRadius.zero,
-        ),
-        title: const Text('Health Manager'),
-      ),
+          leading: IconButton(
+            icon: const SizedBox(
+              height: 32,
+              width: 32,
+              child: CircleAvatar(
+                  child: Icon(
+                Icons.arrow_back_ios_sharp,
+                color: Colors.black,
+                size: 18,
+              )),
+            ),
+            onPressed: () {
+              Navigator.pop(context);
+            },
+          ),
+          title: const Text(
+            "Body Weight Tracker",
+            style: TextStyle(
+              fontWeight: FontWeight.w800,
+              fontStyle: FontStyle.normal,
+              fontSize: 18,
+              color: Color(0xffffffff),
+            ),
+            textAlign: TextAlign.center,
+          ),
+          elevation: 4,
+          centerTitle: true,
+          automaticallyImplyLeading: false,
+          backgroundColor: Color(0xFF5CB85C),
+          shape: const RoundedRectangleBorder(
+            borderRadius: BorderRadius.zero,
+          )),
       body: Column(
         children: [
           Expanded(
@@ -352,6 +378,9 @@ class _BodyWeightTrackerState extends State<BodyWeightTracker> {
                   onPressed: () {
                     _create();
                   },
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: const Color(0xFF5CB85C),
+                  ),
                   label: const Text("ADD"),
                   icon: const Icon(Icons.add),
                 ),
@@ -362,6 +391,9 @@ class _BodyWeightTrackerState extends State<BodyWeightTracker> {
                   onPressed: () {
                     _navigateToAnalytics(context);
                   },
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: const Color(0xFF5CB85C),
+                  ),
                   label: const Text("Analytics"),
                   icon: const Icon(Icons.bar_chart),
                 ),
@@ -371,27 +403,6 @@ class _BodyWeightTrackerState extends State<BodyWeightTracker> {
           )
         ],
       ),
-      // Add Button
-      // floatingActionButtonLocation:
-      //     FloatingActionButtonLocation.miniCenterFloat,
-      // floatingActionButton: Padding(
-      //   padding: const EdgeInsets.all(8.0),
-      //   child: Row(
-      //     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-      //     children: <Widget>[
-      //       FloatingActionButton(
-      //         onPressed: () => _create(),
-      //         child: Icon(Icons.add),
-      //       ),
-      //       FloatingActionButton(
-      //         onPressed: () {
-      //           _navigateToAnalytics(context);
-      //         },
-      //         child: Icon(Icons.bar_chart),
-      //       )
-      //     ],
-      //   ),
-      // ),
     );
   }
 
