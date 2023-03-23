@@ -9,411 +9,585 @@ import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:my_health_mate/screens/symptoms_recorder/symptoms_skin_history.dart';
+
 class SkinSymptomsPage extends StatefulWidget {
-
-
-  const SkinSymptomsPage ({Key? key}):super(key: key);
+  const SkinSymptomsPage({Key? key}) : super(key: key);
 
   @override
-  _SkinSymptomsState createState()=>_SkinSymptomsState();
-
-
+  _SkinSymptomsState createState() => _SkinSymptomsState();
 }
-class _SkinSymptomsState extends State<SkinSymptomsPage>{
 
+class _SkinSymptomsState extends State<SkinSymptomsPage> {
   // Get the current user's UID
   String uid = FirebaseAuth.instance.currentUser!.uid;
 
-
   final CollectionReference _symptoms =
-  FirebaseFirestore.instance.collection('symptoms');
+      FirebaseFirestore.instance.collection('symptoms');
 
-  double symptomlevel=0;
-  String symptom="";
+  double symptomlevel1 = 0;
+  double symptomlevel2 = 0;
+  double symptomlevel3 = 0;
+  double symptomlevel4 = 0;
+  String symptom = "";
 
-  String textResult='';
-  String imageresult="";
+  String textResult = '';
+  String imageresult = "";
+
+  bool colorClick = true;
 
   void _navigateToSymptomHistory(BuildContext context) {
-    Navigator.of(context).push(MaterialPageRoute(builder: (context) => SymptomsSkinHistory()));
+    Navigator.of(context)
+        .push(MaterialPageRoute(builder: (context) => SymptomsSkinHistory()));
   }
 
   @override
   Widget build(BuildContext context) {
-    return  Container(
+    return Container(
         decoration: BoxDecoration(
-        gradient: LinearGradient(
-        begin: Alignment.topCenter,
-        end: Alignment.bottomCenter,
-        stops: const [0.6,0.7,0.8,0.88,0.95,0.98],
-        colors: (symptomlevel == 1)?
-    [
-      Colors.white,
-      Colors.lightGreen.shade50,
-      Colors.lightGreen.shade100,
-      Colors.lightGreen.shade200,
-      Colors.lightGreen.shade300,
-      Colors.lightGreenAccent.shade400,
-
-    ]:
-    (symptomlevel == 2)?
-    [
-      Colors.white,
-      Colors.yellow.shade50,
-      Colors.yellow.shade100,
-      Colors.yellow.shade200,
-      Colors.yellow.shade300,
-      Colors.yellow.shade400,
-
-    ]:
-    (symptomlevel == 3)?
-    [
-      Colors.white,
-      Colors.amber.shade50,
-      Colors.amber.shade100,
-      Colors.amber.shade200,
-      Colors.amber.shade300,
-      Colors.amber.shade500,
-
-    ]:
-    (symptomlevel == 4)?
-    [
-      Colors.white,
-      Colors.orange.shade50,
-      Colors.orange.shade100,
-      Colors.orange.shade200,
-      Colors.orange.shade300,
-      Colors.orange.shade800,
-
-    ]:
-    (symptomlevel == 5)?
-    [
-      Colors.white,
-      Colors.red.shade50,
-      Colors.red.shade100,
-      Colors.red.shade200,
-      Colors.red.shade300,
-      Colors.red.shade400,
-
-    ]:
-    [
-      Colors.white,
-      Colors.grey.shade50,
-      Colors.grey.shade100,
-      Colors.grey.shade200,
-      Colors.grey.shade300,
-      Colors.grey.shade400,
-
-
-    ]
-    )
-    ),
+            gradient: LinearGradient(
+                begin: Alignment.topCenter,
+                end: Alignment.bottomCenter,
+                stops: const [0.6, 0.7, 0.8, 0.88, 0.95, 0.98],
+                colors: (symptomlevel1 == 1 ||
+                        symptomlevel2 == 1 ||
+                        symptomlevel3 == 1 ||
+                        symptomlevel4 == 1)
+                    ? [
+                        Colors.white,
+                        Colors.lightGreen.shade50,
+                        Colors.lightGreen.shade100,
+                        Colors.lightGreen.shade200,
+                        Colors.lightGreen.shade300,
+                        Colors.lightGreenAccent.shade400,
+                      ]
+                    : (symptomlevel1 == 2 ||
+                            symptomlevel2 == 2 ||
+                            symptomlevel3 == 2 ||
+                            symptomlevel4 == 2)
+                        ? [
+                            Colors.white,
+                            Colors.yellow.shade50,
+                            Colors.yellow.shade100,
+                            Colors.yellow.shade200,
+                            Colors.yellow.shade300,
+                            Colors.yellow.shade400,
+                          ]
+                        : (symptomlevel1 == 3 ||
+                                symptomlevel2 == 3 ||
+                                symptomlevel3 == 3 ||
+                                symptomlevel4 == 3)
+                            ? [
+                                Colors.white,
+                                Colors.amber.shade50,
+                                Colors.amber.shade100,
+                                Colors.amber.shade200,
+                                Colors.amber.shade300,
+                                Colors.amber.shade500,
+                              ]
+                            : (symptomlevel1 == 4 ||
+                                    symptomlevel2 == 4 ||
+                                    symptomlevel3 == 4 ||
+                                    symptomlevel4 == 4)
+                                ? [
+                                    Colors.white,
+                                    Colors.orange.shade50,
+                                    Colors.orange.shade100,
+                                    Colors.orange.shade200,
+                                    Colors.orange.shade300,
+                                    Colors.orange.shade800,
+                                  ]
+                                : (symptomlevel1 == 5 ||
+                                        symptomlevel2 == 5 ||
+                                        symptomlevel3 == 5 ||
+                                        symptomlevel4 == 5)
+                                    ? [
+                                        Colors.white,
+                                        Colors.red.shade50,
+                                        Colors.red.shade100,
+                                        Colors.red.shade200,
+                                        Colors.red.shade300,
+                                        Colors.red.shade400,
+                                      ]
+                                    : [
+                                        Colors.white,
+                                        Colors.grey.shade50,
+                                        Colors.grey.shade100,
+                                        Colors.grey.shade200,
+                                        Colors.grey.shade300,
+                                        Colors.grey.shade400,
+                                      ])),
         child: Scaffold(
           backgroundColor: Colors.transparent,
-      appBar:
-      AppBar(
+          appBar: AppBar(
             leading: IconButton(
-                icon: SvgPicture.asset('images/back.svg'),
-                onPressed: () {
-                  Navigator.pop(context);
-                }),
+              icon: Container(
+                height: 32,
+                width: 32,
+                child: CircleAvatar(
+                    child: Icon(
+                  Icons.arrow_back_ios_sharp,
+                  color: Colors.black,
+                  size: 18,
+                )),
+              ),
+              onPressed: () {
+                Navigator.pop(context);
+              },
+            ),
             elevation: 4,
-            centerTitle: false,
+            centerTitle: true,
             automaticallyImplyLeading: false,
-            backgroundColor: Colors.lightGreenAccent,
+            backgroundColor: Color(0xFF5CB85C),
             shape: const RoundedRectangleBorder(
               borderRadius: BorderRadius.zero,
             ),
             title: const Text(
-              "Health Mate",
+              "Head Symptoms",
               style: TextStyle(
                 fontWeight: FontWeight.w800,
                 fontStyle: FontStyle.normal,
-                fontSize: 17,
+                fontSize: 18,
                 color: Color(0xffffffff),
               ),
+              textAlign: TextAlign.center,
             ),
           ),
-      body: Column(
-        mainAxisAlignment: MainAxisAlignment.start,
-        crossAxisAlignment: CrossAxisAlignment.center,
-        mainAxisSize: MainAxisSize.max,
-        children: [
-          Expanded(
-
-            child: ListView(
-              scrollDirection: Axis.vertical,
-              padding: EdgeInsets.zero,
-              shrinkWrap: false,
-              physics: ScrollPhysics(),
-              children: [
-                Padding(
-                  padding: EdgeInsets.fromLTRB(0, 0, 0, 0),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.start,
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    mainAxisSize: MainAxisSize.max,
-                    children: [
-                      Padding(
-                        padding: EdgeInsets.fromLTRB(0, 0, 0, 0),
-                        child:  MaterialButton(
-                          onPressed: () async {
-
-
-                          },
-                          color: Color(0xffc396e5),
-                          elevation: 0,
-
-                          padding: EdgeInsets.symmetric(horizontal: 0, vertical: 0),
-                          child: Text(
-                            "Symptoms",
-                            style: TextStyle(
-                              fontSize: 14,
-                              fontWeight: FontWeight.w600,
-                              fontStyle: FontStyle.normal,
-                            ),
-                          ),
-                          textColor: Color(0xff000000),
-                          height: 40,
-                          minWidth: 190,
-                        ),
-                      ),
-                      Padding(
-                        padding: EdgeInsets.fromLTRB(0, 0, 0, 0),
-                        child:  MaterialButton(
-                          onPressed: () async {
-                            _navigateToSymptomHistory(context);
-
-                          },
-                          color: Color(0xffb4b0b7),
-                          elevation: 0,
-
-                          padding: EdgeInsets.symmetric(horizontal: 0, vertical: 0),
-                          child: Text(
-                            "History",
-                            style: TextStyle(
-                              fontSize: 14,
-                              fontWeight: FontWeight.w600,
-                              fontStyle: FontStyle.normal,
-                            ),
-                          ),
-                          textColor: Color(0xff000000),
-                          height: 40,
-                          minWidth: 190,
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
-                Padding(
-                  padding: EdgeInsets.fromLTRB(90, 20, 20, 60),
-                  child: Text(
-                    "Skin Symptoms",
-                    textAlign: TextAlign.start,
-                    overflow: TextOverflow.clip,
-                    style: TextStyle(
-                      fontWeight: FontWeight.w500,
-                      fontStyle: FontStyle.normal,
-                      fontSize: 25,
-                      color: Color(0xff000000),
+          body: Column(
+            mainAxisAlignment: MainAxisAlignment.start,
+            crossAxisAlignment: CrossAxisAlignment.center,
+            mainAxisSize: MainAxisSize.max,
+            children: [
+              Expanded(
+                child: ListView(
+                  scrollDirection: Axis.vertical,
+                  padding: EdgeInsets.zero,
+                  shrinkWrap: false,
+                  physics: ScrollPhysics(),
+                  children: [
+                    SizedBox(
+                      width: 7,
                     ),
-                  ),
-                ),
-                Padding(
-                  padding: EdgeInsets.fromLTRB(0, 0, 0, 40),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.start,
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    mainAxisSize: MainAxisSize.max,
-                    children: [
-                      Padding(
-                        padding: EdgeInsets.fromLTRB(30, 0, 100, 10),
-                        child: Text(
-                          "Acne",
-                          textAlign: TextAlign.start,
-                          overflow: TextOverflow.clip,
-                          style: TextStyle(
-                            fontWeight: FontWeight.w400,
-                            fontStyle: FontStyle.normal,
-                            fontSize: 18,
-                            color: Color(0xff000000),
+                    Padding(
+                      padding: EdgeInsets.fromLTRB(0, 0, 0, 0),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.start,
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        mainAxisSize: MainAxisSize.max,
+                        children: [
+                          Padding(
+                            padding: EdgeInsets.fromLTRB(0, 0, 0, 0),
+                            child: MaterialButton(
+                              onPressed: () async {},
+                              color: Color(0xFF5CB85C),
+                              elevation: 0,
+                              padding: EdgeInsets.symmetric(
+                                  horizontal: 0, vertical: 0),
+                              child: Text(
+                                "Symptoms",
+                                style: TextStyle(
+                                  fontSize: 14,
+                                  fontWeight: FontWeight.w600,
+                                  fontStyle: FontStyle.normal,
+                                ),
+                              ),
+                              textColor: Color(0xff000000),
+                              height: 40,
+                              minWidth: 190,
+                            ),
                           ),
-                        ),
-                      ),
-                      Padding(
-                        padding: EdgeInsets.fromLTRB(0, 0, 20, 0),
-                        child: RatingBar.builder(
-                          initialRating: 0,
-                          unratedColor: Color(0xffece5e5),
-                          itemBuilder: (context, index) =>
-                              Icon(Icons.star, color: Color(0xffffc107)),
-                          itemCount: 5,
-                          itemSize: 30,
-                          direction: Axis.horizontal,
-                          allowHalfRating: false,
-                          onRatingUpdate: (value) {
-                            if(value>0){
-                              symptomlevel=value;
-                              symptom="Acne";
-
-                            }
-
-
-                          },
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
-                Padding(
-                  padding: EdgeInsets.fromLTRB(0, 0, 0, 40),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.start,
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    mainAxisSize: MainAxisSize.max,
-                    children: [
-                      Padding(
-                        padding: EdgeInsets.fromLTRB(30, 0, 90, 0),
-                        child: Text(
-                          "Blister",
-                          textAlign: TextAlign.start,
-                          overflow: TextOverflow.clip,
-                          style: TextStyle(
-                            fontWeight: FontWeight.w400,
-                            fontStyle: FontStyle.normal,
-                            fontSize: 18,
-                            color: Color(0xff000000),
+                          Padding(
+                            padding: EdgeInsets.fromLTRB(0, 0, 0, 0),
+                            child: MaterialButton(
+                              onPressed: () async {
+                                _navigateToSymptomHistory(context);
+                              },
+                              color: Color(0xffb4b0b7),
+                              elevation: 0,
+                              padding: EdgeInsets.symmetric(
+                                  horizontal: 0, vertical: 0),
+                              child: Text(
+                                "History",
+                                style: TextStyle(
+                                  fontSize: 14,
+                                  fontWeight: FontWeight.w600,
+                                  fontStyle: FontStyle.normal,
+                                ),
+                              ),
+                              textColor: Color(0xff000000),
+                              height: 40,
+                              minWidth: 190,
+                            ),
                           ),
+                        ],
+                      ),
+                    ),
+                    Padding(
+                      padding: EdgeInsets.fromLTRB(90, 20, 20, 60),
+                      child: Text(
+                        "Skin Symptoms",
+                        textAlign: TextAlign.start,
+                        overflow: TextOverflow.clip,
+                        style: TextStyle(
+                          fontWeight: FontWeight.w500,
+                          fontStyle: FontStyle.normal,
+                          fontSize: 25,
+                          color: Color(0xff000000),
                         ),
                       ),
-                      Padding(
-                        padding: EdgeInsets.fromLTRB(0, 0, 8, 0),
-                        child: RatingBar.builder(
-                          initialRating: 0,
-                          unratedColor: Color(0xffece5e5),
-                          itemBuilder: (context, index) =>
-                              Icon(Icons.star, color: Color(0xffffc107)),
-                          itemCount: 5,
-                          itemSize: 30,
-                          direction: Axis.horizontal,
-                          allowHalfRating: false,
-                          onRatingUpdate: (value) {
-                            if(value>0){
-                              symptomlevel=value;
-                              symptom="Blister";
-
-                            }
-                          },
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
-                Padding(
-                  padding: EdgeInsets.fromLTRB(0, 0, 0, 40),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.start,
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    mainAxisSize: MainAxisSize.max,
-                    children: [
-                      Padding(
-                        padding: EdgeInsets.fromLTRB(30, 0, 80, 0),
-                        child: Text(
-                          "Rashes",
-                          textAlign: TextAlign.start,
-                          overflow: TextOverflow.clip,
-                          style: TextStyle(
-                            fontWeight: FontWeight.w400,
-                            fontStyle: FontStyle.normal,
-                            fontSize: 18,
-                            color: Color(0xff000000),
+                    ),
+                    Padding(
+                      padding: EdgeInsets.fromLTRB(0, 0, 0, 40),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.start,
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        mainAxisSize: MainAxisSize.max,
+                        children: [
+                          Padding(
+                            padding: EdgeInsets.fromLTRB(30, 0, 100, 10),
+                            child: Text(
+                              "Acne",
+                              textAlign: TextAlign.start,
+                              overflow: TextOverflow.clip,
+                              style: TextStyle(
+                                fontWeight: FontWeight.w400,
+                                fontStyle: FontStyle.normal,
+                                fontSize: 18,
+                                color: Color(0xff000000),
+                              ),
+                            ),
                           ),
-                        ),
+                          Padding(
+                              padding: EdgeInsets.fromLTRB(0, 0, 20, 0),
+                              child: SliderTheme(
+                                data: SliderThemeData(
+                                  thumbShape: RoundSliderThumbShape(
+                                    enabledThumbRadius: 12,
+                                    disabledThumbRadius: 12,
+                                    elevation: 4,
+                                    pressedElevation: 6,
+                                  ),
+                                  activeTrackColor: Color(0xFF5CB85C),
+                                  inactiveTrackColor: Colors.grey,
+                                  overlayColor:
+                                      Color(0xFF5CB85C).withOpacity(0.2),
+                                  thumbColor: Color(0xFF5CB85C),
+                                  valueIndicatorColor: Color(0xFF5CB85C),
+                                  valueIndicatorTextStyle: TextStyle(
+                                    color: Colors.white,
+                                    fontSize: 16,
+                                    fontWeight: FontWeight.bold,
+                                  ),
+                                ),
+                                child: Slider(
+                                  value: symptomlevel1.toDouble(),
+                                  min: 0,
+                                  max: 5,
+                                  divisions: 5,
+                                  label: 'Acne: $symptomlevel1',
+                                  onChanged: (double value) {
+                                    setState(() {
+                                      symptomlevel1 = value.toDouble();
+                                      symptom = 'Acne';
+                                    });
+                                  },
+                                ),
+                              )),
+                          // Padding(
+                          //   padding: EdgeInsets.fromLTRB(0, 0, 20, 0),
+                          //   child: RatingBar.builder(
+                          //     initialRating: 0,
+                          //     unratedColor: Color(0xffece5e5),
+                          //     itemBuilder: (context, index) =>
+                          //         Icon(Icons.star, color: Color(0xffffc107)),
+                          //     itemCount: 5,
+                          //     itemSize: 30,
+                          //     direction: Axis.horizontal,
+                          //     allowHalfRating: false,
+                          //     onRatingUpdate: (value) {
+                          //       if (value > 0) {
+                          //         symptomlevel = value;
+                          //         symptom = "Acne";
+                          //       }
+                          //     },
+                          //   ),
+                          // ),
+                        ],
                       ),
-                      Padding(
-                        padding: EdgeInsets.fromLTRB(0, 0, 10, 0),
-                        child: RatingBar.builder(
-                          initialRating: 0,
-                          unratedColor: Color(0xffece5e5),
-                          itemBuilder: (context, index) =>
-                              Icon(Icons.star, color: Color(0xffffc107)),
-                          itemCount: 5,
-                          itemSize: 30,
-                          direction: Axis.horizontal,
-                          allowHalfRating: false,
-                          onRatingUpdate: (value) {
-                            if(value>0){
-                              symptomlevel=value;
-                              symptom="Rashes";
-
-                            }
-                          },
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
-
-                Padding(
-                  padding: EdgeInsets.fromLTRB(0, 0, 0, 80),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.start,
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    mainAxisSize: MainAxisSize.max,
-                    children: [
-                      Padding(
-                        padding: EdgeInsets.fromLTRB(30, 0, 40, 0),
-                        child: Text(
-                          "Peeling skin",
-                          textAlign: TextAlign.start,
-                          overflow: TextOverflow.clip,
-                          style: TextStyle(
-                            fontWeight: FontWeight.w400,
-                            fontStyle: FontStyle.normal,
-                            fontSize: 18,
-                            color: Color(0xff000000),
+                    ),
+                    Padding(
+                      padding: EdgeInsets.fromLTRB(0, 0, 0, 40),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.start,
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        mainAxisSize: MainAxisSize.max,
+                        children: [
+                          Padding(
+                            padding: EdgeInsets.fromLTRB(30, 0, 90, 0),
+                            child: Text(
+                              "Blister",
+                              textAlign: TextAlign.start,
+                              overflow: TextOverflow.clip,
+                              style: TextStyle(
+                                fontWeight: FontWeight.w400,
+                                fontStyle: FontStyle.normal,
+                                fontSize: 18,
+                                color: Color(0xff000000),
+                              ),
+                            ),
                           ),
-                        ),
+                          Padding(
+                              padding: EdgeInsets.fromLTRB(0, 0, 20, 0),
+                              child: SliderTheme(
+                                data: SliderThemeData(
+                                  thumbShape: RoundSliderThumbShape(
+                                    enabledThumbRadius: 12,
+                                    disabledThumbRadius: 12,
+                                    elevation: 4,
+                                    pressedElevation: 6,
+                                  ),
+                                  activeTrackColor: Color(0xFF5CB85C),
+                                  inactiveTrackColor: Colors.grey,
+                                  overlayColor:
+                                      Color(0xFF5CB85C).withOpacity(0.2),
+                                  thumbColor: Color(0xFF5CB85C),
+                                  valueIndicatorColor: Color(0xFF5CB85C),
+                                  valueIndicatorTextStyle: TextStyle(
+                                    color: Colors.white,
+                                    fontSize: 16,
+                                    fontWeight: FontWeight.bold,
+                                  ),
+                                ),
+                                child: Slider(
+                                  value: symptomlevel2.toDouble(),
+                                  min: 0,
+                                  max: 5,
+                                  divisions: 5,
+                                  label: 'Blister: $symptomlevel2',
+                                  onChanged: (double value) {
+                                    setState(() {
+                                      symptomlevel2 = value.toDouble();
+                                      symptom = 'Blister';
+                                    });
+                                  },
+                                ),
+                              )),
+                          // Padding(
+                          //   padding: EdgeInsets.fromLTRB(0, 0, 8, 0),
+                          //   child: RatingBar.builder(
+                          //     initialRating: 0,
+                          //     unratedColor: Color(0xffece5e5),
+                          //     itemBuilder: (context, index) =>
+                          //         Icon(Icons.star, color: Color(0xffffc107)),
+                          //     itemCount: 5,
+                          //     itemSize: 30,
+                          //     direction: Axis.horizontal,
+                          //     allowHalfRating: false,
+                          //     onRatingUpdate: (value) {
+                          //       if (value > 0) {
+                          //         symptomlevel1 = value;
+                          //         symptom = "Blister";
+                          //       }
+                          //     },
+                          //   ),
+                          // ),
+                        ],
                       ),
-                      RatingBar.builder(
-                        initialRating: 0,
-                        unratedColor: Color(0xffece5e5),
-                        itemBuilder: (context, index) =>
-                            Icon(Icons.star, color: Color(0xffffc107)),
-                        itemCount: 5,
-                        itemSize: 30,
-                        direction: Axis.horizontal,
-                        allowHalfRating: false,
-                        onRatingUpdate: (value) {
-                          if(value>0){
-                            symptomlevel=value;
-                            symptom="Peeling skin";
-
-                          }
-                        },
+                    ),
+                    Padding(
+                      padding: EdgeInsets.fromLTRB(0, 0, 0, 40),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.start,
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        mainAxisSize: MainAxisSize.max,
+                        children: [
+                          Padding(
+                            padding: EdgeInsets.fromLTRB(30, 0, 80, 0),
+                            child: Text(
+                              "Rashes",
+                              textAlign: TextAlign.start,
+                              overflow: TextOverflow.clip,
+                              style: TextStyle(
+                                fontWeight: FontWeight.w400,
+                                fontStyle: FontStyle.normal,
+                                fontSize: 18,
+                                color: Color(0xff000000),
+                              ),
+                            ),
+                          ),
+                          Padding(
+                              padding: EdgeInsets.fromLTRB(0, 0, 20, 0),
+                              child: SliderTheme(
+                                data: SliderThemeData(
+                                  thumbShape: RoundSliderThumbShape(
+                                    enabledThumbRadius: 12,
+                                    disabledThumbRadius: 12,
+                                    elevation: 4,
+                                    pressedElevation: 6,
+                                  ),
+                                  activeTrackColor: Color(0xFF5CB85C),
+                                  inactiveTrackColor: Colors.grey,
+                                  overlayColor:
+                                      Color(0xFF5CB85C).withOpacity(0.2),
+                                  thumbColor: Color(0xFF5CB85C),
+                                  valueIndicatorColor: Color(0xFF5CB85C),
+                                  valueIndicatorTextStyle: TextStyle(
+                                    color: Colors.white,
+                                    fontSize: 16,
+                                    fontWeight: FontWeight.bold,
+                                  ),
+                                ),
+                                child: Slider(
+                                  value: symptomlevel3.toDouble(),
+                                  min: 0,
+                                  max: 5,
+                                  divisions: 5,
+                                  label: 'Rashes: $symptomlevel3',
+                                  onChanged: (double value) {
+                                    setState(() {
+                                      symptomlevel3 = value.toDouble();
+                                      symptom = 'Rashes';
+                                    });
+                                  },
+                                ),
+                              )),
+                          // Padding(
+                          //   padding: EdgeInsets.fromLTRB(0, 0, 10, 0),
+                          //   child: RatingBar.builder(
+                          //     initialRating: 0,
+                          //     unratedColor: Color(0xffece5e5),
+                          //     itemBuilder: (context, index) =>
+                          //         Icon(Icons.star, color: Color(0xffffc107)),
+                          //     itemCount: 5,
+                          //     itemSize: 30,
+                          //     direction: Axis.horizontal,
+                          //     allowHalfRating: false,
+                          //     onRatingUpdate: (value) {
+                          //       if (value > 0) {
+                          //         symptomlevel = value;
+                          //         symptom = "Rashes";
+                          //       }
+                          //     },
+                          //   ),
+                          // ),
+                        ],
                       ),
-                    ],
-                  ),
-                ),
-                Padding(
-                  padding: EdgeInsets.symmetric(horizontal: 20,),
-                  child: Visibility(
-                    visible: textResult.isNotEmpty,
-                    child: DottedBorder(
-                      dashPattern: [6, 3, 2, 3],
-                      color:( (symptomlevel==1)? Colors.lightGreenAccent:
-                      (symptomlevel==2)?Colors.yellow:
-                      (symptomlevel==3) ?Colors.amber:
-                      (symptomlevel==4)?Colors.orange:
-                      (symptomlevel==5) ?Colors.red :
-                      Colors.black),
-                      borderType: BorderType.RRect,
-                      radius: Radius.circular(12),
-
-                      child:Padding(
-                          padding: EdgeInsets.symmetric(horizontal: 20,vertical: 10),
-                          child: Row(
-                              children: [
+                    ),
+                    Padding(
+                      padding: EdgeInsets.fromLTRB(0, 0, 0, 80),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.start,
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        mainAxisSize: MainAxisSize.max,
+                        children: [
+                          Padding(
+                            padding: EdgeInsets.fromLTRB(30, 0, 40, 0),
+                            child: Text(
+                              "Peeling skin",
+                              textAlign: TextAlign.start,
+                              overflow: TextOverflow.clip,
+                              style: TextStyle(
+                                fontWeight: FontWeight.w400,
+                                fontStyle: FontStyle.normal,
+                                fontSize: 18,
+                                color: Color(0xff000000),
+                              ),
+                            ),
+                          ),
+                          Padding(
+                              padding: EdgeInsets.fromLTRB(0, 0, 20, 0),
+                              child: SliderTheme(
+                                data: SliderThemeData(
+                                  thumbShape: RoundSliderThumbShape(
+                                    enabledThumbRadius: 12,
+                                    disabledThumbRadius: 12,
+                                    elevation: 4,
+                                    pressedElevation: 6,
+                                  ),
+                                  activeTrackColor: Color(0xFF5CB85C),
+                                  inactiveTrackColor: Colors.grey,
+                                  overlayColor:
+                                      Color(0xFF5CB85C).withOpacity(0.2),
+                                  thumbColor: Color(0xFF5CB85C),
+                                  valueIndicatorColor: Color(0xFF5CB85C),
+                                  valueIndicatorTextStyle: TextStyle(
+                                    color: Colors.white,
+                                    fontSize: 16,
+                                    fontWeight: FontWeight.bold,
+                                  ),
+                                ),
+                                child: Slider(
+                                  value: symptomlevel4.toDouble(),
+                                  min: 0,
+                                  max: 5,
+                                  divisions: 5,
+                                  label: 'Peeling skin: $symptomlevel4',
+                                  onChanged: (double value) {
+                                    setState(() {
+                                      symptomlevel4 = value.toDouble();
+                                      symptom = 'Peeling skin';
+                                    });
+                                  },
+                                ),
+                              )),
+                          // RatingBar.builder(
+                          //   initialRating: 0,
+                          //   unratedColor: Color(0xffece5e5),
+                          //   itemBuilder: (context, index) =>
+                          //       Icon(Icons.star, color: Color(0xffffc107)),
+                          //   itemCount: 5,
+                          //   itemSize: 30,
+                          //   direction: Axis.horizontal,
+                          //   allowHalfRating: false,
+                          //   onRatingUpdate: (value) {
+                          //     if (value > 0) {
+                          //       symptomlevel = value;
+                          //       symptom = "Peeling skin";
+                          //     }
+                          //   },
+                          // ),
+                        ],
+                      ),
+                    ),
+                    Padding(
+                      padding: EdgeInsets.symmetric(
+                        horizontal: 20,
+                      ),
+                      child: Visibility(
+                        visible: textResult.isNotEmpty,
+                        child: DottedBorder(
+                          dashPattern: [6, 3, 2, 3],
+                          color: ((symptomlevel1 == 1 ||
+                                  symptomlevel2 == 1 ||
+                                  symptomlevel3 == 1 ||
+                                  symptomlevel4 == 1)
+                              ? Colors.lightGreenAccent
+                              : (symptomlevel1 == 2 ||
+                                      symptomlevel2 == 2 ||
+                                      symptomlevel3 == 2 ||
+                                      symptomlevel4 == 2)
+                                  ? Colors.yellow
+                                  : (symptomlevel1 == 3 ||
+                                          symptomlevel2 == 3 ||
+                                          symptomlevel3 == 3 ||
+                                          symptomlevel4 == 3)
+                                      ? Colors.amber
+                                      : (symptomlevel1 == 4 ||
+                                              symptomlevel2 == 4 ||
+                                              symptomlevel3 == 4 ||
+                                              symptomlevel4 == 4)
+                                          ? Colors.orange
+                                          : (symptomlevel1 == 5 ||
+                                                  symptomlevel2 == 5 ||
+                                                  symptomlevel3 == 5 ||
+                                                  symptomlevel4 == 5)
+                                              ? Colors.red
+                                              : Colors.black),
+                          borderType: BorderType.RRect,
+                          radius: Radius.circular(12),
+                          child: Padding(
+                              padding: EdgeInsets.symmetric(
+                                  horizontal: 20, vertical: 10),
+                              child: Row(children: [
                                 Visibility(
                                   visible: textResult.isNotEmpty,
                                   child: Text(
@@ -429,93 +603,127 @@ class _SkinSymptomsState extends State<SkinSymptomsPage>{
                                 ),
                                 Visibility(
                                     visible: imageresult.isNotEmpty,
-                                    child:Image(
+                                    child: Image(
                                       image: AssetImage(imageresult),
                                       height: 40.0,
                                       width: 40.0,
                                     ))
-                              ]
-                          )),
-
+                              ])),
+                        ),
+                      ),
                     ),
-                  ),
-                ),
-                Padding(
-                  padding: EdgeInsets.fromLTRB(80, 20, 88, 0),
-                  child: MaterialButton(
-                    onPressed: () async {
-                      if (symptomlevel >0) {
-                        CollectionReference userHeadSymptomsRef = _symptoms
+                    Padding(
+                      padding: EdgeInsets.fromLTRB(80, 20, 88, 0),
+                      child: MaterialButton(
+                        onPressed: () async {
+                          if (symptomlevel1 > 0 ||
+                              symptomlevel2 > 0 ||
+                              symptomlevel3 > 0 ||
+                              symptomlevel4 > 0) {
+                            double highestSymptomLevel = 0;
+                            if (symptomlevel1 > 0) {
+                              highestSymptomLevel = symptomlevel1;
+                            }
+                            if (symptomlevel2 > 0 &&
+                                symptomlevel2 > highestSymptomLevel) {
+                              highestSymptomLevel = symptomlevel2;
+                            }
+                            if (symptomlevel3 > 0 &&
+                                symptomlevel3 > highestSymptomLevel) {
+                              highestSymptomLevel = symptomlevel3;
+                            }
+                            if (symptomlevel4 > 0 &&
+                                symptomlevel4 > highestSymptomLevel) {
+                              highestSymptomLevel = symptomlevel4;
+                            }
+
+                            // Create a new document in the 'DoctorTreatements' collection with the current user's UID as the document ID
+                            CollectionReference userHeadSymptomsRef = _symptoms
                                 .doc(uid)
                                 .collection("userSkinSymptoms");
                             await userHeadSymptomsRef.add({
                               "symptom": symptom,
-                              "symptomlevel": symptomlevel,
+                              "symptomlevel": highestSymptomLevel,
                               'timestamp': DateTime.now()
-                            }).then((value){
-                          Get.snackbar("Success", 'Data stored successfully', backgroundColor: Color.fromARGB(100, 22, 44, 33));
-                        });
-
-
-                      }
-                      setState(() {
-                        if(symptomlevel==0){
-                          textResult='Rate your pain before submitting';
-                          imageresult="";
-
-
-                        }else if(symptomlevel==1){
-                          textResult='You are in mild pain \n  Feel better soon!';
-                          imageresult="images/pain1.png";
-
-
-                        }else if(symptomlevel==2){
-                          textResult=' You are in moderate pain \n Feel better soon!';
-                          imageresult="images/pain2.png";
-
-                        }else if(symptomlevel==3){
-                          textResult=' you are severe pain \n Feel better soon!';
-                          imageresult="images/pain3.png";
-
-                        }else if(symptomlevel==4){
-                          textResult='You are in very severe pain \n Feel better soon!';
-                          imageresult="images/pain4.png";
-
-                        }else if(symptomlevel==5){
-                          textResult='You are in worst pain posible \n Feel better soon!';
-                          imageresult="images/pain5.png";
-
-                        }
-                      });
-
-                    },
-                    color: Color(0xffc396e5),
-                    elevation: 0,
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(10.0),
-                      side: BorderSide(color: Color(0xff808080), width: 1),
-                    ),
-                    padding: EdgeInsets.symmetric(horizontal: 16, vertical: 8),
-                    child: Text(
-                      "Submit",
-                      style: TextStyle(
-                        fontSize: 14,
-                        fontWeight: FontWeight.w600,
-                        fontStyle: FontStyle.normal,
+                            }).then((value) {
+                              Get.snackbar(
+                                  "Success", 'Data stored successfully',
+                                  backgroundColor:
+                                      Color.fromARGB(100, 22, 44, 33));
+                            });
+                          }
+                          setState(() {
+                            if (symptomlevel1 == 0 &&
+                                symptomlevel2 == 0 &&
+                                symptomlevel3 == 0 &&
+                                symptomlevel4 == 0) {
+                              textResult = 'Rate your pain before submitting';
+                              imageresult = "";
+                            } else if (symptomlevel1 == 1 ||
+                                symptomlevel2 == 1 ||
+                                symptomlevel3 == 1 ||
+                                symptomlevel4 == 1) {
+                              textResult =
+                                  'You are in mild pain \n  Feel better soon!';
+                              imageresult = "images/pain1.png";
+                              colorClick = false;
+                            } else if (symptomlevel1 == 2 ||
+                                symptomlevel2 == 2 ||
+                                symptomlevel3 == 2 ||
+                                symptomlevel4 == 2) {
+                              textResult =
+                                  ' You are in moderate pain \n Feel better soon!';
+                              imageresult = "images/pain2.png";
+                            } else if (symptomlevel1 == 3 ||
+                                symptomlevel2 == 3 ||
+                                symptomlevel3 == 3 ||
+                                symptomlevel4 == 3) {
+                              textResult =
+                                  ' you are severe pain \n Feel better soon!';
+                              imageresult = "images/pain3.png";
+                            } else if (symptomlevel1 == 4 ||
+                                symptomlevel2 == 4 ||
+                                symptomlevel3 == 4 ||
+                                symptomlevel4 == 4) {
+                              textResult =
+                                  'You are in very severe pain \n Feel better soon!';
+                              imageresult = "images/pain4.png";
+                            } else if (symptomlevel1 == 5 ||
+                                symptomlevel2 == 5 ||
+                                symptomlevel3 == 5 ||
+                                symptomlevel4 == 5) {
+                              textResult =
+                                  'You are in worst pain posible \n Feel better soon!';
+                              imageresult = "images/pain5.png";
+                            }
+                          });
+                        },
+                        color: Color(0xFF5CB85C),
+                        elevation: 0,
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(10.0),
+                          side: BorderSide(color: Color(0xff808080), width: 1),
+                        ),
+                        padding:
+                            EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+                        child: Text(
+                          "Submit",
+                          style: TextStyle(
+                            fontSize: 14,
+                            fontWeight: FontWeight.w600,
+                            fontStyle: FontStyle.normal,
+                          ),
+                        ),
+                        textColor: Color(0xff000000),
+                        height: 40,
+                        minWidth: 140,
                       ),
                     ),
-                    textColor: Color(0xff000000),
-                    height: 40,
-                    minWidth: 140,
-                  ),
+                  ],
                 ),
-              ],
-            ),
+              ),
+            ],
           ),
-        ],
-      ),
-        )
-    );
+        ));
   }
 }
-

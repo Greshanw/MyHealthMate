@@ -56,58 +56,62 @@ class _SyptomSplashState extends State<SyptomSplash> {
           textAlign: TextAlign.center,
         ),
       ),
-      body: Center(
-        child: Padding(
-          padding: const EdgeInsets.all(10),
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.start,
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: [
-              SizedBox(
-                height: 25,
-              ),
-              DoctorTreatments(),
-              SizedBox(
-                height: 30,
-              ),
-              Text(
-                "Select Body Part",
-                textAlign: TextAlign.start,
-                overflow: TextOverflow.clip,
-                style: TextStyle(
-                  fontWeight: FontWeight.w600,
-                  fontSize: 28,
-                  color: Color(0xFF333333),
-                  letterSpacing: 1.2,
-                  shadows: [
-                    Shadow(
-                      blurRadius: 4,
-                      color: Colors.grey.withOpacity(0.5),
-                      offset: Offset(0, 2),
+      body: ListView(
+        children: [
+          Center(
+            child: Padding(
+              padding: const EdgeInsets.all(10),
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.start,
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  SizedBox(
+                    height: 25,
+                  ),
+                  DoctorTreatments(),
+                  SizedBox(
+                    height: 30,
+                  ),
+                  Text(
+                    "Select Body Part",
+                    textAlign: TextAlign.start,
+                    overflow: TextOverflow.clip,
+                    style: TextStyle(
+                      fontWeight: FontWeight.w600,
+                      fontSize: 28,
+                      color: Color(0xFF333333),
+                      letterSpacing: 1.2,
+                      shadows: [
+                        Shadow(
+                          blurRadius: 4,
+                          color: Colors.grey.withOpacity(0.5),
+                          offset: Offset(0, 2),
+                        ),
+                      ],
                     ),
-                  ],
-                ),
+                  ),
+                  HeadSymptoms(),
+                  SizedBox(
+                    height: 30,
+                  ),
+                  BodySymptoms(),
+                  SizedBox(
+                    height: 30,
+                  ),
+                  AbdomenSymptoms(),
+                  SizedBox(
+                    height: 30,
+                  ),
+                  mentalsymptoms(),
+                  SizedBox(
+                    height: 30,
+                  ),
+                  skinsymptoms(),
+                ],
               ),
-              HeadSymptoms(),
-              SizedBox(
-                height: 30,
-              ),
-              BodySymptoms(),
-              SizedBox(
-                height: 30,
-              ),
-              AbdomenSymptoms(),
-              SizedBox(
-                height: 30,
-              ),
-              mentalsymptoms(),
-              SizedBox(
-                height: 30,
-              ),
-              skinsymptoms(),
-            ],
+            ),
           ),
-        ),
+        ],
       ),
     );
   }
@@ -185,7 +189,9 @@ class BodySymptoms extends StatelessWidget {
       child: Card(
         elevation: 0,
         shape: RoundedRectangleBorder(
-          side: BorderSide(color: Color(0xFF5CB85C),),
+          side: BorderSide(
+            color: Color(0xFF5CB85C),
+          ),
           borderRadius: const BorderRadius.all(Radius.circular(25)),
         ),
         clipBehavior: Clip.hardEdge,
@@ -205,7 +211,7 @@ class BodySymptoms extends StatelessWidget {
                     image: AssetImage('images/body.png'),
                     width: 45,
                     height: 45),
-                    SizedBox(
+                SizedBox(
                   width: 7,
                 ),
                 Text(
@@ -240,7 +246,9 @@ class AbdomenSymptoms extends StatelessWidget {
       child: Card(
         elevation: 0,
         shape: RoundedRectangleBorder(
-          side: BorderSide(color: Color(0xFF5CB85C),),
+          side: BorderSide(
+            color: Color(0xFF5CB85C),
+          ),
           borderRadius: const BorderRadius.all(Radius.circular(25)),
         ),
         clipBehavior: Clip.hardEdge,
@@ -295,7 +303,9 @@ class mentalsymptoms extends StatelessWidget {
       child: Card(
         elevation: 0,
         shape: RoundedRectangleBorder(
-          side: BorderSide(color: Color(0xFF5CB85C),),
+          side: BorderSide(
+            color: Color(0xFF5CB85C),
+          ),
           borderRadius: const BorderRadius.all(Radius.circular(12)),
         ),
         clipBehavior: Clip.hardEdge,
@@ -312,23 +322,21 @@ class mentalsymptoms extends StatelessWidget {
                   width: 5,
                 ),
                 Image(
-                      image: AssetImage('images/mental.png'),
-                      width: 50,
-                      height: 50),
-                
+                    image: AssetImage('images/mental.png'),
+                    width: 50,
+                    height: 50),
                 SizedBox(
                   width: 5,
                 ),
-               Text(
-                    "Mental",
-                    style: TextStyle(
-                      fontWeight: FontWeight.w400,
-                      fontStyle: FontStyle.normal,
-                      fontSize: 20,
-                      color: Colors.black,
-                    ),
+                Text(
+                  "Mental",
+                  style: TextStyle(
+                    fontWeight: FontWeight.w400,
+                    fontStyle: FontStyle.normal,
+                    fontSize: 20,
+                    color: Colors.black,
                   ),
-                
+                ),
               ],
             ),
           ),
@@ -353,7 +361,9 @@ class skinsymptoms extends StatelessWidget {
       child: Card(
         elevation: 0,
         shape: RoundedRectangleBorder(
-          side: BorderSide(color: Color(0xFF5CB85C),),
+          side: BorderSide(
+            color: Color(0xFF5CB85C),
+          ),
           borderRadius: const BorderRadius.all(Radius.circular(12)),
         ),
         clipBehavior: Clip.hardEdge,
@@ -393,7 +403,6 @@ class skinsymptoms extends StatelessWidget {
     );
   }
 }
-
 
 // DoctorTreatments
 class DoctorTreatments extends StatelessWidget {
