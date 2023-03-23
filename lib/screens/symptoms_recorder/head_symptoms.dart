@@ -29,7 +29,12 @@ class _HeadSymptomsState extends State<HeadSymptomsPage> {
   final CollectionReference _symptoms =
       FirebaseFirestore.instance.collection('symptoms');
 
-  double symptomlevel = 0;
+  double symptomlevel1 = 0;
+  double symptomlevel2 = 0;
+  double symptomlevel3 = 0;
+  double symptomlevel4 = 0;
+  double symptomlevel5 = 0;
+
   String symptom = "";
 
   String textResult = '';
@@ -45,7 +50,7 @@ class _HeadSymptomsState extends State<HeadSymptomsPage> {
                 begin: Alignment.topCenter,
                 end: Alignment.bottomCenter,
                 stops: const [0.6, 0.7, 0.8, 0.88, 0.95, 0.98],
-                colors: (symptomlevel == 1)
+                colors: (symptomlevel1 == 1 || symptomlevel2 == 1|| symptomlevel3 ==1|| symptomlevel4 == 1|| symptomlevel5 == 1)
                     ? [
                         Colors.white,
                         Colors.lightGreen.shade50,
@@ -54,7 +59,7 @@ class _HeadSymptomsState extends State<HeadSymptomsPage> {
                         Colors.lightGreen.shade300,
                         Colors.lightGreenAccent.shade400,
                       ]
-                    : (symptomlevel == 2)
+                    : (symptomlevel1 == 2 || symptomlevel2 == 2|| symptomlevel3 ==2|| symptomlevel4 == 2|| symptomlevel5 == 2)
                         ? [
                             Colors.white,
                             Colors.yellow.shade50,
@@ -63,7 +68,7 @@ class _HeadSymptomsState extends State<HeadSymptomsPage> {
                             Colors.yellow.shade300,
                             Colors.yellow.shade400,
                           ]
-                        : (symptomlevel == 3)
+                        : (symptomlevel1 == 3 || symptomlevel2 == 3|| symptomlevel3 ==3|| symptomlevel4 == 3|| symptomlevel5 == 3)
                             ? [
                                 Colors.white,
                                 Colors.amber.shade50,
@@ -72,7 +77,7 @@ class _HeadSymptomsState extends State<HeadSymptomsPage> {
                                 Colors.amber.shade300,
                                 Colors.amber.shade500,
                               ]
-                            : (symptomlevel == 4)
+                            : (symptomlevel1 == 4 || symptomlevel2 == 4|| symptomlevel3 ==4|| symptomlevel4 == 4|| symptomlevel5 == 4)
                                 ? [
                                     Colors.white,
                                     Colors.orange.shade50,
@@ -81,7 +86,7 @@ class _HeadSymptomsState extends State<HeadSymptomsPage> {
                                     Colors.orange.shade300,
                                     Colors.orange.shade800,
                                   ]
-                                : (symptomlevel == 5)
+                                : (symptomlevel1 == 5 || symptomlevel2 == 5|| symptomlevel3 == 5|| symptomlevel4 == 5|| symptomlevel5 == 5)
                                     ? [
                                         Colors.white,
                                         Colors.red.shade50,
@@ -103,25 +108,36 @@ class _HeadSymptomsState extends State<HeadSymptomsPage> {
           backgroundColor: Colors.transparent,
           appBar: AppBar(
             leading: IconButton(
-                icon: SvgPicture.asset('images/back.svg'),
-                onPressed: () {
-                  Navigator.pop(context);
-                }),
+              icon: Container(
+                height: 32,
+                width: 32,
+                child: CircleAvatar(
+                    child: Icon(
+                  Icons.arrow_back_ios_sharp,
+                  color: Colors.black,
+                  size: 18,
+                )),
+              ),
+              onPressed: () {
+                Navigator.pop(context);
+              },
+            ),
             elevation: 4,
-            centerTitle: false,
+            centerTitle: true,
             automaticallyImplyLeading: false,
-            backgroundColor: Colors.lightGreenAccent,
+            backgroundColor: Color(0xFF5CB85C),
             shape: const RoundedRectangleBorder(
               borderRadius: BorderRadius.zero,
             ),
             title: const Text(
-              "Health Mate",
+              "Head Symptoms",
               style: TextStyle(
                 fontWeight: FontWeight.w800,
                 fontStyle: FontStyle.normal,
-                fontSize: 17,
+                fontSize: 18,
                 color: Color(0xffffffff),
               ),
+              textAlign: TextAlign.center,
             ),
           ),
           body: Column(
@@ -143,11 +159,14 @@ class _HeadSymptomsState extends State<HeadSymptomsPage> {
                         crossAxisAlignment: CrossAxisAlignment.center,
                         mainAxisSize: MainAxisSize.max,
                         children: [
+                          SizedBox(
+                            width: 7,
+                          ),
                           Padding(
                             padding: EdgeInsets.fromLTRB(0, 0, 0, 0),
                             child: MaterialButton(
                               onPressed: () async {},
-                              color: Color(0xffc396e5),
+                              color: Color(0xFF5CB85C),
                               elevation: 0,
                               padding: EdgeInsets.symmetric(
                                   horizontal: 0, vertical: 0),
@@ -212,7 +231,7 @@ class _HeadSymptomsState extends State<HeadSymptomsPage> {
                         mainAxisSize: MainAxisSize.max,
                         children: [
                           Padding(
-                            padding: EdgeInsets.fromLTRB(30, 0, 80, 10),
+                            padding: EdgeInsets.fromLTRB(30, 0, 0, 10),
                             child: Text(
                               "Headache",
                               textAlign: TextAlign.start,
@@ -227,21 +246,39 @@ class _HeadSymptomsState extends State<HeadSymptomsPage> {
                           ),
                           Padding(
                             padding: EdgeInsets.fromLTRB(0, 0, 20, 0),
-                            child: RatingBar.builder(
-                              initialRating: 0,
-                              unratedColor: Color(0xffece5e5),
-                              itemBuilder: (context, index) =>
-                                  Icon(Icons.star, color: Color(0xffffc107)),
-                              itemCount: 5,
-                              itemSize: 30,
-                              direction: Axis.horizontal,
-                              allowHalfRating: false,
-                              onRatingUpdate: (value) {
-                                if (value > 0) {
-                                  symptomlevel = value;
-                                  symptom = "Headache";
-                                }
-                              },
+                            child: SliderTheme(
+                              data: SliderThemeData(
+                                thumbShape: RoundSliderThumbShape(
+                                  enabledThumbRadius: 12,
+                                  disabledThumbRadius: 12,
+                                  elevation: 4,
+                                  pressedElevation: 6,
+                                ),
+                                activeTrackColor: Color(0xFF5CB85C),
+                                inactiveTrackColor: Colors.grey,
+                                overlayColor:
+                                    Color(0xFF5CB85C).withOpacity(0.2),
+                                thumbColor: Color(0xFF5CB85C),
+                                valueIndicatorColor: Color(0xFF5CB85C),
+                                valueIndicatorTextStyle: TextStyle(
+                                  color: Colors.white,
+                                  fontSize: 16,
+                                  fontWeight: FontWeight.bold,
+                                ),
+                              ),
+                              child: Slider(
+                                value: symptomlevel1.toDouble(),
+                                min: 0,
+                                max: 5,
+                                divisions: 5,
+                                label: 'Headache: $symptomlevel1',
+                                onChanged: (double value) {
+                                  setState(() {
+                                    symptomlevel1 = value.toDouble();
+                                    symptom = 'Headache';
+                                  });
+                                },
+                              ),
                             ),
                           )
                         ],
@@ -255,7 +292,7 @@ class _HeadSymptomsState extends State<HeadSymptomsPage> {
                         mainAxisSize: MainAxisSize.max,
                         children: [
                           Padding(
-                            padding: EdgeInsets.fromLTRB(30, 0, 80, 0),
+                            padding: EdgeInsets.fromLTRB(30, 0, 0, 0),
                             child: Text(
                               "Migraines",
                               textAlign: TextAlign.start,
@@ -269,23 +306,41 @@ class _HeadSymptomsState extends State<HeadSymptomsPage> {
                             ),
                           ),
                           Padding(
-                            padding: EdgeInsets.fromLTRB(0, 0, 8, 0),
-                            child: RatingBar.builder(
-                              initialRating: 0,
-                              unratedColor: Color(0xffece5e5),
-                              itemBuilder: (context, index) =>
-                                  Icon(Icons.star, color: Color(0xffffc107)),
-                              itemCount: 5,
-                              itemSize: 30,
-                              direction: Axis.horizontal,
-                              allowHalfRating: false,
-                              onRatingUpdate: (value) {
-                                if (value > 0) {
-                                  symptomlevel = value;
-                                  symptom = "Migraines";
-                                }
-                              },
-                            ),
+                            padding: EdgeInsets.fromLTRB(0, 0, 20, 0),
+                            child: SliderTheme(
+                              data: SliderThemeData(
+                                thumbShape: RoundSliderThumbShape(
+                                  enabledThumbRadius: 12,
+                                  disabledThumbRadius: 12,
+                                  elevation: 4,
+                                  pressedElevation: 6,
+                                ),
+                                activeTrackColor: Color(0xFF5CB85C),
+                                inactiveTrackColor: Colors.grey,
+                                overlayColor:
+                                    Color(0xFF5CB85C).withOpacity(0.2),
+                                thumbColor: Color(0xFF5CB85C),
+                                valueIndicatorColor: Color(0xFF5CB85C),
+                                valueIndicatorTextStyle: TextStyle(
+                                  color: Colors.white,
+                                  fontSize: 16,
+                                  fontWeight: FontWeight.bold,
+                                ),
+                              ),
+                              child: Slider(
+                                value: symptomlevel2.toDouble(),
+                                min: 0,
+                                max: 5,
+                                divisions: 5,
+                                label: 'Migraines: $symptomlevel2',
+                                onChanged: (double value) {
+                                  setState(() {
+                                    symptomlevel2 = value.toDouble();
+                                    symptom = 'Migraines';
+                                  });
+                                },
+                              ),
+                            ) 
                           ),
                         ],
                       ),
@@ -298,7 +353,7 @@ class _HeadSymptomsState extends State<HeadSymptomsPage> {
                         mainAxisSize: MainAxisSize.max,
                         children: [
                           Padding(
-                            padding: EdgeInsets.fromLTRB(30, 0, 80, 0),
+                            padding: EdgeInsets.fromLTRB(30, 0, 0, 0),
                             child: Text(
                               "Dizziness",
                               textAlign: TextAlign.start,
@@ -312,23 +367,41 @@ class _HeadSymptomsState extends State<HeadSymptomsPage> {
                             ),
                           ),
                           Padding(
-                            padding: EdgeInsets.fromLTRB(0, 0, 10, 0),
-                            child: RatingBar.builder(
-                              initialRating: 0,
-                              unratedColor: Color(0xffece5e5),
-                              itemBuilder: (context, index) =>
-                                  Icon(Icons.star, color: Color(0xffffc107)),
-                              itemCount: 5,
-                              itemSize: 30,
-                              direction: Axis.horizontal,
-                              allowHalfRating: false,
-                              onRatingUpdate: (value) {
-                                if (value > 0) {
-                                  symptomlevel = value;
-                                  symptom = "Dizziness";
-                                }
-                              },
-                            ),
+                            padding: EdgeInsets.fromLTRB(0, 0, 0, 0),
+                            child: SliderTheme(
+                              data: SliderThemeData(
+                                thumbShape: RoundSliderThumbShape(
+                                  enabledThumbRadius: 12,
+                                  disabledThumbRadius: 12,
+                                  elevation: 4,
+                                  pressedElevation: 6,
+                                ),
+                                activeTrackColor: Color(0xFF5CB85C),
+                                inactiveTrackColor: Colors.grey,
+                                overlayColor:
+                                    Color(0xFF5CB85C).withOpacity(0.2),
+                                thumbColor: Color(0xFF5CB85C),
+                                valueIndicatorColor: Color(0xFF5CB85C),
+                                valueIndicatorTextStyle: TextStyle(
+                                  color: Colors.white,
+                                  fontSize: 16,
+                                  fontWeight: FontWeight.bold,
+                                ),
+                              ),
+                              child: Slider(
+                                value: symptomlevel3.toDouble(),
+                                min: 0,
+                                max: 5,
+                                divisions: 5,
+                                label: 'Dizziness: $symptomlevel3',
+                                onChanged: (double value) {
+                                  setState(() {
+                                    symptomlevel3 = value.toDouble();
+                                    symptom = 'Dizziness';
+                                  });
+                                },
+                              ),
+                            )
                           ),
                         ],
                       ),
@@ -348,7 +421,7 @@ class _HeadSymptomsState extends State<HeadSymptomsPage> {
                               mainAxisSize: MainAxisSize.max,
                               children: [
                                 Padding(
-                                  padding: EdgeInsets.fromLTRB(30, 0, 8, 0),
+                                  padding: EdgeInsets.fromLTRB(30, 0, 0, 0),
                                   child: Text(
                                     "Problems with ",
                                     textAlign: TextAlign.start,
@@ -376,22 +449,40 @@ class _HeadSymptomsState extends State<HeadSymptomsPage> {
                             ),
                           ),
                           Padding(
-                            padding: EdgeInsets.fromLTRB(0, 0, 10, 0),
-                            child: RatingBar.builder(
-                              initialRating: 0,
-                              unratedColor: Color(0xffece5e5),
-                              itemBuilder: (context, index) =>
-                                  Icon(Icons.star, color: Color(0xffffc107)),
-                              itemCount: 5,
-                              itemSize: 30,
-                              direction: Axis.horizontal,
-                              allowHalfRating: false,
-                              onRatingUpdate: (value) {
-                                if (value > 0) {
-                                  symptomlevel = value;
-                                  symptom = "Problem with balance";
-                                }
-                              },
+                            padding: EdgeInsets.fromLTRB(0, 0, 0, 0),
+                            child: SliderTheme(
+                              data: SliderThemeData(
+                                thumbShape: RoundSliderThumbShape(
+                                  enabledThumbRadius: 12,
+                                  disabledThumbRadius: 12,
+                                  elevation: 4,
+                                  pressedElevation: 6,
+                                ),
+                                activeTrackColor: Color(0xFF5CB85C),
+                                inactiveTrackColor: Colors.grey,
+                                overlayColor:
+                                    Color(0xFF5CB85C).withOpacity(0.2),
+                                thumbColor: Color(0xFF5CB85C),
+                                valueIndicatorColor: Color(0xFF5CB85C),
+                                valueIndicatorTextStyle: TextStyle(
+                                  color: Colors.white,
+                                  fontSize: 16,
+                                  fontWeight: FontWeight.bold,
+                                ),
+                              ),
+                              child: Slider(
+                                value: symptomlevel4.toDouble(),
+                                min: 0,
+                                max: 5,
+                                divisions: 5,
+                                label: 'Problems with balance: $symptomlevel4',
+                                onChanged: (double value) {
+                                  setState(() {
+                                    symptomlevel4 = value.toDouble();
+                                    symptom = 'Problems with balance';
+                                  });
+                                },
+                              ),
                             ),
                           ),
                         ],
@@ -405,7 +496,7 @@ class _HeadSymptomsState extends State<HeadSymptomsPage> {
                         mainAxisSize: MainAxisSize.max,
                         children: [
                           Padding(
-                            padding: EdgeInsets.fromLTRB(30, 0, 60, 0),
+                            padding: EdgeInsets.fromLTRB(30, 0, 0, 0),
                             child: Text(
                               "Hectic fever",
                               textAlign: TextAlign.start,
@@ -418,21 +509,42 @@ class _HeadSymptomsState extends State<HeadSymptomsPage> {
                               ),
                             ),
                           ),
-                          RatingBar.builder(
-                            initialRating: 0,
-                            unratedColor: Color(0xffece5e5),
-                            itemBuilder: (context, index) =>
-                                Icon(Icons.star, color: Color(0xffffc107)),
-                            itemCount: 5,
-                            itemSize: 30,
-                            direction: Axis.horizontal,
-                            allowHalfRating: false,
-                            onRatingUpdate: (value) {
-                              if (value > 0) {
-                                symptomlevel = value;
-                                symptom = "Hectic fever";
-                              }
-                            },
+                          Padding(
+                            padding: EdgeInsets.fromLTRB(0, 0, 20, 0),
+                            child: SliderTheme(
+                              data: SliderThemeData(
+                                thumbShape: RoundSliderThumbShape(
+                                  enabledThumbRadius: 12,
+                                  disabledThumbRadius: 12,
+                                  elevation: 4,
+                                  pressedElevation: 6,
+                                ),
+                                activeTrackColor: Color(0xFF5CB85C),
+                                inactiveTrackColor: Colors.grey,
+                                overlayColor:
+                                    Color(0xFF5CB85C).withOpacity(0.2),
+                                thumbColor: Color(0xFF5CB85C),
+                                valueIndicatorColor: Color(0xFF5CB85C),
+                                valueIndicatorTextStyle: TextStyle(
+                                  color: Colors.white,
+                                  fontSize: 16,
+                                  fontWeight: FontWeight.bold,
+                                ),
+                              ),
+                              child: Slider(
+                                value: symptomlevel5.toDouble(),
+                                min: 0,
+                                max: 5,
+                                divisions: 5,
+                                label: 'Hectic fever: $symptomlevel5',
+                                onChanged: (double value) {
+                                  setState(() {
+                                    symptomlevel5 = value.toDouble();
+                                    symptom = 'Hectic fever';
+                                  });
+                                },
+                              ),
+                            )
                           ),
                         ],
                       ),
@@ -445,15 +557,15 @@ class _HeadSymptomsState extends State<HeadSymptomsPage> {
                         visible: textResult.isNotEmpty,
                         child: DottedBorder(
                           dashPattern: [6, 3, 2, 3],
-                          color: ((symptomlevel == 1)
+                          color: ((symptomlevel1 == 1 || symptomlevel2 == 1|| symptomlevel3 ==1|| symptomlevel4 == 1|| symptomlevel5 == 1)
                               ? Colors.lightGreenAccent
-                              : (symptomlevel == 2)
+                              : (symptomlevel1 == 2 || symptomlevel2 == 2|| symptomlevel3 ==2|| symptomlevel4 == 2|| symptomlevel5 == 2)
                                   ? Colors.yellow
-                                  : (symptomlevel == 3)
+                                  : (symptomlevel1 == 3 || symptomlevel2 == 3|| symptomlevel3 ==3|| symptomlevel4 == 3|| symptomlevel5 == 3)
                                       ? Colors.amber
-                                      : (symptomlevel == 4)
+                                      : (symptomlevel1 == 4 || symptomlevel2 == 4|| symptomlevel3 ==4|| symptomlevel4 == 4|| symptomlevel5 == 4)
                                           ? Colors.orange
-                                          : (symptomlevel == 5)
+                                          : (symptomlevel1 == 5 || symptomlevel2 == 5|| symptomlevel3 ==5|| symptomlevel4 == 5|| symptomlevel5 == 5)
                                               ? Colors.red
                                               : Colors.black),
                           borderType: BorderType.RRect,
@@ -490,14 +602,30 @@ class _HeadSymptomsState extends State<HeadSymptomsPage> {
                       padding: EdgeInsets.fromLTRB(80, 20, 88, 0),
                       child: MaterialButton(
                         onPressed: () async {
-                          if (symptomlevel > 0) {
+                          if (symptomlevel1 > 0 || symptomlevel2 > 0|| symptomlevel3 > 0|| symptomlevel4 > 0|| symptomlevel5 > 0) {
+                            double highestSymptomLevel = 0;
+                            if (symptomlevel1 > 0) {
+                              highestSymptomLevel = symptomlevel1;
+                            }
+                            if (symptomlevel2 > 0 && symptomlevel2 > highestSymptomLevel) {
+                              highestSymptomLevel = symptomlevel2;
+                            }
+                            if (symptomlevel3 > 0 && symptomlevel3 > highestSymptomLevel) {
+                              highestSymptomLevel = symptomlevel3;
+                            }
+                            if (symptomlevel4 > 0 && symptomlevel4 > highestSymptomLevel) {
+                              highestSymptomLevel = symptomlevel4;
+                            }
+                            if (symptomlevel5 > 0 && symptomlevel5 > highestSymptomLevel) {
+                              highestSymptomLevel = symptomlevel5;
+                            }
                             // Create a new document in the 'DoctorTreatements' collection with the current user's UID as the document ID
                             CollectionReference userHeadSymptomsRef = _symptoms
                                 .doc(uid)
                                 .collection("userHeadSymptoms");
                             await userHeadSymptomsRef.add({
                               "symptom": symptom,
-                              "symptomlevel": symptomlevel,
+                              "symptomlevel": highestSymptomLevel,
                               'timestamp': DateTime.now()
                             }).then((value) {
                               Get.snackbar(
@@ -507,34 +635,34 @@ class _HeadSymptomsState extends State<HeadSymptomsPage> {
                             });
                           }
                           setState(() {
-                            if (symptomlevel == 0) {
+                            if (symptomlevel1 == 0 && symptomlevel2 == 0&& symptomlevel3 ==0&& symptomlevel4 ==0&& symptomlevel5 == 0) {
                               textResult = 'Rate your pain before submitting';
                               imageresult = "";
-                            } else if (symptomlevel == 1) {
+                            } else if (symptomlevel1 == 1 || symptomlevel2 == 1|| symptomlevel3 ==1|| symptomlevel4 == 1|| symptomlevel5 == 1) {
                               textResult =
                                   'You are in mild pain \n  Feel better soon!';
                               imageresult = "images/pain1.png";
                               colorClick = false;
-                            } else if (symptomlevel == 2) {
+                            } else if (symptomlevel1 == 2 || symptomlevel2 == 2|| symptomlevel3 ==2|| symptomlevel4 == 2|| symptomlevel5 == 2) {
                               textResult =
                                   ' You are in moderate pain \n Feel better soon!';
                               imageresult = "images/pain2.png";
-                            } else if (symptomlevel == 3) {
+                            } else if (symptomlevel1 == 3 || symptomlevel2 == 3|| symptomlevel3 ==3|| symptomlevel4 == 3|| symptomlevel5 == 3) {
                               textResult =
                                   ' you are severe pain \n Feel better soon!';
                               imageresult = "images/pain3.png";
-                            } else if (symptomlevel == 4) {
+                            } else if (symptomlevel1 == 4 || symptomlevel2 == 4|| symptomlevel3 ==4|| symptomlevel4 == 4|| symptomlevel5 == 4) {
                               textResult =
                                   'You are in very severe pain \n Feel better soon!';
                               imageresult = "images/pain4.png";
-                            } else if (symptomlevel == 5) {
+                            } else if (symptomlevel1 == 5 || symptomlevel2 == 5|| symptomlevel3 ==5|| symptomlevel4 == 5|| symptomlevel5 == 5) {
                               textResult =
                                   'You are in worst pain posible \n Feel better soon!';
                               imageresult = "images/pain5.png";
                             }
                           });
                         },
-                        color: Color(0xffc396e5),
+                        color: Color(0xFF5CB85C),
                         elevation: 0,
                         shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(10.0),

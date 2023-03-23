@@ -33,13 +33,40 @@ class _UserTreatmentsPageState extends State<UserTreatmentsPage> {
   Future<void> _deleteTreatment(String id) async {
     try {
       await userTreatmentsRef.doc(id).delete();
-      ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-        content: Text('Treatment deleted'),
-      ));
+      ScaffoldMessenger.of(context).showSnackBar(
+      SnackBar(
+        content: Text(
+          'Treatment deleted',
+          style: TextStyle(
+            fontSize: 16.0,
+            fontWeight: FontWeight.bold,
+            color: Colors.white,
+            fontFamily: 'Roboto',
+          ),
+        ),
+        behavior: SnackBarBehavior.floating,
+        backgroundColor: Color(0xFF5CB85C),
+      ),
+    );
+      
+
     } catch (e) {
-      ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-        content: Text('Failed to delete treatment'),
-      ));
+      ScaffoldMessenger.of(context).showSnackBar(
+      SnackBar(
+        content: Text(
+          'Failed to delete treatment',
+          style: TextStyle(
+            fontSize: 16.0,
+            fontWeight: FontWeight.bold,
+            color: Colors.white,
+            fontFamily: 'Roboto',
+          ),
+        ),
+        behavior: SnackBarBehavior.floating,
+        backgroundColor: Color(0xFF5CB85C),
+      ),
+    );
+      
     }
   }
 
@@ -52,13 +79,41 @@ class _UserTreatmentsPageState extends State<UserTreatmentsPage> {
         'date': date,
       });
       Navigator.of(context).pop();
-      ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-        content: Text('Treatment updated'),
-      ));
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(
+          content: Text(
+            'Treatment updated',
+            style: TextStyle(
+              fontSize: 16.0,
+              fontWeight: FontWeight.bold,
+              color: Colors.white,
+              fontFamily: 'Roboto',
+            ),
+          ),
+          behavior: SnackBarBehavior.floating,
+          backgroundColor: Color(0xFF5CB85C),
+          
+        ),
+      );
+      ;
     } catch (e) {
-      ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-        content: Text('Failed to update treatment'),
-      ));
+      ScaffoldMessenger.of(context).showSnackBar(
+  const SnackBar (
+    content: Text(
+      'Error Occured while Updating',
+      style: TextStyle(
+        fontSize: 16.0,
+        fontWeight: FontWeight.bold,
+        color: Colors.white,
+        fontFamily: 'Roboto',
+      ),
+    ),
+    behavior: SnackBarBehavior.floating,
+    backgroundColor: Color(0xFF5CB85C),
+    
+  ),
+);
+
     }
   }
 
@@ -132,27 +187,27 @@ class _UserTreatmentsPageState extends State<UserTreatmentsPage> {
                     );
                   },
                   child: Container(
-                  height: 250,
-                  width: double.infinity,
-                  decoration: BoxDecoration(
-                    color: Colors.grey[200],
-                    borderRadius: BorderRadius.circular(10),
-                  ),
-                  child: _imageFile != null
-                      ? ClipRRect(
-                          borderRadius: BorderRadius.circular(10),
-                          child: Image.network(
-                            _imageFile,
-                            fit: BoxFit.cover,
+                    height: 250,
+                    width: double.infinity,
+                    decoration: BoxDecoration(
+                      color: Colors.grey[200],
+                      borderRadius: BorderRadius.circular(10),
+                    ),
+                    child: _imageFile != null
+                        ? ClipRRect(
+                            borderRadius: BorderRadius.circular(10),
+                            child: Image.network(
+                              _imageFile,
+                              fit: BoxFit.cover,
+                            ),
+                          )
+                        : Icon(
+                            Icons.add_a_photo,
+                            size: 50,
+                            color: Colors.grey[400],
                           ),
-                        )
-                      : Icon(
-                          Icons.add_a_photo,
-                          size: 50,
-                          color: Colors.grey[400],
-                        ),
+                  ),
                 ),
-              ),
                 SizedBox(height: 10),
                 TextField(
                   controller: doctorNameController,
@@ -193,7 +248,7 @@ class _UserTreatmentsPageState extends State<UserTreatmentsPage> {
                         return Theme(
                           data: Theme.of(context).copyWith(
                             colorScheme: ColorScheme.light(
-                              primary: Color(0xffc396e5), // <-- SEE HERE
+                              primary: Color(0xFF5CB85C), // <-- SEE HERE
                               onPrimary: Colors.black87, // <-- SEE HERE
                               onSurface: Colors.black87, // <-- SEE HERE
                             ),
@@ -207,7 +262,7 @@ class _UserTreatmentsPageState extends State<UserTreatmentsPage> {
                         );
                       },
                     );
-        
+
                     if (pickedDate != null) {
                       print(
                           pickedDate); //get the picked date in the format => 2022-07-04 00:00:00.000
@@ -216,7 +271,7 @@ class _UserTreatmentsPageState extends State<UserTreatmentsPage> {
                       print(
                           formattedDate); //formatted date output using intl package =>  2022-07-04
                       //You can format date as per your need
-        
+
                       setState(() {
                         dateController.text =
                             formattedDate; //set foratted date to TextField value.
@@ -257,14 +312,14 @@ class _UserTreatmentsPageState extends State<UserTreatmentsPage> {
               }
             },
             child: Text(
-              'Submit',
+              'Update',
               style: TextStyle(
                 fontSize: 16,
                 fontWeight: FontWeight.bold,
               ),
             ),
             style: ElevatedButton.styleFrom(
-              primary: Colors.blue,
+              primary: Color(0xFF5CB85C),
               shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(10),
               ),
@@ -285,7 +340,37 @@ class _UserTreatmentsPageState extends State<UserTreatmentsPage> {
 
     return Scaffold(
       appBar: AppBar(
-        title: Text('User Treatments'),
+        leading: IconButton(
+          icon: Container(
+            height: 32,
+            width: 32,
+            child: CircleAvatar(
+                child: Icon(
+              Icons.arrow_back_ios_sharp,
+              color: Colors.black,
+              size: 18,
+            )),
+          ),
+          onPressed: () {
+            Navigator.pop(context);
+          },
+        ),
+        elevation: 4,
+        centerTitle: false,
+        automaticallyImplyLeading: false,
+        backgroundColor: Color(0xFF5CB85C),
+        shape: const RoundedRectangleBorder(
+          borderRadius: BorderRadius.zero,
+        ),
+        title: const Text(
+          "Treatment Tracker ",
+          style: TextStyle(
+            fontWeight: FontWeight.w800,
+            fontStyle: FontStyle.normal,
+            fontSize: 18,
+            color: Color(0xffffffff),
+          ),
+        ),
       ),
       body: StreamBuilder<QuerySnapshot>(
         stream: userTreatmentsRef.snapshots(),
@@ -305,55 +390,68 @@ class _UserTreatmentsPageState extends State<UserTreatmentsPage> {
             itemBuilder: (context, index) {
               final treatment = treatments[index];
 
-              return ListTile(
-                leading: GestureDetector(
-                  onTap: () {
-                    showDialog(
-                      context: context,
-                      builder: (BuildContext context) {
-                        return Dialog(
-                          child: Container(
-                            width: MediaQuery.of(context).size.width * 0.8,
-                            height: MediaQuery.of(context).size.height * 0.8,
-                            child: Image.network(
-                              treatment['image'],
-                              fit: BoxFit.contain,
-                            ),
-                          ),
+              return Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: Container(
+                  decoration: BoxDecoration(
+                    border: Border.all(
+                      color: Color(0xFF5CB85C),
+                      width: 1.0,
+                    ),
+                    borderRadius: BorderRadius.circular(8.0),
+                  ),
+                  child: ListTile(
+                    leading: GestureDetector(
+                      onTap: () {
+                        showDialog(
+                          context: context,
+                          builder: (BuildContext context) {
+                            return Dialog(
+                              child: Container(
+                                width: MediaQuery.of(context).size.width * 0.8,
+                                height:
+                                    MediaQuery.of(context).size.height * 0.8,
+                                child: Image.network(
+                                  treatment['image'],
+                                  fit: BoxFit.contain,
+                                ),
+                              ),
+                            );
+                          },
                         );
                       },
-                    );
-                  },
-                  child: Image.network(
-                    treatment['image'],
-                    fit: BoxFit.cover,
-                    width: 80.0,
-                    height: 80.0,
+                      child: Image.network(
+                        treatment['image'],
+                        fit: BoxFit.cover,
+                        width: 80.0,
+                        height: 80.0,
+                      ),
+                    ),
+                    title: Text(treatment['doctor_name']),
+                    subtitle: Text(treatment['note']),
+                    trailing: Row(
+                      mainAxisSize: MainAxisSize.min,
+                      children: [
+                        IconButton(
+                          icon: Icon(Icons.delete),
+                          onPressed: () {
+                            _deleteTreatment(treatment.id);
+                          },
+                        ),
+                        IconButton(
+                          icon: Icon(Icons.edit),
+                          onPressed: () {
+                            _showUpdateModal(
+                                treatment.id,
+                                treatment['doctor_name'],
+                                treatment['note'],
+                                treatment['date'],
+                                treatment['image']);
+                          },
+                        ),
+                      ],
+                    ),
                   ),
-                ),
-                title: Text(treatment['doctor_name']),
-                subtitle: Text(treatment['note']),
-                trailing: Row(
-                  mainAxisSize: MainAxisSize.min,
-                  children: [
-                    IconButton(
-                      icon: Icon(Icons.delete),
-                      onPressed: () {
-                        _deleteTreatment(treatment.id);
-                      },
-                    ),
-                    IconButton(
-                      icon: Icon(Icons.edit),
-                      onPressed: () {
-                        _showUpdateModal(
-                            treatment.id,
-                            treatment['doctor_name'],
-                            treatment['note'],
-                            treatment['date'],
-                            treatment['image']);
-                      },
-                    ),
-                  ],
                 ),
               );
             },
