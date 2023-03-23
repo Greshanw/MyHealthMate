@@ -68,7 +68,7 @@ class _HomePageState extends State<SymptomsAbdomenHistory> {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                // Text(_symptomsDateController.text.toString()),
-                Text("Edit Recode",
+                Text("Update Symptom",
                 textAlign: TextAlign.center,
                 style: TextStyle(
                   fontSize: 24,
@@ -121,11 +121,26 @@ class _HomePageState extends State<SymptomsAbdomenHistory> {
                             .update({"symptom": symptom, "symptomlevel": symptomlevel,"timestamp":date});
                         _symptomsController.text = '';
                         _symptomsDateController.text = '';
+                        ScaffoldMessenger.of(context).showSnackBar(
+                          const SnackBar(
+                            content: Text(
+                              'Symptom updated',
+                              style: TextStyle(
+                                fontSize: 16.0,
+                                fontWeight: FontWeight.bold,
+                                color: Colors.white,
+                                fontFamily: 'Roboto',
+                              ),
+                            ),
+                            behavior: SnackBarBehavior.floating,
+                            backgroundColor: Color(0xFF5CB85C),
+                          ),
+                        );
                         Navigator.of(context).pop();
                       }
                     },
                     style: ElevatedButton.styleFrom(
-                        primary: Color(0xffc396e5),
+                        primary: Color(0xFF5CB85C),
                         textStyle: TextStyle(
                         ))
                 )
@@ -138,16 +153,59 @@ class _HomePageState extends State<SymptomsAbdomenHistory> {
   Future<void> _delete(String productId) async {
     await _symptoms.doc(productId).delete();
 
-    ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
-        content: Text('You have successfully deleted a product')));
+    ScaffoldMessenger.of(context).showSnackBar(
+      const SnackBar(
+        content: Text(
+          'You have successfully deleted a symptom',
+          style: TextStyle(
+            fontSize: 16.0,
+            fontWeight: FontWeight.bold,
+            color: Colors.white,
+            fontFamily: 'Roboto',
+          ),
+        ),
+        behavior: SnackBarBehavior.floating,
+        backgroundColor: Color(0xFF5CB85C),
+      ),
+    );
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
         appBar:  AppBar(
-          title: Text("Health Manager"),
-          backgroundColor:Color(0xffc396e5),
+          leading: IconButton(
+            icon: Container(
+              height: 32,
+              width: 32,
+              child: CircleAvatar(
+                  child: Icon(
+                Icons.arrow_back_ios_sharp,
+                color: Colors.black,
+                size: 18,
+              )),
+            ),
+            onPressed: () {
+              Navigator.pop(context);
+            },
+          ),
+          elevation: 4,
+          centerTitle: true,
+          automaticallyImplyLeading: false,
+          backgroundColor: Color(0xFF5CB85C),
+          shape: const RoundedRectangleBorder(
+            borderRadius: BorderRadius.zero,
+          ),
+          title: const Text(
+            "Symptom Tracker",
+            style: TextStyle(
+              fontWeight: FontWeight.w800,
+              fontStyle: FontStyle.normal,
+              fontSize: 18,
+              color: Color(0xffffffff),
+            ),
+            textAlign: TextAlign.center,
+          ),
         ),
 
         body:
@@ -166,7 +224,7 @@ class _HomePageState extends State<SymptomsAbdomenHistory> {
                     elevation: 0,
                     shape: RoundedRectangleBorder(
                       side: BorderSide(
-                          color: Color(0xffc396e5)
+                          color: Color(0xFF5CB85C)
                       ),
                       borderRadius: const BorderRadius.all(Radius.circular(12)),
                     ),
@@ -191,16 +249,26 @@ class _HomePageState extends State<SymptomsAbdomenHistory> {
                     
                       ]),
 
-                      subtitle:  RatingBarIndicator(
-
-                        rating: (documentSnapshot['symptomlevel']),
-                        unratedColor: Color(0xffece5e5),
-                        itemBuilder: (context, index) =>
-                            Icon(Icons.star, color: Color(0xffffc107)),
-                        itemCount: 5,
-                        itemSize: 30,
-                        direction: Axis.horizontal,
-
+                      subtitle:  Container(
+                        padding:
+                            EdgeInsets.symmetric(vertical: 10, horizontal: 10),
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(20),
+                          color: _getColorFromSymptomLevel(
+                              documentSnapshot['symptomlevel']),
+                        ),
+                        child: Center(
+                          child: Text(
+                            _getTextFromSymptomLevel(
+                                documentSnapshot['symptomlevel']),
+                            style: TextStyle(
+                              color: Colors.white,
+                              fontSize: 16,
+                              fontWeight: FontWeight.bold,
+                            ),
+                            textAlign: TextAlign.center,
+                          ),
+                        ),
                       ),
                       isThreeLine:true,
 
@@ -282,3 +350,36 @@ class _HomePageState extends State<SymptomsAbdomenHistory> {
     );
   }
 }
+
+Color _getColorFromSymptomLevel(double symptomLevel) {
+  if (symptomLevel == 1) {
+    return Colors.green;
+  } else if (symptomLevel == 2) {
+    return Colors.lightGreen;
+  } else if (symptomLevel == 3) {
+    return Colors.yellow;
+  } else if (symptomLevel == 4) {
+    return Colors.orange;
+  } else if (symptomLevel == 5) {
+    return Colors.red;
+  } else {
+    return Color(0xffece5e5);
+  }
+}
+
+String _getTextFromSymptomLevel(double symptomLevel) {
+  if (symptomLevel == 1) {
+    return "Mild";
+  } else if (symptomLevel == 2) {
+    return "Moderate";
+  } else if (symptomLevel == 3) {
+    return "Moderate to Severe";
+  } else if (symptomLevel == 4) {
+    return "Severe";
+  } else if (symptomLevel == 5) {
+    return "Very Severe";
+  } else {
+    return "No rating";
+  }
+}
+
