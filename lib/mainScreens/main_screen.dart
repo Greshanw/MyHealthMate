@@ -14,7 +14,6 @@ class MainScreen extends StatefulWidget {
 
 class _MainScreenState extends State<MainScreen>
     with SingleTickerProviderStateMixin {
-
   User? _user;
 
   Future<void> _getUser() async {
@@ -23,7 +22,7 @@ class _MainScreenState extends State<MainScreen>
       _user = user;
     });
   }
-  
+
   TabController? tabController;
   int selectedIndex = 0;
 
@@ -55,7 +54,7 @@ class _MainScreenState extends State<MainScreen>
       body: TabBarView(
         physics: NeverScrollableScrollPhysics(),
         controller: tabController,
-        children:const [
+        children: const [
           // HomeScreen(),
           // MenuScreen(),
           // UserTab(),

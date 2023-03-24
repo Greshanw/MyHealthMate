@@ -16,19 +16,20 @@ void main() async {
   runApp(
     MyApp(
         child: MaterialApp(
-      title: 'Health Mate',
-      theme: ThemeData(
-        primarySwatch: Colors.lightGreen,
-      ),
-      home: FirebaseAuth.instance.currentUser != null ? const MainScreen() :const MySplashScreen()
-    )),
+            title: 'Health Mate',
+            theme: ThemeData(
+              primarySwatch: Colors.lightGreen,
+            ),
+            home: FirebaseAuth.instance.currentUser != null
+                ? const MainScreen()
+                : const MySplashScreen())),
   );
 }
 
 class MyApp extends StatefulWidget {
   //check nullcheck
   final Widget? child;
-  
+
   const MyApp({super.key, this.child});
 
   //Method to restarting the app
@@ -41,16 +42,14 @@ class MyApp extends StatefulWidget {
 }
 
 class _MyAppState extends State<MyApp> {
-
   Key key = UniqueKey();
 
-  
   void restartApp() {
     setState(() {
       key = UniqueKey();
     });
   }
-  
+
   @override
   Widget build(BuildContext context) {
     return KeyedSubtree(key: key, child: widget.child!);
