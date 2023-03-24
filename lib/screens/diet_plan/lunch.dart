@@ -20,11 +20,10 @@ class _DietLunchState extends State<DietLunch> {
   final TextEditingController _descriptionController = TextEditingController();
 
   final CollectionReference _dietLunch =
-  FirebaseFirestore.instance.collection('dietlunch');
+      FirebaseFirestore.instance.collection('dietlunch');
 
   // ADD LUNCH FUNCTION
   Future<void> _create([DocumentSnapshot? documentSnapshot]) async {
-
     await showModalBottomSheet(
         isScrollControlled: true,
         context: context,
@@ -42,33 +41,31 @@ class _DietLunchState extends State<DietLunch> {
                 TextField(
                   controller: _topicController,
                   decoration: const InputDecoration(
-                    // icon: Icon(Icons.man),
-                      labelText: 'Topic'
-                  ),
+                      // icon: Icon(Icons.man),
+                      labelText: 'Topic'),
                 ),
                 TextField(
                   controller: _ingredController,
                   decoration: const InputDecoration(
-                    // icon: Icon(Icons.man),
-                      labelText: 'Ingredients'
-                  ),
+                      // icon: Icon(Icons.man),
+                      labelText: 'Ingredients'),
                 ),
                 TextField(
                   controller: _descriptionController,
                   decoration: const InputDecoration(
-                    // icon: Icon(Icons.man),
-                      labelText: 'Description'
-                  ),
+                      // icon: Icon(Icons.man),
+                      labelText: 'Description'),
                 ),
                 const SizedBox(
                   height: 20,
                 ),
                 ElevatedButton(
                   style: ElevatedButton.styleFrom(
-                      padding: const EdgeInsets.symmetric(vertical: 15.0, horizontal: 160),
-                      backgroundColor: Color(0xFF5CB85C)
-                  ),
-                  child: const Text('Submit',
+                      padding: const EdgeInsets.symmetric(
+                          vertical: 15.0, horizontal: 160),
+                      backgroundColor: Color(0xFF5CB85C)),
+                  child: const Text(
+                    'Submit',
                     style: TextStyle(
                       fontSize: 15,
                       color: Colors.white,
@@ -80,23 +77,26 @@ class _DietLunchState extends State<DietLunch> {
                     final String ingredients = _ingredController.text;
                     final String description = _descriptionController.text;
 
-                    if (_topicController.value.text.isNotEmpty && _ingredController.value.text.isNotEmpty && _descriptionController.value.text.isNotEmpty) {
-                      await _dietLunch.add({"topic": topic, "ingredients": ingredients, "description": description}).then((value) {
+                    if (_topicController.value.text.isNotEmpty &&
+                        _ingredController.value.text.isNotEmpty &&
+                        _descriptionController.value.text.isNotEmpty) {
+                      await _dietLunch.add({
+                        "topic": topic,
+                        "ingredients": ingredients,
+                        "description": description
+                      }).then((value) {
                         Get.snackbar('Success', 'Successfully Saved');
                       });
                       _topicController.text = '';
                       _ingredController.text = '';
                       _descriptionController.text = '';
                       Navigator.of(context).pop();
-                    }
-                    else{
-                      if(_topicController.value.text.isEmpty){
+                    } else {
+                      if (_topicController.value.text.isEmpty) {
                         Get.snackbar('Failed', 'Topic Cannot Be Empty');
-                      }
-                      else if(_ingredController.value.text.isEmpty){
+                      } else if (_ingredController.value.text.isEmpty) {
                         Get.snackbar('Failed', 'Ingredients Cannot Be Empty');
-                      }
-                      else{
+                      } else {
                         Get.snackbar('Failed', 'Description Cannot Be Empty');
                       }
                     }
@@ -133,19 +133,19 @@ class _DietLunchState extends State<DietLunch> {
                 TextField(
                   controller: _topicController,
                   decoration: const InputDecoration(
-                    // icon: Icon(Icons.man),
+                      // icon: Icon(Icons.man),
                       labelText: 'Topic'),
                 ),
                 TextField(
                   controller: _ingredController,
                   decoration: const InputDecoration(
-                    // icon: Icon(Icons.man),
+                      // icon: Icon(Icons.man),
                       labelText: 'Ingredients'),
                 ),
                 TextField(
                   controller: _descriptionController,
                   decoration: const InputDecoration(
-                    // icon: Icon(Icons.man),
+                      // icon: Icon(Icons.man),
                       labelText: 'Description'),
                 ),
                 const SizedBox(
@@ -153,10 +153,11 @@ class _DietLunchState extends State<DietLunch> {
                 ),
                 ElevatedButton(
                   style: ElevatedButton.styleFrom(
-                      padding: const EdgeInsets.symmetric(vertical: 15.0, horizontal: 150),
-                      backgroundColor: Colors.orange
-                  ),
-                  child: const Text( 'Update',
+                      padding: const EdgeInsets.symmetric(
+                          vertical: 15.0, horizontal: 150),
+                      backgroundColor: Colors.orange),
+                  child: const Text(
+                    'Update',
                     style: TextStyle(
                       fontSize: 20,
                       color: Colors.white,
@@ -168,9 +169,11 @@ class _DietLunchState extends State<DietLunch> {
                     final String ingredients = _ingredController.text;
                     final String description = _descriptionController.text;
                     if (topic != null) {
-                      await _dietLunch
-                          .doc(documentSnapshot!.id)
-                          .update({"topic": topic, "ingredients": ingredients, "description": description}).then((value) {
+                      await _dietLunch.doc(documentSnapshot!.id).update({
+                        "topic": topic,
+                        "ingredients": ingredients,
+                        "description": description
+                      }).then((value) {
                         Get.snackbar('Success', 'Successfully Updated');
                       });
                       _topicController.text = '';
@@ -198,31 +201,39 @@ class _DietLunchState extends State<DietLunch> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar:
-        AppBar(
-          leading: IconButton(
-              icon: SvgPicture.asset('assets/icons/back.svg'),
+        appBar: AppBar(
+            leading: IconButton(
+              icon: const SizedBox(
+                height: 32,
+                width: 32,
+                child: CircleAvatar(
+                    child: Icon(
+                  Icons.arrow_back_ios_sharp,
+                  color: Colors.black,
+                  size: 18,
+                )),
+              ),
               onPressed: () {
                 Navigator.pop(context);
-              }
-          ),
-          elevation:4,
-          centerTitle:false,
-          automaticallyImplyLeading: false,
-          backgroundColor:Color(0xFF5CB85C),
-          shape:RoundedRectangleBorder(
-            borderRadius:BorderRadius.zero,
-          ),
-          title:Text(
-            "Health Manager",
-            style:TextStyle(
-              fontWeight:FontWeight.w800,
-              fontStyle:FontStyle.normal,
-              fontSize:17,
-              color:Color(0xffffffff),
+              },
             ),
-          ),
-        ),
+            title: const Text(
+              "Diet Plan",
+              style: TextStyle(
+                fontWeight: FontWeight.w800,
+                fontStyle: FontStyle.normal,
+                fontSize: 18,
+                color: Color(0xffffffff),
+              ),
+              textAlign: TextAlign.center,
+            ),
+            elevation: 4,
+            centerTitle: true,
+            automaticallyImplyLeading: false,
+            backgroundColor: Color(0xFF5CB85C),
+            shape: const RoundedRectangleBorder(
+              borderRadius: BorderRadius.zero,
+            )),
         //bottomNavigationBar: BottomNavBar(),
         body: StreamBuilder(
           stream: _dietLunch.snapshots(),
@@ -232,7 +243,7 @@ class _DietLunchState extends State<DietLunch> {
                 itemCount: streamSnapshot.data!.docs.length,
                 itemBuilder: (context, index) {
                   final DocumentSnapshot documentSnapshot =
-                  streamSnapshot.data!.docs[index];
+                      streamSnapshot.data!.docs[index];
                   return Card(
                     shadowColor: Color(0xFF5CB85C),
                     margin: const EdgeInsets.all(13),
@@ -269,7 +280,8 @@ class _DietLunchState extends State<DietLunch> {
                                 Icons.remove_red_eye,
                                 color: Colors.blue,
                               ),
-                              onPressed: () => _navigateToDietLunchView(context),
+                              onPressed: () =>
+                                  _navigateToDietLunchView(context),
                             ),
                             TextButton(
                               style: TextButton.styleFrom(
@@ -296,7 +308,7 @@ class _DietLunchState extends State<DietLunch> {
                                 // set up the buttons
                                 Widget cancelButton = TextButton(
                                   child: Text("Cancel"),
-                                  onPressed:  () {
+                                  onPressed: () {
                                     Navigator.pop(context);
                                   },
                                 );
@@ -341,14 +353,16 @@ class _DietLunchState extends State<DietLunch> {
           onPressed: () => _create(),
           child: const Icon(Icons.add),
         ),
-        floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat
-    );
+        floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat);
   }
 
   void _navigateToDietLunchHome(BuildContext context) {
-    Navigator.of(context).push(MaterialPageRoute(builder: (context) => DietLunch()));
+    Navigator.of(context)
+        .push(MaterialPageRoute(builder: (context) => DietLunch()));
   }
+
   void _navigateToDietLunchView(BuildContext context) {
-    Navigator.of(context).push(MaterialPageRoute(builder: (context) => DietLunchView()));
+    Navigator.of(context)
+        .push(MaterialPageRoute(builder: (context) => DietLunchView()));
   }
 }

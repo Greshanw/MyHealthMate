@@ -50,6 +50,7 @@ class _MainScreenState extends State<MainScreen>
     return Scaffold(
       appBar: AppBar(
         title: const Text("My Health Mate"),
+        backgroundColor: Color(0xFF5CB85C),
       ),
       body: TabBarView(
         physics: NeverScrollableScrollPhysics(),
@@ -67,25 +68,26 @@ class _MainScreenState extends State<MainScreen>
         onPressed: _signOut,
         tooltip: 'Logout',
         child: Icon(Icons.logout),
+        backgroundColor: Color(0xFF5CB85C),
       ),
-      bottomNavigationBar: BottomNavigationBar(
-        items: const [
-          BottomNavigationBarItem(icon: Icon(Icons.home, size: 50), label: ''),
-          BottomNavigationBarItem(
-              icon: Icon(Icons.format_list_bulleted, size: 50), label: ''),
-          BottomNavigationBarItem(
-              icon: Icon(Icons.account_circle_outlined, size: 50), label: ''),
-        ],
-        elevation: 20,
-        unselectedItemColor: Colors.black54,
-        selectedItemColor: Colors.green,
-        backgroundColor: Colors.white,
-        type: BottomNavigationBarType.fixed,
-        selectedLabelStyle: TextStyle(fontSize: 14),
-        showUnselectedLabels: true,
-        currentIndex: selectedIndex,
-        onTap: onItemClicked,
-      ),
+      // bottomNavigationBar: BottomNavigationBar(
+      //   items: const [
+      //     BottomNavigationBarItem(icon: Icon(Icons.home, size: 50), label: ''),
+      //     BottomNavigationBarItem(
+      //         icon: Icon(Icons.format_list_bulleted, size: 50), label: ''),
+      //     BottomNavigationBarItem(
+      //         icon: Icon(Icons.account_circle_outlined, size: 50), label: ''),
+      //   ],
+      //   elevation: 20,
+      //   unselectedItemColor: Colors.black54,
+      //   selectedItemColor: Colors.green,
+      //   backgroundColor: Colors.white,
+      //   type: BottomNavigationBarType.fixed,
+      //   selectedLabelStyle: TextStyle(fontSize: 14),
+      //   showUnselectedLabels: true,
+      //   currentIndex: selectedIndex,
+      //   onTap: onItemClicked,
+      // ),
     );
   }
 }

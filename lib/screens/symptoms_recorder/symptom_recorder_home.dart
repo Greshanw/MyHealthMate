@@ -122,8 +122,8 @@ class HeadSymptoms extends StatelessWidget {
   const HeadSymptoms({super.key});
 
   void _navigateToHeadSymptoms(BuildContext context) {
-    Navigator.of(context)
-        .push(MaterialPageRoute(builder: (context) => const HeadSymptomsPage()));
+    Navigator.of(context).push(
+        MaterialPageRoute(builder: (context) => const HeadSymptomsPage()));
   }
 
   @override
@@ -135,7 +135,7 @@ class HeadSymptoms extends StatelessWidget {
           side: BorderSide(
             color: Color(0xFF5CB85C),
           ),
-          borderRadius: BorderRadius.all(Radius.circular(25)),
+          borderRadius: BorderRadius.all(Radius.circular(12)),
         ),
         clipBehavior: Clip.hardEdge,
         child: InkWell(
@@ -192,7 +192,7 @@ class BodySymptoms extends StatelessWidget {
           side: BorderSide(
             color: Color(0xFF5CB85C),
           ),
-          borderRadius: BorderRadius.all(Radius.circular(25)),
+          borderRadius: BorderRadius.all(Radius.circular(12)),
         ),
         clipBehavior: Clip.hardEdge,
         child: InkWell(
@@ -249,7 +249,7 @@ class AbdomenSymptoms extends StatelessWidget {
           side: BorderSide(
             color: Color(0xFF5CB85C),
           ),
-          borderRadius: BorderRadius.all(Radius.circular(25)),
+          borderRadius: BorderRadius.all(Radius.circular(12)),
         ),
         clipBehavior: Clip.hardEdge,
         child: InkWell(
@@ -293,8 +293,8 @@ class AbdomenSymptoms extends StatelessWidget {
 class mentalsymptoms extends StatelessWidget {
   const mentalsymptoms({super.key});
   void _navigateToMentalSymptoms(BuildContext context) {
-    Navigator.of(context)
-        .push(MaterialPageRoute(builder: (context) => const MentalSymptomsPage()));
+    Navigator.of(context).push(
+        MaterialPageRoute(builder: (context) => const MentalSymptomsPage()));
   }
 
   @override
@@ -317,7 +317,7 @@ class mentalsymptoms extends StatelessWidget {
             width: 300,
             height: 60,
             child: Row(
-              children:const [
+              children: const [
                 SizedBox(
                   width: 5,
                 ),
@@ -351,8 +351,8 @@ class skinsymptoms extends StatelessWidget {
   const skinsymptoms({super.key});
 
   void _navigateToSkinSymptoms(BuildContext context) {
-    Navigator.of(context)
-        .push(MaterialPageRoute(builder: (context) => const SkinSymptomsPage()));
+    Navigator.of(context).push(
+        MaterialPageRoute(builder: (context) => const SkinSymptomsPage()));
   }
 
   @override
@@ -360,11 +360,11 @@ class skinsymptoms extends StatelessWidget {
     return Center(
       child: Card(
         elevation: 0,
-        shape:  const RoundedRectangleBorder(
+        shape: const RoundedRectangleBorder(
           side: BorderSide(
             color: Color(0xFF5CB85C),
           ),
-          borderRadius:  BorderRadius.all(Radius.circular(12)),
+          borderRadius: BorderRadius.all(Radius.circular(12)),
         ),
         clipBehavior: Clip.hardEdge,
         child: InkWell(
