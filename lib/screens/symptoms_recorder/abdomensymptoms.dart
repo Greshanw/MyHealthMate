@@ -4,10 +4,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:dotted_border/dotted_border.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_rating_bar/flutter_rating_bar.dart';
-import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
-import 'package:get/get_core/src/get_main.dart';
 import 'package:my_health_mate/screens/symptoms_recorder/symptoms_abdomen_history.dart';
 
 class AbdomenSymptomsPage extends StatefulWidget {
@@ -26,7 +23,7 @@ class _AbdomenSymptomsState extends State<AbdomenSymptomsPage> {
 
   void _navigateToSymptomHistory(BuildContext context) {
     Navigator.of(context).push(
-        MaterialPageRoute(builder: (context) => SymptomsAbdomenHistory()));
+        MaterialPageRoute(builder: (context) => const SymptomsAbdomenHistory()));
   }
 
   double symptomlevel1 = 0;
@@ -132,7 +129,7 @@ class _AbdomenSymptomsState extends State<AbdomenSymptomsPage> {
               icon: Container(
                 height: 32,
                 width: 32,
-                child: CircleAvatar(
+                child: const CircleAvatar(
                     child: Icon(
                   Icons.arrow_back_ios_sharp,
                   color: Colors.black,
@@ -146,7 +143,7 @@ class _AbdomenSymptomsState extends State<AbdomenSymptomsPage> {
             elevation: 4,
             centerTitle: true,
             automaticallyImplyLeading: false,
-            backgroundColor: Color(0xFF5CB85C),
+            backgroundColor: const Color(0xFF5CB85C),
             shape: const RoundedRectangleBorder(
               borderRadius: BorderRadius.zero,
             ),
@@ -171,27 +168,30 @@ class _AbdomenSymptomsState extends State<AbdomenSymptomsPage> {
                   scrollDirection: Axis.vertical,
                   padding: EdgeInsets.zero,
                   shrinkWrap: false,
-                  physics: ScrollPhysics(),
+                  physics: const ScrollPhysics(),
                   children: [
-                    SizedBox(
+                    const SizedBox(
                       width: 7,
                     ),
                     Padding(
-                      padding: EdgeInsets.fromLTRB(0, 0, 0, 0),
+                      padding: const EdgeInsets.fromLTRB(0, 0, 0, 0),
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.start,
                         crossAxisAlignment: CrossAxisAlignment.center,
                         mainAxisSize: MainAxisSize.max,
                         children: [
                           Padding(
-                            padding: EdgeInsets.fromLTRB(0, 0, 0, 0),
+                            padding: const EdgeInsets.fromLTRB(0, 0, 0, 0),
                             child: MaterialButton(
                               onPressed: () async {},
-                              color: Color(0xFF5CB85C),
+                              color: const Color(0xFF5CB85C),
                               elevation: 0,
-                              padding: EdgeInsets.symmetric(
+                              padding: const EdgeInsets.symmetric(
                                   horizontal: 0, vertical: 0),
-                              child: Text(
+                              textColor: const Color(0xff000000),
+                              height: 40,
+                              minWidth: 190,
+                              child: const Text(
                                 "symptoms",
                                 style: TextStyle(
                                   fontSize: 14,
@@ -199,22 +199,22 @@ class _AbdomenSymptomsState extends State<AbdomenSymptomsPage> {
                                   fontStyle: FontStyle.normal,
                                 ),
                               ),
-                              textColor: Color(0xff000000),
-                              height: 40,
-                              minWidth: 190,
                             ),
                           ),
                           Padding(
-                            padding: EdgeInsets.fromLTRB(0, 0, 0, 0),
+                            padding: const EdgeInsets.fromLTRB(0, 0, 0, 0),
                             child: MaterialButton(
                               onPressed: () async {
                                 _navigateToSymptomHistory(context);
                               },
-                              color: Color(0xffb4b0b7),
+                              color: const Color(0xffb4b0b7),
                               elevation: 0,
-                              padding: EdgeInsets.symmetric(
+                              padding: const EdgeInsets.symmetric(
                                   horizontal: 0, vertical: 0),
-                              child: Text(
+                              textColor: const Color(0xff000000),
+                              height: 40,
+                              minWidth: 190,
+                              child: const Text(
                                 " History",
                                 style: TextStyle(
                                   fontSize: 14,
@@ -222,15 +222,12 @@ class _AbdomenSymptomsState extends State<AbdomenSymptomsPage> {
                                   fontStyle: FontStyle.normal,
                                 ),
                               ),
-                              textColor: Color(0xff000000),
-                              height: 40,
-                              minWidth: 190,
                             ),
                           ),
                         ],
                       ),
                     ),
-                    Padding(
+                    const Padding(
                       padding: EdgeInsets.fromLTRB(90, 10, 20, 30),
                       child: Text(
                         "Abdomen Symptoms",
@@ -251,7 +248,7 @@ class _AbdomenSymptomsState extends State<AbdomenSymptomsPage> {
                         crossAxisAlignment: CrossAxisAlignment.center,
                         mainAxisSize: MainAxisSize.max,
                         children: [
-                          Padding(
+                          const Padding(
                             padding: EdgeInsets.fromLTRB(30, 0, 0, 0),
                             child: Text(
                               "Bloating",
@@ -266,22 +263,22 @@ class _AbdomenSymptomsState extends State<AbdomenSymptomsPage> {
                             ),
                           ),
                           Padding(
-                              padding: EdgeInsets.fromLTRB(0, 0, 20, 0),
+                              padding: const EdgeInsets.fromLTRB(0, 0, 20, 0),
                               child: SliderTheme(
                                 data: SliderThemeData(
-                                  thumbShape: RoundSliderThumbShape(
+                                  thumbShape: const RoundSliderThumbShape(
                                     enabledThumbRadius: 12,
                                     disabledThumbRadius: 12,
                                     elevation: 4,
                                     pressedElevation: 6,
                                   ),
-                                  activeTrackColor: Color(0xFF5CB85C),
+                                  activeTrackColor: const Color(0xFF5CB85C),
                                   inactiveTrackColor: Colors.grey,
                                   overlayColor:
-                                      Color(0xFF5CB85C).withOpacity(0.2),
-                                  thumbColor: Color(0xFF5CB85C),
-                                  valueIndicatorColor: Color(0xFF5CB85C),
-                                  valueIndicatorTextStyle: TextStyle(
+                                      const Color(0xFF5CB85C).withOpacity(0.2),
+                                  thumbColor: const Color(0xFF5CB85C),
+                                  valueIndicatorColor: const Color(0xFF5CB85C),
+                                  valueIndicatorTextStyle: const TextStyle(
                                     color: Colors.white,
                                     fontSize: 16,
                                     fontWeight: FontWeight.bold,
@@ -301,36 +298,17 @@ class _AbdomenSymptomsState extends State<AbdomenSymptomsPage> {
                                   },
                                 ),
                               )),
-                          // Padding(
-                          //   padding: EdgeInsets.fromLTRB(0, 0, 20, 0),
-                          //   child: RatingBar.builder(
-                          //     initialRating: 0,
-                          //     unratedColor: Color(0xffece5e5),
-                          //     itemBuilder: (context, index) =>
-                          //         Icon(Icons.star, color: Color(0xffffc107)),
-                          //     itemCount: 5,
-                          //     itemSize: 30,
-                          //     direction: Axis.horizontal,
-                          //     allowHalfRating: false,
-                          //     onRatingUpdate: (value) {
-                          //       if (value > 0) {
-                          //         symptomlevel = value;
-                          //         symptom = "Bloating";
-                          //       }
-                          //     },
-                          //   ),
-                          // ),
                         ],
                       ),
                     ),
                     Padding(
-                      padding: EdgeInsets.fromLTRB(0, 0, 0, 25),
+                      padding: const EdgeInsets.fromLTRB(0, 0, 0, 25),
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.start,
                         crossAxisAlignment: CrossAxisAlignment.center,
                         mainAxisSize: MainAxisSize.max,
                         children: [
-                          Padding(
+                          const Padding(
                             padding: EdgeInsets.fromLTRB(30, 0, 0, 0),
                             child: Text(
                               "Constipation",
@@ -345,22 +323,22 @@ class _AbdomenSymptomsState extends State<AbdomenSymptomsPage> {
                             ),
                           ),
                           Padding(
-                              padding: EdgeInsets.fromLTRB(0, 0, 20, 0),
+                              padding: const EdgeInsets.fromLTRB(0, 0, 20, 0),
                               child: SliderTheme(
                                 data: SliderThemeData(
-                                  thumbShape: RoundSliderThumbShape(
+                                  thumbShape: const RoundSliderThumbShape(
                                     enabledThumbRadius: 12,
                                     disabledThumbRadius: 12,
                                     elevation: 4,
                                     pressedElevation: 6,
                                   ),
-                                  activeTrackColor: Color(0xFF5CB85C),
+                                  activeTrackColor: const Color(0xFF5CB85C),
                                   inactiveTrackColor: Colors.grey,
                                   overlayColor:
-                                      Color(0xFF5CB85C).withOpacity(0.2),
-                                  thumbColor: Color(0xFF5CB85C),
-                                  valueIndicatorColor: Color(0xFF5CB85C),
-                                  valueIndicatorTextStyle: TextStyle(
+                                      const Color(0xFF5CB85C).withOpacity(0.2),
+                                  thumbColor: const Color(0xFF5CB85C),
+                                  valueIndicatorColor: const Color(0xFF5CB85C),
+                                  valueIndicatorTextStyle: const TextStyle(
                                     color: Colors.white,
                                     fontSize: 16,
                                     fontWeight: FontWeight.bold,
@@ -380,36 +358,17 @@ class _AbdomenSymptomsState extends State<AbdomenSymptomsPage> {
                                   },
                                 ),
                               )),
-                          // Padding(
-                          //   padding: EdgeInsets.fromLTRB(0, 0, 8, 0),
-                          //   child: RatingBar.builder(
-                          //     initialRating: 0,
-                          //     unratedColor: Color(0xffece5e5),
-                          //     itemBuilder: (context, index) =>
-                          //         Icon(Icons.star, color: Color(0xffffc107)),
-                          //     itemCount: 5,
-                          //     itemSize: 30,
-                          //     direction: Axis.horizontal,
-                          //     allowHalfRating: false,
-                          //     onRatingUpdate: (value) {
-                          //       if (value > 0) {
-                          //         symptomlevel = value;
-                          //         symptom = "Constipation";
-                          //       }
-                          //     },
-                          //   ),
-                          // ),
                         ],
                       ),
                     ),
                     Padding(
-                      padding: EdgeInsets.fromLTRB(0, 0, 0, 25),
+                      padding: const EdgeInsets.fromLTRB(0, 0, 0, 25),
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.start,
                         crossAxisAlignment: CrossAxisAlignment.center,
                         mainAxisSize: MainAxisSize.max,
                         children: [
-                          Padding(
+                          const Padding(
                             padding: EdgeInsets.fromLTRB(30, 0, 0, 0),
                             child: Text(
                               "Diarrhea",
@@ -424,10 +383,10 @@ class _AbdomenSymptomsState extends State<AbdomenSymptomsPage> {
                             ),
                           ),
                           Padding(
-                              padding: EdgeInsets.fromLTRB(0, 0, 20, 0),
+                              padding: const EdgeInsets.fromLTRB(0, 0, 20, 0),
                               child: SliderTheme(
                                 data: SliderThemeData(
-                                  thumbShape: RoundSliderThumbShape(
+                                  thumbShape: const RoundSliderThumbShape(
                                     enabledThumbRadius: 12,
                                     disabledThumbRadius: 12,
                                     elevation: 4,
@@ -436,10 +395,10 @@ class _AbdomenSymptomsState extends State<AbdomenSymptomsPage> {
                                   activeTrackColor: Color(0xFF5CB85C),
                                   inactiveTrackColor: Colors.grey,
                                   overlayColor:
-                                      Color(0xFF5CB85C).withOpacity(0.2),
-                                  thumbColor: Color(0xFF5CB85C),
-                                  valueIndicatorColor: Color(0xFF5CB85C),
-                                  valueIndicatorTextStyle: TextStyle(
+                                      const Color(0xFF5CB85C).withOpacity(0.2),
+                                  thumbColor: const Color(0xFF5CB85C),
+                                  valueIndicatorColor: const Color(0xFF5CB85C),
+                                  valueIndicatorTextStyle: const TextStyle(
                                     color: Colors.white,
                                     fontSize: 16,
                                     fontWeight: FontWeight.bold,
@@ -459,36 +418,17 @@ class _AbdomenSymptomsState extends State<AbdomenSymptomsPage> {
                                   },
                                 ),
                               )),
-                          // Padding(
-                          //   padding: EdgeInsets.fromLTRB(0, 0, 10, 0),
-                          //   child: RatingBar.builder(
-                          //     initialRating: 0,
-                          //     unratedColor: Color(0xffece5e5),
-                          //     itemBuilder: (context, index) =>
-                          //         Icon(Icons.star, color: Color(0xffffc107)),
-                          //     itemCount: 5,
-                          //     itemSize: 30,
-                          //     direction: Axis.horizontal,
-                          //     allowHalfRating: false,
-                          //     onRatingUpdate: (value) {
-                          //       if (value > 0) {
-                          //         symptomlevel = value;
-                          //         symptom = "Diarrhea";
-                          //       }
-                          //     },
-                          //   ),
-                          // ),
                         ],
                       ),
                     ),
                     Padding(
-                      padding: EdgeInsets.fromLTRB(0, 0, 0, 25),
+                      padding: const EdgeInsets.fromLTRB(0, 0, 0, 25),
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.start,
                         crossAxisAlignment: CrossAxisAlignment.center,
                         mainAxisSize: MainAxisSize.max,
                         children: [
-                          Padding(
+                          const Padding(
                             padding: EdgeInsets.fromLTRB(30, 0, 0, 0),
                             child: Text(
                               "Nausea",
@@ -503,22 +443,22 @@ class _AbdomenSymptomsState extends State<AbdomenSymptomsPage> {
                             ),
                           ),
                           Padding(
-                              padding: EdgeInsets.fromLTRB(0, 0, 20, 0),
+                              padding: const EdgeInsets.fromLTRB(0, 0, 20, 0),
                               child: SliderTheme(
                                 data: SliderThemeData(
-                                  thumbShape: RoundSliderThumbShape(
+                                  thumbShape: const RoundSliderThumbShape(
                                     enabledThumbRadius: 12,
                                     disabledThumbRadius: 12,
                                     elevation: 4,
                                     pressedElevation: 6,
                                   ),
-                                  activeTrackColor: Color(0xFF5CB85C),
+                                  activeTrackColor: const Color(0xFF5CB85C),
                                   inactiveTrackColor: Colors.grey,
                                   overlayColor:
-                                      Color(0xFF5CB85C).withOpacity(0.2),
-                                  thumbColor: Color(0xFF5CB85C),
-                                  valueIndicatorColor: Color(0xFF5CB85C),
-                                  valueIndicatorTextStyle: TextStyle(
+                                      const Color(0xFF5CB85C).withOpacity(0.2),
+                                  thumbColor: const Color(0xFF5CB85C),
+                                  valueIndicatorColor: const Color(0xFF5CB85C),
+                                  valueIndicatorTextStyle: const TextStyle(
                                     color: Colors.white,
                                     fontSize: 16,
                                     fontWeight: FontWeight.bold,
@@ -538,36 +478,17 @@ class _AbdomenSymptomsState extends State<AbdomenSymptomsPage> {
                                   },
                                 ),
                               )),
-                          // Padding(
-                          //   padding: EdgeInsets.fromLTRB(0, 0, 10, 0),
-                          //   child: RatingBar.builder(
-                          //     initialRating: 0,
-                          //     unratedColor: Color(0xffece5e5),
-                          //     itemBuilder: (context, index) =>
-                          //         Icon(Icons.star, color: Color(0xffffc107)),
-                          //     itemCount: 5,
-                          //     itemSize: 30,
-                          //     direction: Axis.horizontal,
-                          //     allowHalfRating: false,
-                          //     onRatingUpdate: (value) {
-                          //       if (value > 0) {
-                          //         symptomlevel = value;
-                          //         symptom = "Nausea";
-                          //       }
-                          //     },
-                          //   ),
-                          // ),
                         ],
                       ),
                     ),
                     Padding(
-                      padding: EdgeInsets.fromLTRB(0, 0, 0, 25),
+                      padding: const EdgeInsets.fromLTRB(0, 0, 0, 25),
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.start,
                         crossAxisAlignment: CrossAxisAlignment.center,
                         mainAxisSize: MainAxisSize.max,
                         children: [
-                          Padding(
+                          const Padding(
                             padding: EdgeInsets.fromLTRB(30, 0, 0, 0),
                             child: Text(
                               "Gas",
@@ -582,22 +503,22 @@ class _AbdomenSymptomsState extends State<AbdomenSymptomsPage> {
                             ),
                           ),
                           Padding(
-                              padding: EdgeInsets.fromLTRB(0, 0, 20, 0),
+                              padding: const EdgeInsets.fromLTRB(0, 0, 20, 0),
                               child: SliderTheme(
                                 data: SliderThemeData(
-                                  thumbShape: RoundSliderThumbShape(
+                                  thumbShape: const RoundSliderThumbShape(
                                     enabledThumbRadius: 12,
                                     disabledThumbRadius: 12,
                                     elevation: 4,
                                     pressedElevation: 6,
                                   ),
-                                  activeTrackColor: Color(0xFF5CB85C),
+                                  activeTrackColor: const Color(0xFF5CB85C),
                                   inactiveTrackColor: Colors.grey,
                                   overlayColor:
-                                      Color(0xFF5CB85C).withOpacity(0.2),
-                                  thumbColor: Color(0xFF5CB85C),
-                                  valueIndicatorColor: Color(0xFF5CB85C),
-                                  valueIndicatorTextStyle: TextStyle(
+                                      const Color(0xFF5CB85C).withOpacity(0.2),
+                                  thumbColor: const Color(0xFF5CB85C),
+                                  valueIndicatorColor: const Color(0xFF5CB85C),
+                                  valueIndicatorTextStyle: const TextStyle(
                                     color: Colors.white,
                                     fontSize: 16,
                                     fontWeight: FontWeight.bold,
@@ -617,32 +538,13 @@ class _AbdomenSymptomsState extends State<AbdomenSymptomsPage> {
                                   },
                                 ),
                               )),
-                          // Padding(
-                          //   padding: EdgeInsets.fromLTRB(0, 0, 10, 0),
-                          //   child: RatingBar.builder(
-                          //     initialRating: 0,
-                          //     unratedColor: Color(0xffece5e5),
-                          //     itemBuilder: (context, index) =>
-                          //         Icon(Icons.star, color: Color(0xffffc107)),
-                          //     itemCount: 5,
-                          //     itemSize: 30,
-                          //     direction: Axis.horizontal,
-                          //     allowHalfRating: false,
-                          //     onRatingUpdate: (value) {
-                          //       if (value > 0) {
-                          //         symptomlevel = value;
-                          //         symptom = "Gas";
-                          //       }
-                          //     },
-                          //   ),
-                          // ),
                         ],
                       ),
                     ),
                     
                   
                     Padding(
-                      padding: EdgeInsets.symmetric(
+                      padding: const EdgeInsets.symmetric(
                         horizontal: 20,
                       ),
                       child: Visibility(
@@ -681,9 +583,9 @@ class _AbdomenSymptomsState extends State<AbdomenSymptomsPage> {
                                               ? Colors.red
                                               : Colors.black),
                           borderType: BorderType.RRect,
-                          radius: Radius.circular(12),
+                          radius: const Radius.circular(12),
                           child: Padding(
-                              padding: EdgeInsets.symmetric(
+                              padding: const EdgeInsets.symmetric(
                                   horizontal: 20, vertical: 10),
                               child: Row(children: [
                                 Visibility(
@@ -711,7 +613,7 @@ class _AbdomenSymptomsState extends State<AbdomenSymptomsPage> {
                       ),
                     ),
                     Padding(
-                      padding: EdgeInsets.fromLTRB(80, 20, 88, 0),
+                      padding: const EdgeInsets.fromLTRB(80, 20, 88, 0),
                       child: MaterialButton(
                         onPressed: () async {
                           if (symptomlevel1 > 0 ||
@@ -752,7 +654,7 @@ class _AbdomenSymptomsState extends State<AbdomenSymptomsPage> {
                               Get.snackbar(
                                   "Success", 'Data stored successfully',
                                   backgroundColor:
-                                      Color.fromARGB(100, 22, 44, 33));
+                                      const Color.fromARGB(100, 22, 44, 33));
                             });
                           }
                           setState(() {
@@ -807,15 +709,18 @@ class _AbdomenSymptomsState extends State<AbdomenSymptomsPage> {
                             }
                           });
                         },
-                        color: Color(0xFF5CB85C),
+                        color: const Color(0xFF5CB85C),
                         elevation: 0,
                         shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(10.0),
-                          side: BorderSide(color: Color(0xff808080), width: 1),
+                          side: const BorderSide(color: Color(0xff808080), width: 1),
                         ),
                         padding:
-                            EdgeInsets.symmetric(horizontal: 16, vertical: 8),
-                        child: Text(
+                            const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+                        textColor: Color(0xff000000),
+                        height: 40,
+                        minWidth: 140,
+                        child: const Text(
                           "Submit",
                           style: TextStyle(
                             fontSize: 14,
@@ -823,9 +728,6 @@ class _AbdomenSymptomsState extends State<AbdomenSymptomsPage> {
                             fontStyle: FontStyle.normal,
                           ),
                         ),
-                        textColor: Color(0xff000000),
-                        height: 40,
-                        minWidth: 140,
                       ),
                     ),
                   ],

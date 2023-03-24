@@ -34,7 +34,7 @@ class _UserTreatmentsPageState extends State<UserTreatmentsPage> {
     try {
       await userTreatmentsRef.doc(id).delete();
       ScaffoldMessenger.of(context).showSnackBar(
-      SnackBar(
+      const SnackBar(
         content: Text(
           'Treatment deleted',
           style: TextStyle(
@@ -52,7 +52,7 @@ class _UserTreatmentsPageState extends State<UserTreatmentsPage> {
 
     } catch (e) {
       ScaffoldMessenger.of(context).showSnackBar(
-      SnackBar(
+      const SnackBar(
         content: Text(
           'Failed to delete treatment',
           style: TextStyle(
@@ -139,7 +139,7 @@ class _UserTreatmentsPageState extends State<UserTreatmentsPage> {
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(20),
         ),
-        title: Text(
+        title: const Text(
           'Update Treatment',
           style: TextStyle(
             fontSize: 24,
@@ -154,7 +154,7 @@ class _UserTreatmentsPageState extends State<UserTreatmentsPage> {
               mainAxisSize: MainAxisSize.min,
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                SizedBox(height: 10),
+                const SizedBox(height: 10),
                 InkWell(
                   onTap: () {
                     showModalBottomSheet(
@@ -165,16 +165,16 @@ class _UserTreatmentsPageState extends State<UserTreatmentsPage> {
                             mainAxisSize: MainAxisSize.min,
                             children: [
                               ListTile(
-                                leading: Icon(Icons.camera_alt),
-                                title: Text('Take a photo'),
+                                leading: const Icon(Icons.camera_alt),
+                                title: const Text('Take a photo'),
                                 onTap: () {
                                   Navigator.pop(context);
                                   _getImage(ImageSource.camera);
                                 },
                               ),
                               ListTile(
-                                leading: Icon(Icons.photo_library),
-                                title: Text('Choose from gallery'),
+                                leading: const Icon(Icons.photo_library),
+                                title: const Text('Choose from gallery'),
                                 onTap: () {
                                   Navigator.pop(context);
                                   _getImage(ImageSource.gallery);
@@ -208,7 +208,7 @@ class _UserTreatmentsPageState extends State<UserTreatmentsPage> {
                           ),
                   ),
                 ),
-                SizedBox(height: 10),
+                const SizedBox(height: 10),
                 TextField(
                   controller: doctorNameController,
                   decoration: InputDecoration(
@@ -218,7 +218,7 @@ class _UserTreatmentsPageState extends State<UserTreatmentsPage> {
                     ),
                   ),
                 ),
-                SizedBox(height: 10),
+                const SizedBox(height: 10),
                 TextField(
                   controller: noteController,
                   decoration: InputDecoration(
@@ -228,7 +228,7 @@ class _UserTreatmentsPageState extends State<UserTreatmentsPage> {
                     ),
                   ),
                 ),
-                SizedBox(height: 10),
+                const SizedBox(height: 10),
                 TextField(
                   controller: dateController,
                   decoration: InputDecoration(
@@ -247,7 +247,7 @@ class _UserTreatmentsPageState extends State<UserTreatmentsPage> {
                       builder: (context, child) {
                         return Theme(
                           data: Theme.of(context).copyWith(
-                            colorScheme: ColorScheme.light(
+                            colorScheme: const ColorScheme.light(
                               primary: Color(0xFF5CB85C), // <-- SEE HERE
                               onPrimary: Colors.black87, // <-- SEE HERE
                               onSurface: Colors.black87, // <-- SEE HERE
@@ -304,24 +304,24 @@ class _UserTreatmentsPageState extends State<UserTreatmentsPage> {
                 _updateTreatment(id, doctorName, note, date);
               } else {
                 ScaffoldMessenger.of(context).showSnackBar(
-                  SnackBar(
+                  const SnackBar(
                     content: Text('Please fill all fields'),
                     backgroundColor: Colors.red,
                   ),
                 );
               }
             },
-            child: Text(
+            style: ElevatedButton.styleFrom(
+              primary: const Color(0xFF5CB85C),
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(10),
+              ),
+            ),
+            child: const Text(
               'Update',
               style: TextStyle(
                 fontSize: 16,
                 fontWeight: FontWeight.bold,
-              ),
-            ),
-            style: ElevatedButton.styleFrom(
-              primary: Color(0xFF5CB85C),
-              shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(10),
               ),
             ),
           ),
@@ -344,7 +344,7 @@ class _UserTreatmentsPageState extends State<UserTreatmentsPage> {
           icon: Container(
             height: 32,
             width: 32,
-            child: CircleAvatar(
+            child: const CircleAvatar(
                 child: Icon(
               Icons.arrow_back_ios_sharp,
               color: Colors.black,
@@ -358,7 +358,7 @@ class _UserTreatmentsPageState extends State<UserTreatmentsPage> {
         elevation: 4,
         centerTitle: false,
         automaticallyImplyLeading: false,
-        backgroundColor: Color(0xFF5CB85C),
+        backgroundColor: const Color(0xFF5CB85C),
         shape: const RoundedRectangleBorder(
           borderRadius: BorderRadius.zero,
         ),
@@ -376,13 +376,13 @@ class _UserTreatmentsPageState extends State<UserTreatmentsPage> {
         stream: userTreatmentsRef.snapshots(),
         builder: (context, snapshot) {
           if (!snapshot.hasData) {
-            return Center(child: CircularProgressIndicator());
+            return const Center(child: CircularProgressIndicator());
           }
 
           final treatments = snapshot.data!.docs;
 
           if (treatments.isEmpty) {
-            return Center(child: Text('No treatments added yet.'));
+            return const Center(child: Text('No treatments added yet.'));
           }
 
           return ListView.builder(
@@ -395,7 +395,7 @@ class _UserTreatmentsPageState extends State<UserTreatmentsPage> {
                 child: Container(
                   decoration: BoxDecoration(
                     border: Border.all(
-                      color: Color(0xFF5CB85C),
+                      color: const Color(0xFF5CB85C),
                       width: 1.0,
                     ),
                     borderRadius: BorderRadius.circular(8.0),
@@ -433,13 +433,13 @@ class _UserTreatmentsPageState extends State<UserTreatmentsPage> {
                       mainAxisSize: MainAxisSize.min,
                       children: [
                         IconButton(
-                          icon: Icon(Icons.delete),
+                          icon: const Icon(Icons.delete),
                           onPressed: () {
                             _deleteTreatment(treatment.id);
                           },
                         ),
                         IconButton(
-                          icon: Icon(Icons.edit),
+                          icon: const Icon(Icons.edit),
                           onPressed: () {
                             _showUpdateModal(
                                 treatment.id,

@@ -23,7 +23,7 @@ class MedicalNote extends StatefulWidget {
 class _MedicalNoteState extends State<MedicalNote> {
   void _navigateToTreatementsHistory(BuildContext context) {
     Navigator.of(context)
-        .push(MaterialPageRoute(builder: (context) => UserTreatmentsPage()));
+        .push(MaterialPageRoute(builder: (context) => const UserTreatmentsPage()));
   }
 
   File? myImage;
@@ -40,7 +40,7 @@ class _MedicalNoteState extends State<MedicalNote> {
           icon: Container(
             height: 32,
             width: 32,
-            child: CircleAvatar(
+            child:const CircleAvatar(
                 child: Icon(
                   Icons.arrow_back_ios_sharp,
                   color: Colors.black,
@@ -54,7 +54,7 @@ class _MedicalNoteState extends State<MedicalNote> {
           elevation: 4,
           centerTitle: false,
           automaticallyImplyLeading: false,
-          backgroundColor: Color(0xFF5CB85C),
+          backgroundColor:const Color(0xFF5CB85C),
           shape: const RoundedRectangleBorder(
             borderRadius: BorderRadius.zero,
           ),
@@ -79,22 +79,24 @@ class _MedicalNoteState extends State<MedicalNote> {
             child: Column(
               children: [
                 Padding(
-                  padding: EdgeInsets.fromLTRB(0, 0, 0, 0),
+                  padding: const EdgeInsets.fromLTRB(0, 0, 0, 0),
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.start,
                     crossAxisAlignment: CrossAxisAlignment.center,
                     mainAxisSize: MainAxisSize.max,
                     children: [
-                      SizedBox(width: 7),
+                      const SizedBox(width: 7),
                       Padding(
-                        padding: EdgeInsets.fromLTRB(0, 0, 0, 0),
+                        padding: const EdgeInsets.fromLTRB(0, 0, 0, 0),
                         child: MaterialButton(
                           onPressed: () async {},
                           color: Color(0xFF5CB85C),
                           elevation: 0,
-                          padding:
-                              EdgeInsets.symmetric(horizontal: 0, vertical: 0),
-                          child: Text(
+                          padding: const EdgeInsets.symmetric(horizontal: 0, vertical: 0),
+                          textColor: Color(0xff000000),
+                          height: 40,
+                          minWidth: 190,
+                          child:const Text(
                             "Treatements",
                             style: TextStyle(
                               fontSize: 14,
@@ -102,22 +104,21 @@ class _MedicalNoteState extends State<MedicalNote> {
                               fontStyle: FontStyle.normal,
                             ),
                           ),
-                          textColor: Color(0xff000000),
-                          height: 40,
-                          minWidth: 190,
                         ),
                       ),
                       Padding(
-                        padding: EdgeInsets.fromLTRB(0, 0, 0, 0),
+                        padding: const EdgeInsets.fromLTRB(0, 0, 0, 0),
                         child: MaterialButton(
                           onPressed: () async {
                             _navigateToTreatementsHistory(context);
                           },
-                          color: Color(0xffb4b0b7),
+                          color: const Color(0xffb4b0b7),
                           elevation: 0,
-                          padding:
-                              EdgeInsets.symmetric(horizontal: 0, vertical: 0),
-                          child: Text(
+                          padding:const EdgeInsets.symmetric(horizontal: 0, vertical: 0),
+                          textColor: Color(0xff000000),
+                          height: 40,
+                          minWidth: 190,
+                          child: const Text(
                             "History",
                             style: TextStyle(
                               fontSize: 14,
@@ -125,15 +126,12 @@ class _MedicalNoteState extends State<MedicalNote> {
                               fontStyle: FontStyle.normal,
                             ),
                           ),
-                          textColor: Color(0xff000000),
-                          height: 40,
-                          minWidth: 190,
                         ),
                       ),
                     ],
                   ),
                 ),
-                Padding(
+                const Padding(
                   padding: EdgeInsets.symmetric(horizontal: 20, vertical: 15),
                   child: Text(
                     "Insert Treatment Details",
@@ -151,13 +149,13 @@ class _MedicalNoteState extends State<MedicalNote> {
                   height: 10,
                 ),
                 Padding(
-                  padding: EdgeInsets.symmetric(horizontal: 30),
+                  padding: const EdgeInsets.symmetric(horizontal: 30),
                   child: TextField(
                     controller: drNameController,
                     obscureText: false,
                     textAlign: TextAlign.start,
                     maxLines: 1,
-                    style: TextStyle(
+                    style: const TextStyle(
                       fontWeight: FontWeight.w400,
                       fontStyle: FontStyle.normal,
                       fontSize: 18,
@@ -167,29 +165,29 @@ class _MedicalNoteState extends State<MedicalNote> {
                       disabledBorder: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(4.0),
                         borderSide:
-                            BorderSide(color: Color(0xFF5CB85C), width: 1),
+                            const BorderSide(color: Color(0xFF5CB85C), width: 1),
                       ),
                       focusedBorder: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(4.0),
                         borderSide:
-                            BorderSide(color: Color(0xFF5CB85C), width: 1),
+                            const BorderSide(color: Color(0xFF5CB85C), width: 1),
                       ),
                       enabledBorder: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(4.0),
                         borderSide:
-                            BorderSide(color: Color(0xFF5CB85C), width: 1),
+                            const BorderSide(color: Color(0xFF5CB85C), width: 1),
                       ),
                       hintText: "Doctor Name",
-                      hintStyle: TextStyle(
+                      hintStyle: const TextStyle(
                         fontWeight: FontWeight.w400,
                         fontStyle: FontStyle.normal,
                         fontSize: 18,
                         color: Color(0xffb4b0b7),
                       ),
                       filled: true,
-                      fillColor: Color(0xfff2f2f3),
+                      fillColor: const Color(0xfff2f2f3),
                       isDense: false,
-                      contentPadding: EdgeInsets.fromLTRB(12, 8, 12, 8),
+                      contentPadding: const EdgeInsets.fromLTRB(12, 8, 12, 8),
                     ),
                   ),
                 ),
@@ -197,13 +195,13 @@ class _MedicalNoteState extends State<MedicalNote> {
                   height: 10,
                 ),
                 Padding(
-                    padding: EdgeInsets.symmetric(horizontal: 30),
+                    padding: const EdgeInsets.symmetric(horizontal: 30),
                     child: TextField(
                       controller: dateController,
                       obscureText: false,
                       textAlign: TextAlign.start,
                       maxLines: 1,
-                      style: TextStyle(
+                      style: const TextStyle(
                         fontWeight: FontWeight.w400,
                         fontStyle: FontStyle.normal,
                         fontSize: 18,
@@ -213,29 +211,29 @@ class _MedicalNoteState extends State<MedicalNote> {
                         disabledBorder: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(4.0),
                           borderSide:
-                              BorderSide(color: Color(0xFF5CB85C), width: 1),
+                              const BorderSide(color: Color(0xFF5CB85C), width: 1),
                         ),
                         focusedBorder: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(4.0),
                           borderSide:
-                              BorderSide(color: Color(0xFF5CB85C), width: 1),
+                              const BorderSide(color: Color(0xFF5CB85C), width: 1),
                         ),
                         enabledBorder: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(4.0),
                           borderSide:
-                              BorderSide(color: Color(0xFF5CB85C), width: 1),
+                              const BorderSide(color: Color(0xFF5CB85C), width: 1),
                         ),
                         hintText: "Date of Treatement",
-                        hintStyle: TextStyle(
+                        hintStyle: const TextStyle(
                           fontWeight: FontWeight.w400,
                           fontStyle: FontStyle.normal,
                           fontSize: 18,
                           color: Color(0xffb4b0b7),
                         ),
                         filled: true,
-                        fillColor: Color(0xfff2f2f3),
+                        fillColor: const Color(0xfff2f2f3),
                         isDense: false,
-                        contentPadding: EdgeInsets.fromLTRB(12, 8, 12, 8),
+                        contentPadding: const EdgeInsets.fromLTRB(12, 8, 12, 8),
                       ),
                       onTap: () async {
                         DateTime? pickedDate = await showDatePicker(
@@ -247,15 +245,15 @@ class _MedicalNoteState extends State<MedicalNote> {
                           builder: (context, child) {
                             return Theme(
                               data: Theme.of(context).copyWith(
-                                colorScheme: ColorScheme.light(
-                                  primary: Color(0xFF5CB85C), // <-- SEE HERE
-                                  onPrimary: Colors.black87, // <-- SEE HERE
-                                  onSurface: Colors.black87, // <-- SEE HERE
+                                colorScheme:const  ColorScheme.light(
+                                  primary: Color(0xFF5CB85C), 
+                                  onPrimary: Colors.black87, 
+                                  onSurface: Colors.black87, 
                                 ),
                                 textButtonTheme: TextButtonThemeData(
                                   style: TextButton.styleFrom(
                                     primary:
-                                        Colors.black87, // button text color
+                                        Colors.black87, 
                                   ),
                                 ),
                               ),
@@ -286,13 +284,13 @@ class _MedicalNoteState extends State<MedicalNote> {
                   height: 10,
                 ),
                 Padding(
-                  padding: EdgeInsets.symmetric(horizontal: 30),
+                  padding: const EdgeInsets.symmetric(horizontal: 30),
                   child: TextField(
                     controller: noteController,
                     obscureText: false,
                     textAlign: TextAlign.start,
                     maxLines: 3,
-                    style: TextStyle(
+                    style: const TextStyle(
                       fontWeight: FontWeight.w400,
                       fontStyle: FontStyle.normal,
                       fontSize: 18,
@@ -302,29 +300,29 @@ class _MedicalNoteState extends State<MedicalNote> {
                       disabledBorder: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(4.0),
                         borderSide:
-                            BorderSide(color: Color(0xFF5CB85C), width: 1),
+                            const BorderSide(color: Color(0xFF5CB85C), width: 1),
                       ),
                       focusedBorder: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(4.0),
                         borderSide:
-                            BorderSide(color: Color(0xFF5CB85C), width: 1),
+                            const BorderSide(color: Color(0xFF5CB85C), width: 1),
                       ),
                       enabledBorder: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(4.0),
                         borderSide:
-                            BorderSide(color: Color(0xFF5CB85C), width: 1),
+                            const BorderSide(color: Color(0xFF5CB85C), width: 1),
                       ),
                       hintText: "Note",
-                      hintStyle: TextStyle(
+                      hintStyle: const TextStyle(
                         fontWeight: FontWeight.w400,
                         fontStyle: FontStyle.normal,
                         fontSize: 18,
                         color: Color(0xffb4b0b7),
                       ),
                       filled: true,
-                      fillColor: Color(0xfff2f2f3),
+                      fillColor: const Color(0xfff2f2f3),
                       isDense: false,
-                      contentPadding: EdgeInsets.fromLTRB(12, 8, 12, 8),
+                      contentPadding: const EdgeInsets.fromLTRB(12, 8, 12, 8),
                     ),
                   ),
                 ),
@@ -337,12 +335,12 @@ class _MedicalNoteState extends State<MedicalNote> {
                     },
                     child: DottedBorder(
                         borderType: BorderType.RRect,
-                        radius: Radius.circular(12),
-                        padding: EdgeInsets.all(6),
+                        radius: const Radius.circular(12),
+                        padding: const EdgeInsets.all(6),
                         child: Container(
                             height: 230,
                             width: 150,
-                            color: Color.fromARGB(255, 184, 221, 184),
+                            color: const Color.fromARGB(255, 184, 221, 184),
                             child: myImage == null
                                 ? const Center(
                                     child: Image(
@@ -358,11 +356,11 @@ class _MedicalNoteState extends State<MedicalNote> {
                   height: 30,
                 ),
                 Padding(
-                    padding: EdgeInsets.symmetric(
+                    padding: const EdgeInsets.symmetric(
                       horizontal: 70,
                     ),
                     child: MaterialButton(
-                        color: Color(0xFF5CB85C),
+                        color: const Color(0xFF5CB85C),
                         minWidth: double.infinity,
                         shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(8),
@@ -371,7 +369,7 @@ class _MedicalNoteState extends State<MedicalNote> {
                         onPressed: () {
                           uplodaFile();
                         },
-                        child: Text("Insert Treatment Data", style: TextStyle(fontSize: 18),) ))
+                        child: const Text("Insert Treatment Data", style: TextStyle(fontSize: 18),) ))
               ],
             ),
           ),
@@ -379,7 +377,11 @@ class _MedicalNoteState extends State<MedicalNote> {
         );
   }
 
+  // This function opens a modal bottom sheet with two options:
+  // take a photo or choose from gallery.
   openBottomSheet() {
+    // showModalBottomSheet is a built-in function that creates a modal
+    // bottom sheet and displays it on top of the current screen.
     showModalBottomSheet(
         context: context,
         builder: (BuildContext context) {
@@ -388,16 +390,16 @@ class _MedicalNoteState extends State<MedicalNote> {
               mainAxisSize: MainAxisSize.min,
               children: [
                 ListTile(
-                  leading: Icon(Icons.camera_alt),
-                  title: Text('Take a photo'),
+                  leading: const Icon(Icons.camera_alt),
+                  title: const Text('Take a photo'),
                   onTap: () {
                     Navigator.pop(context);
                     getImage(ImageSource.camera);
                   },
                 ),
                 ListTile(
-                  leading: Icon(Icons.photo_library),
-                  title: Text('Choose from gallery'),
+                  leading: const Icon(Icons.photo_library),
+                  title: const Text('Choose from gallery'),
                   onTap: () {
                     Navigator.pop(context);
                     getImage(ImageSource.gallery);

@@ -55,7 +55,7 @@ class _HomePageState extends State<SymptomsHeadHistory> {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 // Text(_symptomsDateController.text.toString()),
-                Text(
+                const Text(
                   "Update Symptom",
                   textAlign: TextAlign.center,
                   style: TextStyle(
@@ -77,9 +77,9 @@ class _HomePageState extends State<SymptomsHeadHistory> {
                 ),
                 RatingBar.builder(
                   initialRating: (0),
-                  unratedColor: Color(0xffece5e5),
+                  unratedColor: const Color(0xffece5e5),
                   itemBuilder: (context, index) =>
-                      Icon(Icons.star, color: Color(0xffffc107)),
+                      const Icon(Icons.star, color: Color(0xffffc107)),
                   itemCount: 5,
                   itemSize: 40,
                   direction: Axis.horizontal,
@@ -124,7 +124,7 @@ class _HomePageState extends State<SymptomsHeadHistory> {
                       }
                     },
                     style: ElevatedButton.styleFrom(
-                        primary: Color(0xFF5CB85C), textStyle: TextStyle()))
+                        primary: const Color(0xFF5CB85C), textStyle: const TextStyle()))
               ],
             ),
           );
@@ -159,7 +159,7 @@ class _HomePageState extends State<SymptomsHeadHistory> {
             icon: Container(
               height: 32,
               width: 32,
-              child: CircleAvatar(
+              child: const CircleAvatar(
                   child: Icon(
                 Icons.arrow_back_ios_sharp,
                 color: Colors.black,
@@ -173,7 +173,7 @@ class _HomePageState extends State<SymptomsHeadHistory> {
           elevation: 4,
           centerTitle: true,
           automaticallyImplyLeading: false,
-          backgroundColor: Color(0xFF5CB85C),
+          backgroundColor: const Color(0xFF5CB85C),
           shape: const RoundedRectangleBorder(
             borderRadius: BorderRadius.zero,
           ),
@@ -200,25 +200,25 @@ class _HomePageState extends State<SymptomsHeadHistory> {
                   return Card(
                     margin: const EdgeInsets.all(10),
                     elevation: 0,
-                    shape: RoundedRectangleBorder(
+                    shape: const RoundedRectangleBorder(
                       side: BorderSide(color: Color(0xFF5CB85C)),
-                      borderRadius: const BorderRadius.all(Radius.circular(12)),
+                      borderRadius: BorderRadius.all(Radius.circular(12)),
                     ),
                     clipBehavior: Clip.hardEdge,
                     child: ListTile(
                       title: Column(children: [
                         Padding(
-                            padding: EdgeInsets.fromLTRB(0, 5, 0, 10),
+                            padding: const EdgeInsets.fromLTRB(0, 5, 0, 10),
                             child: Text(
                               documentSnapshot['symptom'],
                               textAlign: TextAlign.left,
-                              style: TextStyle(
+                              style: const TextStyle(
                                   fontWeight: FontWeight.w500, fontSize: 18),
                             )),
                       ]),
                       subtitle: Container(
                         padding:
-                            EdgeInsets.symmetric(vertical: 10, horizontal: 10),
+                            const EdgeInsets.symmetric(vertical: 10, horizontal: 10),
                         decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(20),
                           color: _getColorFromSymptomLevel(
@@ -228,7 +228,7 @@ class _HomePageState extends State<SymptomsHeadHistory> {
                           child: Text(
                             _getTextFromSymptomLevel(
                                 documentSnapshot['symptomlevel']),
-                            style: TextStyle(
+                            style: const TextStyle(
                               color: Colors.white,
                               fontSize: 16,
                               fontWeight: FontWeight.bold,
@@ -255,30 +255,30 @@ class _HomePageState extends State<SymptomsHeadHistory> {
                             //         _delete(documentSnapshot.id)),
                             IconButton(
                               style: TextButton.styleFrom(
-                                backgroundColor: Color(0xEFEFEFFF),
-                                shape: CircleBorder(),
+                                backgroundColor: const Color(0xEFEFEFFF),
+                                shape: const CircleBorder(),
                               ),
-                              icon: Icon(Icons.delete,
+                              icon: const Icon(Icons.delete,
                                   color: Colors.red, size: 30),
                               onPressed: () {
                                 // Delete Confirmation Message
                                 // set up the buttons
                                 Widget cancelButton = TextButton(
-                                  child: Text("Cancel"),
+                                  child: const Text("Cancel"),
                                   onPressed: () {
                                     Navigator.pop(context);
                                   },
                                 );
                                 Widget continueButton = TextButton(
-                                  child: Text("Ok"),
+                                  child: const Text("Ok"),
                                   onPressed: () => _delete(documentSnapshot.id)
                                       .then((value) => Navigator.pop(context)),
                                 );
 
                                 // set up the AlertDialog
                                 AlertDialog alert = AlertDialog(
-                                  title: Text("Health Manager"),
-                                  content: Text("Are you sure want to delete?"),
+                                  title: const Text("Health Manager"),
+                                  content: const Text("Are you sure want to delete?"),
                                   actions: [
                                     cancelButton,
                                     continueButton,
@@ -323,7 +323,7 @@ Color _getColorFromSymptomLevel(double symptomLevel) {
   } else if (symptomLevel == 5) {
     return Colors.red;
   } else {
-    return Color(0xffece5e5);
+    return const Color(0xffece5e5);
   }
 }
 

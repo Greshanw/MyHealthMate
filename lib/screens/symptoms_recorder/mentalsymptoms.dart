@@ -26,7 +26,7 @@ class _MentalSymptomsState extends State<MentalSymptomsPage> {
 
   void _navigateToSymptomHistory(BuildContext context) {
     Navigator.of(context)
-        .push(MaterialPageRoute(builder: (context) => SymptomsMentalHistory()));
+        .push(MaterialPageRoute(builder: (context) => const SymptomsMentalHistory()));
   }
 
   double symptomlevel1 = 0;
@@ -134,7 +134,7 @@ class _MentalSymptomsState extends State<MentalSymptomsPage> {
               icon: Container(
                 height: 32,
                 width: 32,
-                child: CircleAvatar(
+                child: const CircleAvatar(
                     child: Icon(
                   Icons.arrow_back_ios_sharp,
                   color: Colors.black,
@@ -148,7 +148,7 @@ class _MentalSymptomsState extends State<MentalSymptomsPage> {
             elevation: 4,
             centerTitle: true,
             automaticallyImplyLeading: false,
-            backgroundColor: Color(0xFF5CB85C),
+            backgroundColor: const Color(0xFF5CB85C),
             shape: const RoundedRectangleBorder(
               borderRadius: BorderRadius.zero,
             ),
@@ -173,27 +173,27 @@ class _MentalSymptomsState extends State<MentalSymptomsPage> {
                   scrollDirection: Axis.vertical,
                   padding: EdgeInsets.zero,
                   shrinkWrap: false,
-                  physics: ScrollPhysics(),
+                  physics: const ScrollPhysics(),
                   children: [
-                    SizedBox(
+                    const SizedBox(
                       width: 7,
                     ),
                     Padding(
-                      padding: EdgeInsets.fromLTRB(0, 0, 0, 0),
+                      padding: const EdgeInsets.fromLTRB(0, 0, 0, 0),
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.start,
                         crossAxisAlignment: CrossAxisAlignment.center,
                         mainAxisSize: MainAxisSize.max,
                         children: [
                           Padding(
-                            padding: EdgeInsets.fromLTRB(0, 0, 0, 0),
+                            padding: const EdgeInsets.fromLTRB(0, 0, 0, 0),
                             child: MaterialButton(
                               onPressed: () async {},
-                              color: Color(0xFF5CB85C),
+                              color: const Color(0xFF5CB85C),
                               elevation: 0,
-                              padding: EdgeInsets.symmetric(
+                              padding: const EdgeInsets.symmetric(
                                   horizontal: 0, vertical: 0),
-                              child: Text(
+                              child: const Text(
                                 "Symptoms",
                                 style: TextStyle(
                                   fontSize: 14,
@@ -201,22 +201,22 @@ class _MentalSymptomsState extends State<MentalSymptomsPage> {
                                   fontStyle: FontStyle.normal,
                                 ),
                               ),
-                              textColor: Color(0xff000000),
+                              textColor: const Color(0xff000000),
                               height: 40,
                               minWidth: 190,
                             ),
                           ),
                           Padding(
-                            padding: EdgeInsets.fromLTRB(0, 0, 0, 0),
+                            padding: const EdgeInsets.fromLTRB(0, 0, 0, 0),
                             child: MaterialButton(
                               onPressed: () async {
                                 _navigateToSymptomHistory(context);
                               },
-                              color: Color(0xffb4b0b7),
+                              color: const Color(0xffb4b0b7),
                               elevation: 0,
-                              padding: EdgeInsets.symmetric(
+                              padding: const EdgeInsets.symmetric(
                                   horizontal: 0, vertical: 0),
-                              child: Text(
+                              child: const Text(
                                 "History",
                                 style: TextStyle(
                                   fontSize: 14,
@@ -224,7 +224,7 @@ class _MentalSymptomsState extends State<MentalSymptomsPage> {
                                   fontStyle: FontStyle.normal,
                                 ),
                               ),
-                              textColor: Color(0xff000000),
+                              textColor: const Color(0xff000000),
                               height: 40,
                               minWidth: 190,
                             ),
@@ -232,7 +232,7 @@ class _MentalSymptomsState extends State<MentalSymptomsPage> {
                         ],
                       ),
                     ),
-                    Padding(
+                    const Padding(
                       padding: EdgeInsets.fromLTRB(90, 10, 20, 25),
                       child: Text(
                         "Mental Symptoms",
@@ -247,13 +247,13 @@ class _MentalSymptomsState extends State<MentalSymptomsPage> {
                       ),
                     ),
                     Padding(
-                      padding: EdgeInsets.fromLTRB(0, 0, 0, 20),
+                      padding: const EdgeInsets.fromLTRB(0, 0, 0, 20),
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.start,
                         crossAxisAlignment: CrossAxisAlignment.center,
                         mainAxisSize: MainAxisSize.max,
                         children: [
-                          Padding(
+                          const Padding(
                             padding: EdgeInsets.fromLTRB(30, 0, 80, 10),
                             child: Text(
                               "Anxiety",
@@ -268,22 +268,22 @@ class _MentalSymptomsState extends State<MentalSymptomsPage> {
                             ),
                           ),
                           Padding(
-                              padding: EdgeInsets.fromLTRB(0, 0, 20, 0),
+                              padding: const EdgeInsets.fromLTRB(0, 0, 20, 0),
                               child: SliderTheme(
                                 data: SliderThemeData(
-                                  thumbShape: RoundSliderThumbShape(
+                                  thumbShape: const RoundSliderThumbShape(
                                     enabledThumbRadius: 12,
                                     disabledThumbRadius: 12,
                                     elevation: 4,
                                     pressedElevation: 6,
                                   ),
-                                  activeTrackColor: Color(0xFF5CB85C),
+                                  activeTrackColor: const Color(0xFF5CB85C),
                                   inactiveTrackColor: Colors.grey,
                                   overlayColor:
-                                      Color(0xFF5CB85C).withOpacity(0.2),
-                                  thumbColor: Color(0xFF5CB85C),
-                                  valueIndicatorColor: Color(0xFF5CB85C),
-                                  valueIndicatorTextStyle: TextStyle(
+                                      const Color(0xFF5CB85C).withOpacity(0.2),
+                                  thumbColor: const Color(0xFF5CB85C),
+                                  valueIndicatorColor: const Color(0xFF5CB85C),
+                                  valueIndicatorTextStyle: const TextStyle(
                                     color: Colors.white,
                                     fontSize: 16,
                                     fontWeight: FontWeight.bold,
@@ -326,13 +326,13 @@ class _MentalSymptomsState extends State<MentalSymptomsPage> {
                       ),
                     ),
                     Padding(
-                      padding: EdgeInsets.fromLTRB(0, 0, 0, 20),
+                      padding: const EdgeInsets.fromLTRB(0, 0, 0, 20),
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.start,
                         crossAxisAlignment: CrossAxisAlignment.center,
                         mainAxisSize: MainAxisSize.max,
                         children: [
-                          Padding(
+                          const Padding(
                             padding: EdgeInsets.fromLTRB(30, 0, 60, 0),
                             child: Text(
                               "Insomnia",
@@ -347,22 +347,22 @@ class _MentalSymptomsState extends State<MentalSymptomsPage> {
                             ),
                           ),
                           Padding(
-                              padding: EdgeInsets.fromLTRB(0, 0, 20, 0),
+                              padding: const EdgeInsets.fromLTRB(0, 0, 20, 0),
                               child: SliderTheme(
                                 data: SliderThemeData(
-                                  thumbShape: RoundSliderThumbShape(
+                                  thumbShape: const RoundSliderThumbShape(
                                     enabledThumbRadius: 12,
                                     disabledThumbRadius: 12,
                                     elevation: 4,
                                     pressedElevation: 6,
                                   ),
-                                  activeTrackColor: Color(0xFF5CB85C),
+                                  activeTrackColor: const Color(0xFF5CB85C),
                                   inactiveTrackColor: Colors.grey,
                                   overlayColor:
-                                      Color(0xFF5CB85C).withOpacity(0.2),
-                                  thumbColor: Color(0xFF5CB85C),
-                                  valueIndicatorColor: Color(0xFF5CB85C),
-                                  valueIndicatorTextStyle: TextStyle(
+                                      const Color(0xFF5CB85C).withOpacity(0.2),
+                                  thumbColor: const Color(0xFF5CB85C),
+                                  valueIndicatorColor: const Color(0xFF5CB85C),
+                                  valueIndicatorTextStyle: const TextStyle(
                                     color: Colors.white,
                                     fontSize: 16,
                                     fontWeight: FontWeight.bold,
@@ -405,13 +405,13 @@ class _MentalSymptomsState extends State<MentalSymptomsPage> {
                       ),
                     ),
                     Padding(
-                      padding: EdgeInsets.fromLTRB(0, 0, 0, 20),
+                      padding: const EdgeInsets.fromLTRB(0, 0, 0, 20),
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.start,
                         crossAxisAlignment: CrossAxisAlignment.center,
                         mainAxisSize: MainAxisSize.max,
                         children: [
-                          Padding(
+                          const Padding(
                             padding: EdgeInsets.fromLTRB(30, 0, 90, 0),
                             child: Text(
                               "Stress",
@@ -426,22 +426,22 @@ class _MentalSymptomsState extends State<MentalSymptomsPage> {
                             ),
                           ),
                           Padding(
-                              padding: EdgeInsets.fromLTRB(0, 0, 20, 0),
+                              padding: const EdgeInsets.fromLTRB(0, 0, 20, 0),
                               child: SliderTheme(
                                 data: SliderThemeData(
-                                  thumbShape: RoundSliderThumbShape(
+                                  thumbShape: const RoundSliderThumbShape(
                                     enabledThumbRadius: 12,
                                     disabledThumbRadius: 12,
                                     elevation: 4,
                                     pressedElevation: 6,
                                   ),
-                                  activeTrackColor: Color(0xFF5CB85C),
+                                  activeTrackColor: const Color(0xFF5CB85C),
                                   inactiveTrackColor: Colors.grey,
                                   overlayColor:
-                                      Color(0xFF5CB85C).withOpacity(0.2),
-                                  thumbColor: Color(0xFF5CB85C),
-                                  valueIndicatorColor: Color(0xFF5CB85C),
-                                  valueIndicatorTextStyle: TextStyle(
+                                      const Color(0xFF5CB85C).withOpacity(0.2),
+                                  thumbColor: const Color(0xFF5CB85C),
+                                  valueIndicatorColor: const Color(0xFF5CB85C),
+                                  valueIndicatorTextStyle: const TextStyle(
                                     color: Colors.white,
                                     fontSize: 16,
                                     fontWeight: FontWeight.bold,
@@ -484,13 +484,13 @@ class _MentalSymptomsState extends State<MentalSymptomsPage> {
                       ),
                     ),
                     Padding(
-                      padding: EdgeInsets.fromLTRB(0, 0, 0, 20),
+                      padding: const EdgeInsets.fromLTRB(0, 0, 0, 20),
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.start,
                         crossAxisAlignment: CrossAxisAlignment.center,
                         mainAxisSize: MainAxisSize.max,
                         children: [
-                          Padding(
+                          const Padding(
                             padding: EdgeInsets.fromLTRB(30, 0, 50, 0),
                             child: Text(
                               "Moodiness",
@@ -505,22 +505,22 @@ class _MentalSymptomsState extends State<MentalSymptomsPage> {
                             ),
                           ),
                           Padding(
-                              padding: EdgeInsets.fromLTRB(0, 0, 20, 0),
+                              padding: const EdgeInsets.fromLTRB(0, 0, 20, 0),
                               child: SliderTheme(
                                 data: SliderThemeData(
-                                  thumbShape: RoundSliderThumbShape(
+                                  thumbShape: const RoundSliderThumbShape(
                                     enabledThumbRadius: 12,
                                     disabledThumbRadius: 12,
                                     elevation: 4,
                                     pressedElevation: 6,
                                   ),
-                                  activeTrackColor: Color(0xFF5CB85C),
+                                  activeTrackColor: const Color(0xFF5CB85C),
                                   inactiveTrackColor: Colors.grey,
                                   overlayColor:
-                                      Color(0xFF5CB85C).withOpacity(0.2),
-                                  thumbColor: Color(0xFF5CB85C),
-                                  valueIndicatorColor: Color(0xFF5CB85C),
-                                  valueIndicatorTextStyle: TextStyle(
+                                      const Color(0xFF5CB85C).withOpacity(0.2),
+                                  thumbColor: const Color(0xFF5CB85C),
+                                  valueIndicatorColor: const Color(0xFF5CB85C),
+                                  valueIndicatorTextStyle: const TextStyle(
                                     color: Colors.white,
                                     fontSize: 16,
                                     fontWeight: FontWeight.bold,
@@ -563,13 +563,13 @@ class _MentalSymptomsState extends State<MentalSymptomsPage> {
                       ),
                     ),
                     Padding(
-                      padding: EdgeInsets.fromLTRB(0, 0, 0, 20),
+                      padding: const EdgeInsets.fromLTRB(0, 0, 0, 20),
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.start,
                         crossAxisAlignment: CrossAxisAlignment.center,
                         mainAxisSize: MainAxisSize.max,
                         children: [
-                          Padding(
+                          const Padding(
                             padding: EdgeInsets.fromLTRB(30, 0, 70, 0),
                             child: Text(
                               "Tension",
@@ -584,22 +584,22 @@ class _MentalSymptomsState extends State<MentalSymptomsPage> {
                             ),
                           ),
                           Padding(
-                              padding: EdgeInsets.fromLTRB(0, 0, 20, 0),
+                              padding: const EdgeInsets.fromLTRB(0, 0, 20, 0),
                               child: SliderTheme(
                                 data: SliderThemeData(
-                                  thumbShape: RoundSliderThumbShape(
+                                  thumbShape: const RoundSliderThumbShape(
                                     enabledThumbRadius: 12,
                                     disabledThumbRadius: 12,
                                     elevation: 4,
                                     pressedElevation: 6,
                                   ),
-                                  activeTrackColor: Color(0xFF5CB85C),
+                                  activeTrackColor: const Color(0xFF5CB85C),
                                   inactiveTrackColor: Colors.grey,
                                   overlayColor:
-                                      Color(0xFF5CB85C).withOpacity(0.2),
-                                  thumbColor: Color(0xFF5CB85C),
-                                  valueIndicatorColor: Color(0xFF5CB85C),
-                                  valueIndicatorTextStyle: TextStyle(
+                                      const Color(0xFF5CB85C).withOpacity(0.2),
+                                  thumbColor: const Color(0xFF5CB85C),
+                                  valueIndicatorColor: const Color(0xFF5CB85C),
+                                  valueIndicatorTextStyle: const TextStyle(
                                     color: Colors.white,
                                     fontSize: 16,
                                     fontWeight: FontWeight.bold,
@@ -643,7 +643,7 @@ class _MentalSymptomsState extends State<MentalSymptomsPage> {
                     ),
                     
                     Padding(
-                      padding: EdgeInsets.symmetric(
+                      padding: const EdgeInsets.symmetric(
                         horizontal: 20,
                       ),
                       child: Visibility(
@@ -682,9 +682,9 @@ class _MentalSymptomsState extends State<MentalSymptomsPage> {
                                               ? Colors.red
                                               : Colors.black),
                           borderType: BorderType.RRect,
-                          radius: Radius.circular(12),
+                          radius: const Radius.circular(12),
                           child: Padding(
-                              padding: EdgeInsets.symmetric(
+                              padding: const EdgeInsets.symmetric(
                                   horizontal: 20, vertical: 10),
                               child: Row(children: [
                                 Visibility(
@@ -712,7 +712,7 @@ class _MentalSymptomsState extends State<MentalSymptomsPage> {
                       ),
                     ),
                     Padding(
-                      padding: EdgeInsets.fromLTRB(80, 20, 88, 0),
+                      padding: const EdgeInsets.fromLTRB(80, 20, 88, 0),
                       child: MaterialButton(
                         onPressed: () async {
                           if (symptomlevel1 > 0 ||
@@ -752,7 +752,7 @@ class _MentalSymptomsState extends State<MentalSymptomsPage> {
                               Get.snackbar(
                                   "Success", 'Data stored successfully',
                                   backgroundColor:
-                                      Color.fromARGB(100, 22, 44, 33));
+                                      const Color.fromARGB(100, 22, 44, 33));
                             });
                           }
                           setState(() {
@@ -807,15 +807,15 @@ class _MentalSymptomsState extends State<MentalSymptomsPage> {
                             }
                           });
                         },
-                        color: Color(0xFF5CB85C),
+                        color: const Color(0xFF5CB85C),
                         elevation: 0,
                         shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(10.0),
-                          side: BorderSide(color: Color(0xff808080), width: 1),
+                          side: const BorderSide(color: Color(0xff808080), width: 1),
                         ),
                         padding:
-                            EdgeInsets.symmetric(horizontal: 16, vertical: 8),
-                        child: Text(
+                            const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+                        child: const Text(
                           "Submit",
                           style: TextStyle(
                             fontSize: 14,
@@ -823,7 +823,7 @@ class _MentalSymptomsState extends State<MentalSymptomsPage> {
                             fontStyle: FontStyle.normal,
                           ),
                         ),
-                        textColor: Color(0xff000000),
+                        textColor: const Color(0xff000000),
                         height: 40,
                         minWidth: 140,
                       ),

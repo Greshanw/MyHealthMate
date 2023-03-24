@@ -1,13 +1,8 @@
-///File download from FlutterViz- Drag and drop a tools. For more details visit https://flutterviz.io/
 import 'package:dotted_border/dotted_border.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:get/get.dart';
-import 'package:get/get_core/src/get_main.dart';
-import 'package:flutter_svg/svg.dart';
 import 'package:my_health_mate/screens/symptoms_recorder/symptoms_head_history.dart';
 
 class HeadSymptomsPage extends StatefulWidget {
@@ -111,7 +106,7 @@ class _HeadSymptomsState extends State<HeadSymptomsPage> {
               icon: Container(
                 height: 32,
                 width: 32,
-                child: CircleAvatar(
+                child: const CircleAvatar(
                     child: Icon(
                   Icons.arrow_back_ios_sharp,
                   color: Colors.black,
@@ -125,7 +120,7 @@ class _HeadSymptomsState extends State<HeadSymptomsPage> {
             elevation: 4,
             centerTitle: true,
             automaticallyImplyLeading: false,
-            backgroundColor: Color(0xFF5CB85C),
+            backgroundColor: const Color(0xFF5CB85C),
             shape: const RoundedRectangleBorder(
               borderRadius: BorderRadius.zero,
             ),
@@ -150,27 +145,30 @@ class _HeadSymptomsState extends State<HeadSymptomsPage> {
                   scrollDirection: Axis.vertical,
                   padding: EdgeInsets.zero,
                   shrinkWrap: false,
-                  physics: ScrollPhysics(),
+                  physics: const ScrollPhysics(),
                   children: [
                     Padding(
-                      padding: EdgeInsets.fromLTRB(0, 0, 0, 0),
+                      padding: const EdgeInsets.fromLTRB(0, 0, 0, 0),
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.start,
                         crossAxisAlignment: CrossAxisAlignment.center,
                         mainAxisSize: MainAxisSize.max,
                         children: [
-                          SizedBox(
+                          const SizedBox(
                             width: 7,
                           ),
                           Padding(
-                            padding: EdgeInsets.fromLTRB(0, 0, 0, 0),
+                            padding: const EdgeInsets.fromLTRB(0, 0, 0, 0),
                             child: MaterialButton(
                               onPressed: () async {},
-                              color: Color(0xFF5CB85C),
+                              color: const Color(0xFF5CB85C),
                               elevation: 0,
-                              padding: EdgeInsets.symmetric(
+                              padding: const EdgeInsets.symmetric(
                                   horizontal: 0, vertical: 0),
-                              child: Text(
+                              textColor: Color(0xff000000),
+                              height: 40,
+                              minWidth: 190,
+                              child: const Text(
                                 "Symptoms",
                                 style: TextStyle(
                                   fontSize: 14,
@@ -178,22 +176,22 @@ class _HeadSymptomsState extends State<HeadSymptomsPage> {
                                   fontStyle: FontStyle.normal,
                                 ),
                               ),
-                              textColor: Color(0xff000000),
-                              height: 40,
-                              minWidth: 190,
                             ),
                           ),
                           Padding(
-                            padding: EdgeInsets.fromLTRB(0, 0, 0, 0),
+                            padding: const EdgeInsets.fromLTRB(0, 0, 0, 0),
                             child: MaterialButton(
                               onPressed: () async {
                                 _navigateToSymptomHistory(context);
                               },
-                              color: Color(0xffb4b0b7),
+                              color: const Color(0xffb4b0b7),
                               elevation: 0,
-                              padding: EdgeInsets.symmetric(
+                              padding: const EdgeInsets.symmetric(
                                   horizontal: 0, vertical: 0),
-                              child: Text(
+                              textColor: Color(0xff000000),
+                              height: 40,
+                              minWidth: 190,
+                              child: const Text(
                                 "History",
                                 style: TextStyle(
                                   fontSize: 14,
@@ -201,15 +199,12 @@ class _HeadSymptomsState extends State<HeadSymptomsPage> {
                                   fontStyle: FontStyle.normal,
                                 ),
                               ),
-                              textColor: Color(0xff000000),
-                              height: 40,
-                              minWidth: 190,
                             ),
                           ),
                         ],
                       ),
                     ),
-                    Padding(
+                    const Padding(
                       padding: EdgeInsets.fromLTRB(90, 20, 20, 40),
                       child: Text(
                         "Head Symptoms",
@@ -224,13 +219,13 @@ class _HeadSymptomsState extends State<HeadSymptomsPage> {
                       ),
                     ),
                     Padding(
-                      padding: EdgeInsets.fromLTRB(0, 0, 0, 30),
+                      padding: const EdgeInsets.fromLTRB(0, 0, 0, 30),
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.start,
                         crossAxisAlignment: CrossAxisAlignment.center,
                         mainAxisSize: MainAxisSize.max,
                         children: [
-                          Padding(
+                          const Padding(
                             padding: EdgeInsets.fromLTRB(30, 0, 0, 10),
                             child: Text(
                               "Headache",
@@ -245,22 +240,22 @@ class _HeadSymptomsState extends State<HeadSymptomsPage> {
                             ),
                           ),
                           Padding(
-                            padding: EdgeInsets.fromLTRB(0, 0, 20, 0),
+                            padding: const EdgeInsets.fromLTRB(0, 0, 20, 0),
                             child: SliderTheme(
                               data: SliderThemeData(
-                                thumbShape: RoundSliderThumbShape(
+                                thumbShape: const RoundSliderThumbShape(
                                   enabledThumbRadius: 12,
                                   disabledThumbRadius: 12,
                                   elevation: 4,
                                   pressedElevation: 6,
                                 ),
-                                activeTrackColor: Color(0xFF5CB85C),
+                                activeTrackColor: const Color(0xFF5CB85C),
                                 inactiveTrackColor: Colors.grey,
                                 overlayColor:
-                                    Color(0xFF5CB85C).withOpacity(0.2),
-                                thumbColor: Color(0xFF5CB85C),
-                                valueIndicatorColor: Color(0xFF5CB85C),
-                                valueIndicatorTextStyle: TextStyle(
+                                    const Color(0xFF5CB85C).withOpacity(0.2),
+                                thumbColor: const Color(0xFF5CB85C),
+                                valueIndicatorColor: const Color(0xFF5CB85C),
+                                valueIndicatorTextStyle: const TextStyle(
                                   color: Colors.white,
                                   fontSize: 16,
                                   fontWeight: FontWeight.bold,
@@ -285,13 +280,13 @@ class _HeadSymptomsState extends State<HeadSymptomsPage> {
                       ),
                     ),
                     Padding(
-                      padding: EdgeInsets.fromLTRB(0, 0, 0, 30),
+                      padding: const EdgeInsets.fromLTRB(0, 0, 0, 30),
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.start,
                         crossAxisAlignment: CrossAxisAlignment.center,
                         mainAxisSize: MainAxisSize.max,
                         children: [
-                          Padding(
+                          const Padding(
                             padding: EdgeInsets.fromLTRB(30, 0, 0, 0),
                             child: Text(
                               "Migraines",
@@ -306,22 +301,22 @@ class _HeadSymptomsState extends State<HeadSymptomsPage> {
                             ),
                           ),
                           Padding(
-                            padding: EdgeInsets.fromLTRB(0, 0, 20, 0),
+                            padding: const EdgeInsets.fromLTRB(0, 0, 20, 0),
                             child: SliderTheme(
                               data: SliderThemeData(
-                                thumbShape: RoundSliderThumbShape(
+                                thumbShape: const RoundSliderThumbShape(
                                   enabledThumbRadius: 12,
                                   disabledThumbRadius: 12,
                                   elevation: 4,
                                   pressedElevation: 6,
                                 ),
-                                activeTrackColor: Color(0xFF5CB85C),
+                                activeTrackColor: const Color(0xFF5CB85C),
                                 inactiveTrackColor: Colors.grey,
                                 overlayColor:
-                                    Color(0xFF5CB85C).withOpacity(0.2),
-                                thumbColor: Color(0xFF5CB85C),
-                                valueIndicatorColor: Color(0xFF5CB85C),
-                                valueIndicatorTextStyle: TextStyle(
+                                    const Color(0xFF5CB85C).withOpacity(0.2),
+                                thumbColor: const Color(0xFF5CB85C),
+                                valueIndicatorColor: const Color(0xFF5CB85C),
+                                valueIndicatorTextStyle: const TextStyle(
                                   color: Colors.white,
                                   fontSize: 16,
                                   fontWeight: FontWeight.bold,
@@ -346,13 +341,13 @@ class _HeadSymptomsState extends State<HeadSymptomsPage> {
                       ),
                     ),
                     Padding(
-                      padding: EdgeInsets.fromLTRB(0, 0, 0, 30),
+                      padding: const EdgeInsets.fromLTRB(0, 0, 0, 30),
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.start,
                         crossAxisAlignment: CrossAxisAlignment.center,
                         mainAxisSize: MainAxisSize.max,
                         children: [
-                          Padding(
+                          const Padding(
                             padding: EdgeInsets.fromLTRB(30, 0, 0, 0),
                             child: Text(
                               "Dizziness",
@@ -367,22 +362,22 @@ class _HeadSymptomsState extends State<HeadSymptomsPage> {
                             ),
                           ),
                           Padding(
-                            padding: EdgeInsets.fromLTRB(0, 0, 0, 0),
+                            padding: const EdgeInsets.fromLTRB(0, 0, 0, 0),
                             child: SliderTheme(
                               data: SliderThemeData(
-                                thumbShape: RoundSliderThumbShape(
+                                thumbShape: const RoundSliderThumbShape(
                                   enabledThumbRadius: 12,
                                   disabledThumbRadius: 12,
                                   elevation: 4,
                                   pressedElevation: 6,
                                 ),
-                                activeTrackColor: Color(0xFF5CB85C),
+                                activeTrackColor: const Color(0xFF5CB85C),
                                 inactiveTrackColor: Colors.grey,
                                 overlayColor:
-                                    Color(0xFF5CB85C).withOpacity(0.2),
-                                thumbColor: Color(0xFF5CB85C),
-                                valueIndicatorColor: Color(0xFF5CB85C),
-                                valueIndicatorTextStyle: TextStyle(
+                                    const Color(0xFF5CB85C).withOpacity(0.2),
+                                thumbColor: const Color(0xFF5CB85C),
+                                valueIndicatorColor: const Color(0xFF5CB85C),
+                                valueIndicatorTextStyle: const TextStyle(
                                   color: Colors.white,
                                   fontSize: 16,
                                   fontWeight: FontWeight.bold,
@@ -407,19 +402,19 @@ class _HeadSymptomsState extends State<HeadSymptomsPage> {
                       ),
                     ),
                     Padding(
-                      padding: EdgeInsets.fromLTRB(0, 0, 0, 30),
+                      padding: const EdgeInsets.fromLTRB(0, 0, 0, 30),
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.start,
                         crossAxisAlignment: CrossAxisAlignment.center,
                         mainAxisSize: MainAxisSize.max,
                         children: [
                           Padding(
-                            padding: EdgeInsets.fromLTRB(0, 0, 30, 0),
+                            padding: const EdgeInsets.fromLTRB(0, 0, 30, 0),
                             child: Column(
                               mainAxisAlignment: MainAxisAlignment.start,
                               crossAxisAlignment: CrossAxisAlignment.center,
                               mainAxisSize: MainAxisSize.max,
-                              children: [
+                              children: const [
                                 Padding(
                                   padding: EdgeInsets.fromLTRB(30, 0, 0, 0),
                                   child: Text(
@@ -452,19 +447,19 @@ class _HeadSymptomsState extends State<HeadSymptomsPage> {
                             padding: EdgeInsets.fromLTRB(0, 0, 0, 0),
                             child: SliderTheme(
                               data: SliderThemeData(
-                                thumbShape: RoundSliderThumbShape(
+                                thumbShape: const RoundSliderThumbShape(
                                   enabledThumbRadius: 12,
                                   disabledThumbRadius: 12,
                                   elevation: 4,
                                   pressedElevation: 6,
                                 ),
-                                activeTrackColor: Color(0xFF5CB85C),
+                                activeTrackColor: const Color(0xFF5CB85C),
                                 inactiveTrackColor: Colors.grey,
                                 overlayColor:
-                                    Color(0xFF5CB85C).withOpacity(0.2),
-                                thumbColor: Color(0xFF5CB85C),
-                                valueIndicatorColor: Color(0xFF5CB85C),
-                                valueIndicatorTextStyle: TextStyle(
+                                    const Color(0xFF5CB85C).withOpacity(0.2),
+                                thumbColor: const Color(0xFF5CB85C),
+                                valueIndicatorColor: const Color(0xFF5CB85C),
+                                valueIndicatorTextStyle: const TextStyle(
                                   color: Colors.white,
                                   fontSize: 16,
                                   fontWeight: FontWeight.bold,
@@ -489,13 +484,13 @@ class _HeadSymptomsState extends State<HeadSymptomsPage> {
                       ),
                     ),
                     Padding(
-                      padding: EdgeInsets.fromLTRB(0, 0, 0, 30),
+                      padding: const EdgeInsets.fromLTRB(0, 0, 0, 30),
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.start,
                         crossAxisAlignment: CrossAxisAlignment.center,
                         mainAxisSize: MainAxisSize.max,
                         children: [
-                          Padding(
+                          const Padding(
                             padding: EdgeInsets.fromLTRB(30, 0, 0, 0),
                             child: Text(
                               "Hectic fever",
@@ -510,22 +505,22 @@ class _HeadSymptomsState extends State<HeadSymptomsPage> {
                             ),
                           ),
                           Padding(
-                            padding: EdgeInsets.fromLTRB(0, 0, 20, 0),
+                            padding: const EdgeInsets.fromLTRB(0, 0, 20, 0),
                             child: SliderTheme(
                               data: SliderThemeData(
-                                thumbShape: RoundSliderThumbShape(
+                                thumbShape: const RoundSliderThumbShape(
                                   enabledThumbRadius: 12,
                                   disabledThumbRadius: 12,
                                   elevation: 4,
                                   pressedElevation: 6,
                                 ),
-                                activeTrackColor: Color(0xFF5CB85C),
+                                activeTrackColor: const Color(0xFF5CB85C),
                                 inactiveTrackColor: Colors.grey,
                                 overlayColor:
-                                    Color(0xFF5CB85C).withOpacity(0.2),
-                                thumbColor: Color(0xFF5CB85C),
-                                valueIndicatorColor: Color(0xFF5CB85C),
-                                valueIndicatorTextStyle: TextStyle(
+                                    const Color(0xFF5CB85C).withOpacity(0.2),
+                                thumbColor: const Color(0xFF5CB85C),
+                                valueIndicatorColor: const Color(0xFF5CB85C),
+                                valueIndicatorTextStyle: const TextStyle(
                                   color: Colors.white,
                                   fontSize: 16,
                                   fontWeight: FontWeight.bold,
@@ -550,13 +545,13 @@ class _HeadSymptomsState extends State<HeadSymptomsPage> {
                       ),
                     ),
                     Padding(
-                      padding: EdgeInsets.symmetric(
+                      padding: const EdgeInsets.symmetric(
                         horizontal: 20,
                       ),
                       child: Visibility(
                         visible: textResult.isNotEmpty,
                         child: DottedBorder(
-                          dashPattern: [6, 3, 2, 3],
+                          dashPattern:const [6, 3, 2, 3],
                           color: ((symptomlevel1 == 1 || symptomlevel2 == 1|| symptomlevel3 ==1|| symptomlevel4 == 1|| symptomlevel5 == 1)
                               ? Colors.lightGreenAccent
                               : (symptomlevel1 == 2 || symptomlevel2 == 2|| symptomlevel3 ==2|| symptomlevel4 == 2|| symptomlevel5 == 2)
@@ -569,9 +564,9 @@ class _HeadSymptomsState extends State<HeadSymptomsPage> {
                                               ? Colors.red
                                               : Colors.black),
                           borderType: BorderType.RRect,
-                          radius: Radius.circular(12),
+                          radius: const Radius.circular(12),
                           child: Padding(
-                              padding: EdgeInsets.symmetric(
+                              padding: const EdgeInsets.symmetric(
                                   horizontal: 20, vertical: 10),
                               child: Row(children: [
                                 Visibility(
@@ -599,7 +594,7 @@ class _HeadSymptomsState extends State<HeadSymptomsPage> {
                       ),
                     ),
                     Padding(
-                      padding: EdgeInsets.fromLTRB(80, 20, 88, 0),
+                      padding: const EdgeInsets.fromLTRB(80, 20, 88, 0),
                       child: MaterialButton(
                         onPressed: () async {
                           if (symptomlevel1 > 0 || symptomlevel2 > 0|| symptomlevel3 > 0|| symptomlevel4 > 0|| symptomlevel5 > 0) {
@@ -631,7 +626,7 @@ class _HeadSymptomsState extends State<HeadSymptomsPage> {
                               Get.snackbar(
                                   "Success", 'Data stored successfully',
                                   backgroundColor:
-                                      Color.fromARGB(100, 22, 44, 33));
+                                      const Color.fromARGB(100, 22, 44, 33));
                             });
                           }
                           setState(() {
@@ -662,15 +657,18 @@ class _HeadSymptomsState extends State<HeadSymptomsPage> {
                             }
                           });
                         },
-                        color: Color(0xFF5CB85C),
+                        color: const Color(0xFF5CB85C),
                         elevation: 0,
                         shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(10.0),
-                          side: BorderSide(color: Color(0xff808080), width: 1),
+                          side: const BorderSide(color: Color(0xff808080), width: 1),
                         ),
                         padding:
-                            EdgeInsets.symmetric(horizontal: 16, vertical: 8),
-                        child: Text(
+                            const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+                        textColor: const Color(0xff000000),
+                        height: 40,
+                        minWidth: 140,
+                        child: const Text(
                           "Submit",
                           style: TextStyle(
                             fontSize: 14,
@@ -678,9 +676,6 @@ class _HeadSymptomsState extends State<HeadSymptomsPage> {
                             fontStyle: FontStyle.normal,
                           ),
                         ),
-                        textColor: Color(0xff000000),
-                        height: 40,
-                        minWidth: 140,
                       ),
                     )
                   ],
