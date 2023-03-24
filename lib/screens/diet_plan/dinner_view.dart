@@ -23,7 +23,7 @@ class _DietDinnerViewState extends State<DietDinnerView> {
       appBar:
       AppBar(
         leading: IconButton(
-            icon: SvgPicture.asset('assets/icons/back.svg'),
+            icon: SvgPicture.asset('images/back.svg'),
             onPressed: () {
               Navigator.pop(context);
             }
@@ -31,7 +31,7 @@ class _DietDinnerViewState extends State<DietDinnerView> {
         elevation:4,
         centerTitle:false,
         automaticallyImplyLeading: false,
-        backgroundColor:Color.fromARGB(255, 48, 91, 184),
+        backgroundColor:Color(0xFF5CB85C),
         shape:RoundedRectangleBorder(
           borderRadius:BorderRadius.zero,
         ),
@@ -56,7 +56,7 @@ class _DietDinnerViewState extends State<DietDinnerView> {
                   final DocumentSnapshot documentSnapshot =
                   streamSnapshot.data!.docs[index];
                   return Card(
-                    shadowColor: Colors.purpleAccent,
+                    shadowColor: Color(0xFF5CB85C),
                     margin: const EdgeInsets.all(13),
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(9.9),

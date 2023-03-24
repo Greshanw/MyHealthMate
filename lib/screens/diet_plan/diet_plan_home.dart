@@ -14,14 +14,14 @@ class DietPlanHOME extends StatelessWidget {
       backgroundColor: Color(0xfff5f5f5),
       appBar: AppBar(
         leading: IconButton(
-            icon: SvgPicture.asset('assets/icons/back.svg'),
+            icon: SvgPicture.asset('images/back.svg'),
             onPressed: () {
               Navigator.pop(context);
             }),
         elevation: 4,
         centerTitle: false,
         automaticallyImplyLeading: false,
-        backgroundColor: Color.fromARGB(255, 48, 91, 184),
+        backgroundColor: Color(0xFF5CB85C),
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.zero,
         ),
@@ -87,7 +87,7 @@ class DietPlanHOME extends StatelessWidget {
                   width: MediaQuery.of(context).size.width,
                   height: 40,
                   decoration: BoxDecoration(
-                    color: Color.fromARGB(255, 92, 193, 230),
+                    color: Color.fromARGB(255, 101, 243, 101),
                     shape: BoxShape.rectangle,
                     borderRadius: BorderRadius.only(
                         bottomLeft: Radius.circular(12.0),
@@ -102,7 +102,7 @@ class DietPlanHOME extends StatelessWidget {
                       fontWeight: FontWeight.w700,
                       fontStyle: FontStyle.italic,
                       fontSize: 22,
-                      color: Color(0xffffffff),
+                      color: Color.fromARGB(255, 37, 33, 33),
                     ),
                   ),
                 ),
@@ -153,7 +153,7 @@ class DietPlanHOME extends StatelessWidget {
                   width: MediaQuery.of(context).size.width,
                   height: 40,
                   decoration: BoxDecoration(
-                    color: Color.fromARGB(255, 92, 193, 230),
+                    color: Color.fromARGB(255, 101, 243, 101),
                     shape: BoxShape.rectangle,
                     borderRadius: BorderRadius.only(
                         bottomLeft: Radius.circular(12.0),
@@ -168,7 +168,7 @@ class DietPlanHOME extends StatelessWidget {
                       fontWeight: FontWeight.w700,
                       fontStyle: FontStyle.italic,
                       fontSize: 22,
-                      color: Color(0xffffffff),
+                      color: Color.fromARGB(255, 37, 33, 33),
                     ),
                   ),
                 ),
@@ -219,7 +219,7 @@ class DietPlanHOME extends StatelessWidget {
                   width: MediaQuery.of(context).size.width,
                   height: 40,
                   decoration: BoxDecoration(
-                    color: Color.fromARGB(255, 92, 193, 230),
+                    color: Color.fromARGB(255, 101, 243, 101),
                     shape: BoxShape.rectangle,
                     borderRadius: BorderRadius.only(
                         bottomLeft: Radius.circular(12.0),
@@ -234,7 +234,7 @@ class DietPlanHOME extends StatelessWidget {
                       fontWeight: FontWeight.w700,
                       fontStyle: FontStyle.italic,
                       fontSize: 22,
-                      color: Color(0xffffffff),
+                      color: Color.fromARGB(255, 37, 33, 33),
                     ),
                   ),
                 ),
@@ -282,13 +282,13 @@ class _DietSplashState extends State<DietSplash> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Color(0xffc396e5),
+      backgroundColor: Color(0xFF5CB85C),
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Image.asset(
-              'assets/images/heart.png',
+              'images/heart.png',
               height: 130,
             ),
             const SizedBox(

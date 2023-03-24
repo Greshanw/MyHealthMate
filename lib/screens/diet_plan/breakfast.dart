@@ -66,7 +66,7 @@ class _DietBreakfastState extends State<DietBreakfast> {
                 ElevatedButton(
                   style: ElevatedButton.styleFrom(
                       padding: const EdgeInsets.symmetric(vertical: 15.0, horizontal: 160),
-                      backgroundColor: Colors.purple
+                      backgroundColor: Color(0xFF5CB85C)
                   ),
                   child: const Text('Submit',
                     style: TextStyle(
@@ -210,7 +210,7 @@ class _DietBreakfastState extends State<DietBreakfast> {
           elevation:4,
           centerTitle:false,
           automaticallyImplyLeading: false,
-          backgroundColor:Color(0xffc396e5),
+          backgroundColor:Color(0xFF5CB85C),
           shape:RoundedRectangleBorder(
             borderRadius:BorderRadius.zero,
           ),
@@ -235,7 +235,7 @@ class _DietBreakfastState extends State<DietBreakfast> {
                   final DocumentSnapshot documentSnapshot =
                   streamSnapshot.data!.docs[index];
                   return Card(
-                    shadowColor: Colors.purpleAccent,
+                    shadowColor: Color(0xFF5CB85C),
                     margin: const EdgeInsets.all(13),
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(9.9),
