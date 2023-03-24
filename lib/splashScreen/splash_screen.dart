@@ -33,38 +33,86 @@ class _MySplashScreenState extends State<MySplashScreen> {
     return Material(
       child: Container(
         decoration: const BoxDecoration(
-            image: DecorationImage(
-                image: AssetImage('images/splashScreen.jpg'), fit: BoxFit.cover)),
+
+          image: DecorationImage(
+              image: AssetImage('images/background.jpg'), fit: BoxFit.cover),
+        ),
+
         child: Center(
             child: Column(
           children: [
             const SizedBox(
-              height: 250,
-            ),
-            const Text("Health Mate",
-                style: TextStyle(fontSize: 30, color: Colors.black)),
-            const SizedBox(
               height: 50,
             ),
-            GestureDetector(
-              onTap: () {
+
+            const SizedBox(
+              height: 300,
+              width: 300,
+              child: Image(
+                image: AssetImage('images/logo.png'),
+                fit: BoxFit.fitWidth,
+              ),
+              // child: Card(
+              //   elevation: 5,
+              //   color: Colors.transparent,
+              //   shape: RoundedRectangleBorder(
+              //     borderRadius: BorderRadius.all(Radius.circular(20)),
+              //   ),
+              //   child: Image(
+              //     image: AssetImage('images/logo.png'),
+              //     fit: BoxFit.fitWidth,
+              //   ),
+              // ),
+            ),
+            // const SizedBox(
+            //   height: 50,
+            // ),
+            const Spacer(),
+            ElevatedButton(
+              onPressed: () {
                 Navigator.push(
                     context, MaterialPageRoute(builder: (c) => LoginScreen()));
               },
-              child: Container(
-                height: 70,
-                width: 70,
-                decoration: BoxDecoration(
-                  color: Colors.white,
-                  borderRadius: BorderRadius.circular(45.0),
-                ),
-                child: const Icon(
-                  Icons.arrow_forward_rounded,
-                  color: Colors.black,
-                  size: 65,
-                ),
+              style: ElevatedButton.styleFrom(
+                  shape: const RoundedRectangleBorder(
+                    borderRadius: BorderRadius.all(Radius.circular(32)),
+                  ),
+                  backgroundColor: const Color(0xFF5CB85C),
+                  fixedSize: const Size(280, 60)),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: const [
+                  Text(
+                    "Get Started",
+                    style: TextStyle(fontSize: 32),
+                  ),
+                  Icon(
+                    Icons.arrow_forward,
+                    size: 36,
+                  ),
+                ],
               ),
             ),
+            // GestureDetector(
+            //   onTap: () {
+            //     Navigator.push(
+            //         context, MaterialPageRoute(builder: (c) => LoginScreen()));
+            //   },
+            //   child: Container(
+            //     height: 70,
+            //     width: 70,
+            //     decoration: BoxDecoration(
+            //       color: Colors.white,
+            //       borderRadius: BorderRadius.circular(45.0),
+            //     ),
+            //     child: const Icon(
+            //       Icons.arrow_forward_rounded,
+            //       color: Colors.black,
+            //       size: 65,
+            //     ),
+            //   ),
+            // ),
+            const Spacer(),
           ],
         )),
       ),
