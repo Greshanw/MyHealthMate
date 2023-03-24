@@ -70,28 +70,38 @@ class _WaterLevelState extends State<WaterDrinkHOME> {
         child: Scaffold(
           backgroundColor: Colors.transparent,
           appBar: AppBar(
-            leading: IconButton(
-                icon: SvgPicture.asset('images/back.svg'),
+              leading: IconButton(
+                icon: const SizedBox(
+                  height: 32,
+                  width: 32,
+                  child: CircleAvatar(
+                      child: Icon(
+                    Icons.arrow_back_ios_sharp,
+                    color: Colors.black,
+                    size: 18,
+                  )),
+                ),
                 onPressed: () {
                   Navigator.pop(context);
-                }),
-            elevation: 4,
-            centerTitle: false,
-            automaticallyImplyLeading: false,
-            backgroundColor: Color(0xFF5CB85C),
-            shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.zero,
-            ),
-            title: Text(
-              "My Health Mate",
-              style: TextStyle(
-                fontWeight: FontWeight.w800,
-                fontStyle: FontStyle.normal,
-                fontSize: 17,
-                color: Color(0xffffffff),
+                },
               ),
-            ),
-          ),
+              title: const Text(
+                "Water Drinking Plan",
+                style: TextStyle(
+                  fontWeight: FontWeight.w800,
+                  fontStyle: FontStyle.normal,
+                  fontSize: 18,
+                  color: Color(0xffffffff),
+                ),
+                textAlign: TextAlign.center,
+              ),
+              elevation: 4,
+              centerTitle: true,
+              automaticallyImplyLeading: false,
+              backgroundColor: Color(0xFF5CB85C),
+              shape: const RoundedRectangleBorder(
+                borderRadius: BorderRadius.zero,
+              )),
           //bottomNavigationBar: BottomNavBar(),
           body: Container(
               height: double.infinity,
@@ -109,7 +119,7 @@ class _WaterLevelState extends State<WaterDrinkHOME> {
                           mainAxisSize: MainAxisSize.max,
                           children: [
                             Padding(
-                              padding: EdgeInsets.fromLTRB(0, 0, 0, 0),
+                              padding: EdgeInsets.fromLTRB(15, 0, 0, 0),
                               child: MaterialButton(
                                 onPressed: () async {
                                   _navigatetowaterplan(context);
