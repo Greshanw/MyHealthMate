@@ -33,15 +33,18 @@ class _MySplashScreenState extends State<MySplashScreen> {
     return Material(
       child: Container(
         decoration: const BoxDecoration(
+
           image: DecorationImage(
               image: AssetImage('images/background.jpg'), fit: BoxFit.cover),
         ),
+
         child: Center(
             child: Column(
           children: [
             const SizedBox(
               height: 50,
             ),
+
             const SizedBox(
               height: 300,
               width: 300,
