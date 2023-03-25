@@ -13,7 +13,9 @@ class HeadSymptomsPage extends StatefulWidget {
 }
 
 class _HeadSymptomsState extends State<HeadSymptomsPage> {
+  // Navigates to the HeadSymptomshistoryPage when called
   void _navigateToSymptomHistory(BuildContext context) {
+    // Navigates to a new page in the app by pushing a new MaterialPageRoute onto the navigation stack
     Navigator.of(context)
         .push(MaterialPageRoute(builder: (context) => SymptomsHeadHistory()));
   }
@@ -21,6 +23,7 @@ class _HeadSymptomsState extends State<HeadSymptomsPage> {
   // Get the current user's UID
   String uid = FirebaseAuth.instance.currentUser!.uid;
 
+  // Get an instance of FirebaseFirestore and retrieve a collection called 'symptoms'
   final CollectionReference _symptoms =
       FirebaseFirestore.instance.collection('symptoms');
 
@@ -40,11 +43,14 @@ class _HeadSymptomsState extends State<HeadSymptomsPage> {
   @override
   Widget build(BuildContext context) {
     return Container(
-        decoration: BoxDecoration(
-            gradient: LinearGradient(
+        decoration: BoxDecoration( //Defines the decoration
+            gradient: LinearGradient( //Specifies that the decoration uses a linear gradient.
+                //Defines the starting and ending points for the gradient
                 begin: Alignment.topCenter,
                 end: Alignment.bottomCenter,
+                //Sets the positions where the colors in the gradient change
                 stops: const [0.6, 0.7, 0.8, 0.88, 0.95, 0.98],
+                //Sets the color scheme for the gradient, based on the value of symptomlevel
                 colors: (symptomlevel1 == 1 || symptomlevel2 == 1|| symptomlevel3 ==1|| symptomlevel4 == 1|| symptomlevel5 == 1)
                     ? [
                         Colors.white,
@@ -262,12 +268,12 @@ class _HeadSymptomsState extends State<HeadSymptomsPage> {
                                 ),
                               ),
                               child: Slider(
-                                value: symptomlevel1.toDouble(),
-                                min: 0,
-                                max: 5,
-                                divisions: 5,
+                                value: symptomlevel1.toDouble(),// The value property specifies the current value of the slider.
+                                min: 0,// The min property specifies the minimum value of the slider.
+                                max: 5,// The max property specifies the maximum value of the slider.
+                                divisions: 5,//the number of divisions on the slider.
                                 label: 'Headache: $symptomlevel1',
-                                onChanged: (double value) {
+                                onChanged: (double value) { //called when the value of the slider changes.
                                   setState(() {
                                     symptomlevel1 = value.toDouble();
                                     symptom = 'Headache';
@@ -597,8 +603,11 @@ class _HeadSymptomsState extends State<HeadSymptomsPage> {
                       padding: const EdgeInsets.fromLTRB(80, 20, 88, 0),
                       child: MaterialButton(
                         onPressed: () async {
+                          // Check if any symptom level is greater than 0
                           if (symptomlevel1 > 0 || symptomlevel2 > 0|| symptomlevel3 > 0|| symptomlevel4 > 0|| symptomlevel5 > 0) {
+                            // Initialize the highest symptom level to 0
                             double highestSymptomLevel = 0;
+                            // Determine the highest symptom level among the selected levels
                             if (symptomlevel1 > 0) {
                               highestSymptomLevel = symptomlevel1;
                             }
@@ -614,21 +623,23 @@ class _HeadSymptomsState extends State<HeadSymptomsPage> {
                             if (symptomlevel5 > 0 && symptomlevel5 > highestSymptomLevel) {
                               highestSymptomLevel = symptomlevel5;
                             }
-                            // Create a new document in the 'DoctorTreatements' collection with the current user's UID as the document ID
+                            // Create a reference to the 'userHeadSymptoms' collection for the current user
                             CollectionReference userHeadSymptomsRef = _symptoms
                                 .doc(uid)
                                 .collection("userHeadSymptoms");
+                            // Add a new document to the collection with the selected symptom, the highest symptom level, and the current timestamp
                             await userHeadSymptomsRef.add({
                               "symptom": symptom,
                               "symptomlevel": highestSymptomLevel,
                               'timestamp': DateTime.now()
                             }).then((value) {
-                              Get.snackbar(
+                              Get.snackbar(// Show a success message using a snackbar
                                   "Success", 'Data stored successfully',
                                   backgroundColor:
                                       const Color.fromARGB(100, 22, 44, 33));
                             });
                           }
+                          // Update the UI based on the selected symptom levels
                           setState(() {
                             if (symptomlevel1 == 0 && symptomlevel2 == 0&& symptomlevel3 ==0&& symptomlevel4 ==0&& symptomlevel5 == 0) {
                               textResult = 'Rate your pain before submitting';

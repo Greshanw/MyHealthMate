@@ -35,6 +35,7 @@ class _SyptomSplashState extends State<SyptomSplash> {
             )),
           ),
           onPressed: () {
+            // Closes the current screen and returns to the previous screen
             Navigator.pop(context);
           },
         ),
@@ -56,12 +57,13 @@ class _SyptomSplashState extends State<SyptomSplash> {
           textAlign: TextAlign.center,
         ),
       ),
-      body: ListView(
+      body: ListView( // Creates a scrollable list of widgets that are lazily loaded as needed
         children: [
           Center(
             child: Padding(
               padding: const EdgeInsets.all(10),
               child: Column(
+                // Configures the alignment of child widgets within a Column
                 mainAxisAlignment: MainAxisAlignment.start,
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
@@ -121,7 +123,9 @@ class _SyptomSplashState extends State<SyptomSplash> {
 class HeadSymptoms extends StatelessWidget {
   const HeadSymptoms({super.key});
 
+  // Navigates to the HeadSymptomsPage when called
   void _navigateToHeadSymptoms(BuildContext context) {
+    // Navigates to a new page in the app by pushing a new MaterialPageRoute onto the navigation stack
     Navigator.of(context).push(
         MaterialPageRoute(builder: (context) => const HeadSymptomsPage()));
   }
@@ -138,7 +142,7 @@ class HeadSymptoms extends StatelessWidget {
           borderRadius: BorderRadius.all(Radius.circular(12)),
         ),
         clipBehavior: Clip.hardEdge,
-        child: InkWell(
+        child: InkWell(// A rectangular area of the screen that responds to touch events
           onTap: () {
             _navigateToHeadSymptoms(context);
           },
@@ -178,7 +182,9 @@ class HeadSymptoms extends StatelessWidget {
 // BodySymptoms
 class BodySymptoms extends StatelessWidget {
   const BodySymptoms({super.key});
+  // Navigates to the BodySymptomsPage when called
   void _navigateToBodySymptoms(BuildContext context) {
+    // Navigates to a new page in the app by pushing a new MaterialPageRoute onto the navigation stack
     Navigator.of(context)
         .push(MaterialPageRoute(builder: (context) => BodySymptomsPage()));
   }
@@ -195,7 +201,7 @@ class BodySymptoms extends StatelessWidget {
           borderRadius: BorderRadius.all(Radius.circular(12)),
         ),
         clipBehavior: Clip.hardEdge,
-        child: InkWell(
+        child: InkWell(// A rectangular area of the screen that responds to touch events
           onTap: () {
             _navigateToBodySymptoms(context);
           },
@@ -235,7 +241,9 @@ class BodySymptoms extends StatelessWidget {
 // AbdomenSymptoms
 class AbdomenSymptoms extends StatelessWidget {
   const AbdomenSymptoms({super.key});
+  // Navigates to the AbdomenSymptomsPage when called
   void _navigateToAbdomenSymptoms(BuildContext context) {
+    // Navigates to a new page in the app by pushing a new MaterialPageRoute onto the navigation stack
     Navigator.of(context)
         .push(MaterialPageRoute(builder: (context) => AbdomenSymptomsPage()));
   }
@@ -252,7 +260,7 @@ class AbdomenSymptoms extends StatelessWidget {
           borderRadius: BorderRadius.all(Radius.circular(12)),
         ),
         clipBehavior: Clip.hardEdge,
-        child: InkWell(
+        child: InkWell(// A rectangular area of the screen that responds to touch events
           onTap: () {
             _navigateToAbdomenSymptoms(context);
           },
@@ -292,7 +300,9 @@ class AbdomenSymptoms extends StatelessWidget {
 // mentalsymptoms
 class mentalsymptoms extends StatelessWidget {
   const mentalsymptoms({super.key});
+  // Navigates to the MentalSymptomsPage when called
   void _navigateToMentalSymptoms(BuildContext context) {
+    // Navigates to a new page in the app by pushing a new MaterialPageRoute onto the navigation stack
     Navigator.of(context).push(
         MaterialPageRoute(builder: (context) => const MentalSymptomsPage()));
   }
@@ -309,7 +319,7 @@ class mentalsymptoms extends StatelessWidget {
           borderRadius: BorderRadius.all(Radius.circular(12)),
         ),
         clipBehavior: Clip.hardEdge,
-        child: InkWell(
+        child: InkWell(// A rectangular area of the screen that responds to touch events
           onTap: () {
             _navigateToMentalSymptoms(context);
           },
@@ -349,8 +359,9 @@ class mentalsymptoms extends StatelessWidget {
 // skinsymptoms
 class skinsymptoms extends StatelessWidget {
   const skinsymptoms({super.key});
-
+  // Navigates to the HeadSymptomsPage when called
   void _navigateToSkinSymptoms(BuildContext context) {
+    // Navigates to a new page in the app by pushing a new MaterialPageRoute onto the navigation stack
     Navigator.of(context).push(
         MaterialPageRoute(builder: (context) => const SkinSymptomsPage()));
   }
@@ -367,7 +378,7 @@ class skinsymptoms extends StatelessWidget {
           borderRadius: BorderRadius.all(Radius.circular(12)),
         ),
         clipBehavior: Clip.hardEdge,
-        child: InkWell(
+        child: InkWell(// A rectangular area of the screen that responds to touch events
           onTap: () {
             _navigateToSkinSymptoms(context);
           },
@@ -407,7 +418,9 @@ class skinsymptoms extends StatelessWidget {
 // DoctorTreatments
 class DoctorTreatments extends StatelessWidget {
   const DoctorTreatments({super.key});
+  // Navigates to the DoctorTreatmentsPage when called
   void _navigateToDoctorTreatementHome(BuildContext context) {
+    // Navigates to a new page in the app by pushing a new MaterialPageRoute onto the navigation stack
     Navigator.of(context)
         .push(MaterialPageRoute(builder: (context) => MedicalNote()));
   }
