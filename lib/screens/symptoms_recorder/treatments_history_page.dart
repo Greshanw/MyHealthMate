@@ -25,14 +25,16 @@ class _UserTreatmentsPageState extends State<UserTreatmentsPage> {
 
     // Create a reference to the current user's treatments collection
     userTreatmentsRef = FirebaseFirestore.instance
-        .collection('DoctorTreatements')
-        .doc(uid)
-        .collection('userTreatments');
+        .collection('DoctorTreatements')// get the top-level collection 'DoctorTreatements'
+        .doc(uid)// get the document corresponding to the current user's UID
+        .collection('userTreatments');// get the subcollection 'userTreatments' of the current user's document
   }
 
   Future<void> _deleteTreatment(String id) async {
     try {
-      await userTreatmentsRef.doc(id).delete();
+      // Deletes the document with the given id from Firestore.
+      await userTreatmentsRef.doc(id).delete(); 
+      // Shows a Snackbar notification to indicate that the treatment has been deleted successfully.
       ScaffoldMessenger.of(context).showSnackBar(
       const SnackBar(
         content: Text(
@@ -51,6 +53,7 @@ class _UserTreatmentsPageState extends State<UserTreatmentsPage> {
       
 
     } catch (e) {
+      // Shows a Snackbar notification to indicate that an error occurred while deleting the treatment.
       ScaffoldMessenger.of(context).showSnackBar(
       const SnackBar(
         content: Text(
@@ -70,15 +73,19 @@ class _UserTreatmentsPageState extends State<UserTreatmentsPage> {
     }
   }
 
+  // Define a Future function to update the treatment details 
   Future<void> _updateTreatment(
       String id, String doctorName, String note, String date) async {
     try {
+      // Update the treatment details in the database with the given id, doctorName, note and date
       await userTreatmentsRef.doc(id).update({
         'doctor_name': doctorName,
         'note': note,
         'date': date,
       });
+      // Close the current screen
       Navigator.of(context).pop();
+      // Show a snackbar message to indicate that the treatment details are updated successfully
       ScaffoldMessenger.of(context).showSnackBar(
         const SnackBar(
           content: Text(
@@ -119,14 +126,20 @@ class _UserTreatmentsPageState extends State<UserTreatmentsPage> {
 
   void _showUpdateModal(String id, String currentDoctorName, String currentNote,
       String currentDate, String imageFile) {
+
+    // Create text editing controllers for each input field and set their initial values
     final doctorNameController = TextEditingController(text: currentDoctorName);
     final noteController = TextEditingController(text: currentNote);
     final dateController = TextEditingController(text: currentDate);
+
+    // Initialize _imageFile variable with the value of imageFile argument
     String _imageFile = imageFile;
 
+    // Define a function to select and set an image from the device's gallery or camera
     Future<void> _getImage(ImageSource source) async {
       final pickedFile = await ImagePicker().getImage(source: source);
       if (pickedFile != null) {
+        // If an image is selected, set its path to _imageFile variable and re-render the widget
         setState(() {
           _imageFile = pickedFile.path;
         });
@@ -155,7 +168,7 @@ class _UserTreatmentsPageState extends State<UserTreatmentsPage> {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 const SizedBox(height: 10),
-                InkWell(
+                InkWell(// Allow the user to select or take a photo by tapping on the image container
                   onTap: () {
                     showModalBottomSheet(
                       context: context,
@@ -164,6 +177,7 @@ class _UserTreatmentsPageState extends State<UserTreatmentsPage> {
                           child: Column(
                             mainAxisSize: MainAxisSize.min,
                             children: [
+                              // Option to take a photo using the camera
                               ListTile(
                                 leading: const Icon(Icons.camera_alt),
                                 title: const Text('Take a photo'),
@@ -172,6 +186,7 @@ class _UserTreatmentsPageState extends State<UserTreatmentsPage> {
                                   _getImage(ImageSource.camera);
                                 },
                               ),
+                              // Option to choose a photo from the device's gallery
                               ListTile(
                                 leading: const Icon(Icons.photo_library),
                                 title: const Text('Choose from gallery'),
@@ -186,6 +201,7 @@ class _UserTreatmentsPageState extends State<UserTreatmentsPage> {
                       },
                     );
                   },
+                  // Display the selected image or an icon to add an image
                   child: Container(
                     height: 250,
                     width: double.infinity,
@@ -238,23 +254,24 @@ class _UserTreatmentsPageState extends State<UserTreatmentsPage> {
                     ),
                   ),
                   onTap: () async {
+                    // A method that shows a date picker dialog and sets the selected date in the corresponding TextField widget
                     DateTime? pickedDate = await showDatePicker(
                       context: context,
-                      initialDate: DateTime.now(), //get today's date
+                      initialDate: DateTime.now(), // The initial date to show in the picker
                       firstDate: DateTime(
-                          2000), //DateTime.now() - not to allow to choose before today.
-                      lastDate: DateTime(2101),
+                          2000), // The earliest date that can be selected
+                      lastDate: DateTime(2101), // The latest date that can be selected
                       builder: (context, child) {
                         return Theme(
                           data: Theme.of(context).copyWith(
                             colorScheme: const ColorScheme.light(
-                              primary: Color(0xFF5CB85C), // <-- SEE HERE
-                              onPrimary: Colors.black87, // <-- SEE HERE
-                              onSurface: Colors.black87, // <-- SEE HERE
+                              primary: Color(0xFF5CB85C), 
+                              onPrimary: Colors.black87, 
+                              onSurface: Colors.black87, 
                             ),
                             textButtonTheme: TextButtonThemeData(
                               style: TextButton.styleFrom(
-                                primary: Colors.black87, // button text color
+                                primary: Colors.black87, 
                               ),
                             ),
                           ),
@@ -265,16 +282,15 @@ class _UserTreatmentsPageState extends State<UserTreatmentsPage> {
 
                     if (pickedDate != null) {
                       print(
-                          pickedDate); //get the picked date in the format => 2022-07-04 00:00:00.000
+                          pickedDate); // Print the selected date
                       String formattedDate = DateFormat('yyyy-MM-dd').format(
-                          pickedDate); // format date in required form here we use yyyy-MM-dd that means time is removed
+                          pickedDate); // Format the date
                       print(
-                          formattedDate); //formatted date output using intl package =>  2022-07-04
-                      //You can format date as per your need
+                          formattedDate); // Print the formatted date
 
                       setState(() {
                         dateController.text =
-                            formattedDate; //set foratted date to TextField value.
+                            formattedDate; // Set the formatted date in the corresponding TextField
                       });
                     } else {
                       print("Date is not selected");
@@ -332,11 +348,14 @@ class _UserTreatmentsPageState extends State<UserTreatmentsPage> {
 
   @override
   Widget build(BuildContext context) {
+    // get the current user object from the FirebaseAuth instance
     final currentUser = FirebaseAuth.instance.currentUser;
+
+    // get a reference to the 'userTreatments' collection for the current user's doctor treatments
     final userTreatmentsRef = FirebaseFirestore.instance
         .collection('DoctorTreatements')
-        .doc(currentUser!.uid)
-        .collection('userTreatments');
+        .doc(currentUser!.uid) // set the document id to the current user's id
+        .collection('userTreatments'); // get a reference to the 'userTreatments' collection
 
     return Scaffold(
       appBar: AppBar(
@@ -373,12 +392,15 @@ class _UserTreatmentsPageState extends State<UserTreatmentsPage> {
         ),
       ),
       body: StreamBuilder<QuerySnapshot>(
+        // The stream is the userTreatmentsRef.snapshots() stream
         stream: userTreatmentsRef.snapshots(),
         builder: (context, snapshot) {
+          // If the snapshot doesn't have any data yet, show a CircularProgressIndicator in the center
           if (!snapshot.hasData) {
             return const Center(child: CircularProgressIndicator());
           }
 
+          // If the snapshot has data, get the list of document snapshots from the data field
           final treatments = snapshot.data!.docs;
 
           if (treatments.isEmpty) {
@@ -386,8 +408,10 @@ class _UserTreatmentsPageState extends State<UserTreatmentsPage> {
           }
 
           return ListView.builder(
+            // Set the number of items in the list to the length of the treatments array.
             itemCount: treatments.length,
             itemBuilder: (context, index) {
+              // Get the treatment at the specified index in the treatments array.
               final treatment = treatments[index];
 
               return Padding(
@@ -408,10 +432,12 @@ class _UserTreatmentsPageState extends State<UserTreatmentsPage> {
                           builder: (BuildContext context) {
                             return Dialog(
                               child: Container(
+                                // This line sets the width of the Container to 80% of the width of the screen.
                                 width: MediaQuery.of(context).size.width * 0.8,
+                                // This line sets the height of the Container to 80% of the height of the screen.
                                 height:
                                     MediaQuery.of(context).size.height * 0.8,
-                                child: Image.network(
+                                child: Image.network(//displays the image of the treatment.
                                   treatment['image'],
                                   fit: BoxFit.contain,
                                 ),

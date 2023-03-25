@@ -21,16 +21,18 @@ class MedicalNote extends StatefulWidget {
 }
 
 class _MedicalNoteState extends State<MedicalNote> {
+  // Navigates to the TreatementsHistoryPage when called
   void _navigateToTreatementsHistory(BuildContext context) {
+    // Navigates to a new page in the app by pushing a new MaterialPageRoute onto the navigation stack
     Navigator.of(context)
         .push(MaterialPageRoute(builder: (context) => const UserTreatmentsPage()));
   }
 
-  File? myImage;
+  File? myImage; // A nullable object that may contain an image file
 
-  TextEditingController drNameController = TextEditingController();
-  TextEditingController noteController = TextEditingController();
-  TextEditingController dateController = TextEditingController();
+  TextEditingController drNameController = TextEditingController(); // A text input field controller for the doctor name
+  TextEditingController noteController = TextEditingController(); // A text input field controller for notes 
+  TextEditingController dateController = TextEditingController(); // A text input field controller for the date
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -48,6 +50,7 @@ class _MedicalNoteState extends State<MedicalNote> {
                 )),
           ),
           onPressed: () {
+            // Closes the current screen and returns to the previous screen
             Navigator.pop(context);
           },
         ),
@@ -71,10 +74,11 @@ class _MedicalNoteState extends State<MedicalNote> {
           
         ),
         body: Container(
+          // Sets the height and width of the widget to the maximum available space
           height: double.infinity,
           width: double.infinity,
-          child: SingleChildScrollView(
-            physics: const BouncingScrollPhysics(
+          child: SingleChildScrollView(// A widget that enables scrolling of content that exceeds the available space
+            physics: const BouncingScrollPhysics(//adds a bouncing effect to a scroll view
                 parent: AlwaysScrollableScrollPhysics()),
             child: Column(
               children: [
@@ -90,10 +94,10 @@ class _MedicalNoteState extends State<MedicalNote> {
                         padding: const EdgeInsets.fromLTRB(0, 0, 0, 0),
                         child: MaterialButton(
                           onPressed: () async {},
-                          color: Color(0xFF5CB85C),
+                          color: const Color(0xFF5CB85C),
                           elevation: 0,
                           padding: const EdgeInsets.symmetric(horizontal: 0, vertical: 0),
-                          textColor: Color(0xff000000),
+                          textColor: const Color(0xff000000),
                           height: 40,
                           minWidth: 190,
                           child:const Text(
@@ -115,7 +119,7 @@ class _MedicalNoteState extends State<MedicalNote> {
                           color: const Color(0xffb4b0b7),
                           elevation: 0,
                           padding:const EdgeInsets.symmetric(horizontal: 0, vertical: 0),
-                          textColor: Color(0xff000000),
+                          textColor: const Color(0xff000000),
                           height: 40,
                           minWidth: 190,
                           child: const Text(
@@ -151,7 +155,7 @@ class _MedicalNoteState extends State<MedicalNote> {
                 Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 30),
                   child: TextField(
-                    controller: drNameController,
+                    controller: drNameController,// A controller object for managing the text field's content
                     obscureText: false,
                     textAlign: TextAlign.start,
                     maxLines: 1,
@@ -197,7 +201,7 @@ class _MedicalNoteState extends State<MedicalNote> {
                 Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 30),
                     child: TextField(
-                      controller: dateController,
+                      controller: dateController,// A controller object for managing the text field's content
                       obscureText: false,
                       textAlign: TextAlign.start,
                       maxLines: 1,
@@ -236,12 +240,13 @@ class _MedicalNoteState extends State<MedicalNote> {
                         contentPadding: const EdgeInsets.fromLTRB(12, 8, 12, 8),
                       ),
                       onTap: () async {
+                        // A method that shows a date picker dialog and sets the selected date in the corresponding TextField widget
                         DateTime? pickedDate = await showDatePicker(
                           context: context,
-                          initialDate: DateTime.now(), //get today's date
+                          initialDate: DateTime.now(), // The initial date to show in the picker
                           firstDate: DateTime(
-                              2000), //DateTime.now() - not to allow to choose before today.
-                          lastDate: DateTime(2101),
+                              2000), // The earliest date that can be selected
+                          lastDate: DateTime(2101), // The latest date that can be selected
                           builder: (context, child) {
                             return Theme(
                               data: Theme.of(context).copyWith(
@@ -264,16 +269,15 @@ class _MedicalNoteState extends State<MedicalNote> {
 
                         if (pickedDate != null) {
                           print(
-                              pickedDate); //get the picked date in the format => 2022-07-04 00:00:00.000
+                              pickedDate); // Print the selected date
                           String formattedDate = DateFormat('yyyy-MM-dd').format(
-                              pickedDate); // format date in required form here we use yyyy-MM-dd that means time is removed
+                              pickedDate); // Format the date
                           print(
-                              formattedDate); //formatted date output using intl package =>  2022-07-04
-                          //You can format date as per your need
+                              formattedDate); // Print the formatted date
 
                           setState(() {
                             dateController.text =
-                                formattedDate; //set foratted date to TextField value.
+                                formattedDate; // Set the formatted date in the corresponding TextField
                           });
                         } else {
                           print("Date is not selected");
@@ -286,7 +290,7 @@ class _MedicalNoteState extends State<MedicalNote> {
                 Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 30),
                   child: TextField(
-                    controller: noteController,
+                    controller: noteController, // A controller object for managing the text field's content
                     obscureText: false,
                     textAlign: TextAlign.start,
                     maxLines: 3,
@@ -329,7 +333,7 @@ class _MedicalNoteState extends State<MedicalNote> {
                 const SizedBox(
                   height: 10,
                 ),
-                InkWell(
+                InkWell(// A rectangular area of the screen that responds to touch events
                     onTap: () {
                       openBottomSheet();
                     },
@@ -341,14 +345,14 @@ class _MedicalNoteState extends State<MedicalNote> {
                             height: 230,
                             width: 150,
                             color: const Color.fromARGB(255, 184, 221, 184),
-                            child: myImage == null
+                            child: myImage == null // check if myImage is null
                                 ? const Center(
-                                    child: Image(
+                                    child: Image( // use the default image
                                           image: AssetImage('images/photo.png'),
                                           width: 40,
                                           height: 40),
                                   )
-                                : Image.file(
+                                : Image.file( // if myImage is not null, display the image from the file
                                     myImage!,
                                     fit: BoxFit.cover,
                                   )))),
@@ -385,7 +389,7 @@ class _MedicalNoteState extends State<MedicalNote> {
     showModalBottomSheet(
         context: context,
         builder: (BuildContext context) {
-          return SafeArea(
+          return SafeArea( // SafeArea widget is used to avoid elements from being obstructed by device's status bar
             child: Column(
               mainAxisSize: MainAxisSize.min,
               children: [
@@ -393,16 +397,16 @@ class _MedicalNoteState extends State<MedicalNote> {
                   leading: const Icon(Icons.camera_alt),
                   title: const Text('Take a photo'),
                   onTap: () {
-                    Navigator.pop(context);
-                    getImage(ImageSource.camera);
+                    Navigator.pop(context); // Close the bottom sheet when user taps on an option.
+                    getImage(ImageSource.camera); // Open the device's camera to capture doctor treatment.
                   },
                 ),
                 ListTile(
                   leading: const Icon(Icons.photo_library),
                   title: const Text('Choose from gallery'),
                   onTap: () {
-                    Navigator.pop(context);
-                    getImage(ImageSource.gallery);
+                    Navigator.pop(context);// Close the bottom sheet when user taps on an option.
+                    getImage(ImageSource.gallery); // Open the device's gallery to choose an image.
                   },
                 ),
               ],
@@ -431,35 +435,41 @@ class _MedicalNoteState extends State<MedicalNote> {
     );
   }
 
-  final ImagePicker _picker = ImagePicker();
-  getImage(ImageSource source) async {
+  final ImagePicker _picker = ImagePicker();// create a new instance of ImagePicker
+  getImage(ImageSource source) async {//function that takes an ImageSource parameter
+    // use the ImagePicker instance to get an image from the specified source
     final XFile? image = await _picker.pickImage(source: source);
 
-    if (image != null) {
-      myImage = File(image.path);
+    if (image != null) {// if the image is not null
+      myImage = File(image.path);// set myImage to the image's file path
       // uplodaFile();
       setState(() {});
-      Get.back();
+      Get.back();// close the dialog
     }
   }
 
   void uplodaFile() async {
     
-    final file = myImage;
+    final file = myImage;// Get the file to upload from myImage
+
+    // Create metadata for the file
     final metaData = SettableMetadata(contentType: 'image/jpeg');
+    // Get the Firebase Storage reference
     final storageRef = FirebaseStorage.instance.ref();
+    // Set the reference path
     Reference ref = storageRef
         .child('pictures/${DateTime.now().microsecondsSinceEpoch}.jpg');
+    // Start the upload task with the file and metadata
     final uploadTask = ref.putFile(file!, metaData);
 
-    uploadTask.snapshotEvents.listen((event) {
+    uploadTask.snapshotEvents.listen((event) {// Listen for snapshot events from the upload task
       switch (event.state) {
-        case TaskState.running:
-          print("file is uplording");
+        case TaskState.running:// When the task is running
+          print("file is uploading");//print this message
           break;
-        case TaskState.success:
+        case TaskState.success:// When the task is successful
           ref.getDownloadURL().then((value) => storeEntry(value,
-              drNameController.text, noteController.text, dateController.text));
+              drNameController.text, noteController.text, dateController.text));// Get the download URL for the file and store it along with other details
           break;
       }
     });
@@ -470,15 +480,16 @@ class _MedicalNoteState extends State<MedicalNote> {
     // Get the current user's UID
     String uid = FirebaseAuth.instance.currentUser!.uid;
 
+    // Get a reference to the 'DoctorTreatements' collection
     final CollectionReference _collection =
         FirebaseFirestore.instance.collection('DoctorTreatements');
         
-    // Show the progress indicator
+    // Show the progress indicator while the data is being stored
     showDialog(
       context: context,
       barrierDismissible: false,
       builder: (BuildContext context) {
-        return Center(
+        return const Center(
           child: CircularProgressIndicator(),
         );
       },
@@ -508,7 +519,7 @@ class _MedicalNoteState extends State<MedicalNote> {
 
       // Show success message
       ScaffoldMessenger.of(context).showSnackBar(
-      SnackBar(
+      const SnackBar(
         content: Text(
           'Data stored successfully',
           style: TextStyle(

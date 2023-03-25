@@ -28,13 +28,15 @@ class _HomePageState extends State<SymptomsHeadHistory> {
     // Get the current user's UID
     uid = FirebaseAuth.instance.currentUser!.uid;
 
+    // Creating a variable named '_symptoms' to hold a Firestore collection reference
     _symptoms = FirebaseFirestore.instance
         .collection('symptoms')
-        .doc(uid)
-        .collection('userHeadSymptoms');
+        .doc(uid)// Accessing a specific document in the 'symptoms' collection using the provided 'uid'
+        .collection('userHeadSymptoms');  // Accessing a sub-collection named 'userHeadSymptoms' within the document
   }
 
   Future<void> _update([DocumentSnapshot? documentSnapshot]) async {
+    // if documentSnapshot is not null, update the symptom
     if (documentSnapshot != null) {
       _symptomsController.text = documentSnapshot['symptom'];
       _symptomsDateController.text = documentSnapshot['timestamp'].toString();
@@ -75,7 +77,7 @@ class _HomePageState extends State<SymptomsHeadHistory> {
                 const SizedBox(
                   height: 20,
                 ),
-                RatingBar.builder(
+                RatingBar.builder(// add rating bar for symptom level
                   initialRating: (0),
                   unratedColor: const Color(0xffece5e5),
                   itemBuilder: (context, index) =>
@@ -97,12 +99,14 @@ class _HomePageState extends State<SymptomsHeadHistory> {
                       final String symptom = _symptomsController.text;
                       final String date = _symptomsDateController.text;
                       final double? symptomlevel = ui;
+                      // update the document in the symptoms collection with new values
                       if (symptomlevel != null) {
                         await _symptoms.doc(documentSnapshot!.id).update({
                           "symptom": symptom,
                           "symptomlevel": symptomlevel,
                           "timestamp": date
                         });
+                        // clear the text fields and show a snackbar to notify the user
                         _symptomsController.text = '';
                         _symptomsDateController.text = '';
                         ScaffoldMessenger.of(context).showSnackBar(
@@ -120,6 +124,7 @@ class _HomePageState extends State<SymptomsHeadHistory> {
                             backgroundColor: Color(0xFF5CB85C),
                           ),
                         );
+                        // close the bottom modal sheet
                         Navigator.of(context).pop();
                       }
                     },
@@ -131,9 +136,12 @@ class _HomePageState extends State<SymptomsHeadHistory> {
         });
   }
 
+  // This function deletes a symptom based on its ID
   Future<void> _delete(String productId) async {
+    // Delete the symptom document from Firebase using its ID
     await _symptoms.doc(productId).delete();
 
+    // Show a SnackBar indicating that the symptom was successfully deleted
     ScaffoldMessenger.of(context).showSnackBar(
       const SnackBar(
         content: Text(
@@ -193,8 +201,11 @@ class _HomePageState extends State<SymptomsHeadHistory> {
           builder: (context, AsyncSnapshot<QuerySnapshot> streamSnapshot) {
             if (streamSnapshot.hasData) {
               return ListView.builder(
+                //number of items in the list.
+                //total number of items in the data source.
                 itemCount: streamSnapshot.data!.docs.length,
                 itemBuilder: (context, index) {
+                  //reference to the current document
                   final DocumentSnapshot documentSnapshot =
                       streamSnapshot.data!.docs[index];
                   return Card(
@@ -249,10 +260,7 @@ class _HomePageState extends State<SymptomsHeadHistory> {
                                   size: 30,
                                 ),
                                 onPressed: () => _update(documentSnapshot)),
-                            // IconButton(
-                            //     icon: const Icon(Icons.delete),
-                            //     onPressed: () =>
-                            //         _delete(documentSnapshot.id)),
+                            
                             IconButton(
                               style: TextButton.styleFrom(
                                 backgroundColor: const Color(0xEFEFEFFF),
